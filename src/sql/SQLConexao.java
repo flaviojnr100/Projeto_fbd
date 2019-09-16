@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author Flavio
  */
 public class SQLConexao {
-    public static final String BD_CONEXAO = "POSTGRES";
+    public static final String BD_CONEXAO = "transportes_terrestre";
     public static Connection conexao= null;
     
      public static synchronized Connection getConnectionInstance(String bd) {
