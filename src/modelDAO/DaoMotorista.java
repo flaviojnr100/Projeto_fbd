@@ -5,6 +5,7 @@
  */
 package modelDAO;
 
+import Exceções.ExceptionDaoMotorista;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -23,28 +24,11 @@ import sql.SQLUtil;
  */
 public class DaoMotorista {
     
-    private Connection conexao;
-    private PreparedStatement statement;
+    
     
     public boolean salvar(Motorista motorista){
        
-        try {
-            this.conexao = SQLConexao.getConnectionInstance(SQLConexao.BD_CONEXAO);
-            this.statement = conexao.prepareStatement(SQLUtil.Motorista.INSERT_ALL);
-            statement.setString(1, motorista.getNome());
-            statement.setString(2, motorista.getSobrenome());
-            statement.setString(3, motorista.getRg());
-            statement.setString(4, motorista.getCpf());
-            statement.setString(5, motorista.getData_nascimento());
-            statement.setString(6, motorista.getCnh());
-            
-            statement.execute();
-            this.conexao.close();
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-       return true;
+      return true;
     }
     public Motorista buscarCpf(String cpf){
         Motorista motorista = null;

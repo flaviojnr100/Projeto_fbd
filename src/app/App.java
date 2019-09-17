@@ -7,6 +7,7 @@ package app;
 
 import modelVO.Motorista;
 import fachada.Fachada;
+import sql.SQLConexao;
 /**
  *
  * @author Flavio
@@ -14,7 +15,17 @@ import fachada.Fachada;
 public class App {
     public static void main(String[] args) {
         Motorista motorista = new Motorista("Marcos", "Vinicius", "546532127", "326598", "12/56/1236", "654312321");
-        Fachada.getInstance().salvar(motorista);
+        
+       /* Fachada fachada1 =Fachada.getInstance();
+        if(fachada1.salvar(motorista)){
+            System.out.println("Deu certo");
+        }else{
+            System.out.println("Erro");
+        }
+      */
+       // System.out.println(SQLConexao.getConnectionInstance(SQLConexao.BD_CONEXAO).toString());
+        
+        
     }
     
 }
