@@ -5,7 +5,10 @@
  */
 package modelVB;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelDAO.DaoMotorista;
 import modelVO.Motorista;
 
@@ -22,9 +25,13 @@ public class BusinessMotorista {
     
     
     public boolean salvar(Motorista motorista){
-        if(!dao.verificarExistencia(motorista.getCpf())){
-            return dao.salvar(motorista);
-        }
+       // if(!dao.verificarExistencia(motorista.getCpf())){
+            try {
+                return dao.salvar(motorista);
+            } catch (SQLException ex) {
+                Logger.getLogger(BusinessMotorista.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      //  }
         return false;
     }
     public boolean editar(Motorista motorista){

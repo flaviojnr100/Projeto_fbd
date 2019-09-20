@@ -32,6 +32,7 @@ public class Fachada implements Ifachada {
     
     @Override
     public boolean salvar(Motorista motorista) {
+        
         return bMotorista.salvar(motorista);
     }
 

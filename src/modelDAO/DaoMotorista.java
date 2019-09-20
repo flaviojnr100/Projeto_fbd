@@ -15,8 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelVO.Motorista;
-import sql.SQLConexao;
+
 import sql.SQLUtil;
+import sql.SQLConexao;
 
 /**
  *
@@ -24,10 +25,20 @@ import sql.SQLUtil;
  */
 public class DaoMotorista {
     
+    private Connection conexao;
+    private PreparedStatement statement;
     
-    
-    public boolean salvar(Motorista motorista){
-       
+    public boolean salvar(Motorista motorista) throws SQLException{
+        this.conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+        this.statement = conexao.prepareStatement(SQLUtil.Motorista.INSERT_ALL);
+       statement.setString(1, motorista.getNome());
+       statement.setString(2, motorista.getSobrenome());
+       statement.setString(3, motorista.getRg());
+       statement.setString(4, motorista.getCpf());
+       statement.setString(5, motorista.getData_nascimento());
+       statement.setString(6, motorista.getCnh());
+       statement.execute();
+       conexao.close();
       return true;
     }
     public Motorista buscarCpf(String cpf){
