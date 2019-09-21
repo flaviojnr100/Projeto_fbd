@@ -10,6 +10,7 @@ package modelVO;
  * @author Flavio
  */
 public class Horario {
+    private int id;
     private String hora;
     private String data;
 
@@ -32,6 +33,14 @@ public class Horario {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

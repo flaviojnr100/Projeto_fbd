@@ -10,6 +10,7 @@ package modelVO;
  * @author Flavio
  */
 public abstract class Pessoa {
+    private int id;
     private String nome;
     private String sobrenome;
     private String rg;
@@ -69,6 +70,14 @@ public abstract class Pessoa {
 
     public void setData_nascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
    
     

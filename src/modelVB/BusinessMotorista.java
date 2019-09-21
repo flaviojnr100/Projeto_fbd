@@ -26,13 +26,9 @@ public class BusinessMotorista {
     
     public boolean salvar(Motorista motorista){
        // if(!dao.verificarExistencia(motorista.getCpf())){
-            try {
-                return dao.salvar(motorista);
-            } catch (SQLException ex) {
-                Logger.getLogger(BusinessMotorista.class.getName()).log(Level.SEVERE, null, ex);
-            }
-      //  }
-        return false;
+            
+            return dao.salvar(motorista);
+           
     }
     public boolean editar(Motorista motorista){
         if(dao.verificarExistencia(motorista.getCpf())){

@@ -10,6 +10,7 @@ package modelVO;
  * @author Flavio
  */
 public abstract class Endereco {
+    private int id;
     private String estado;
     private String rua;
     private String bairro;
@@ -62,5 +63,14 @@ public abstract class Endereco {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     
 }

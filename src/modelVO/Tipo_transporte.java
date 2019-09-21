@@ -10,6 +10,7 @@ package modelVO;
  * @author Flavio
  */
 public class Tipo_transporte {
+    private int id;
     private String nome;
     private int assentos;
 
@@ -32,6 +33,14 @@ public class Tipo_transporte {
 
     public void setAssentos(int assentos) {
         this.assentos = assentos;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

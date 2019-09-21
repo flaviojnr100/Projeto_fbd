@@ -7,7 +7,9 @@ package fachada;
 
 import java.util.List;
 import modelVB.BusinessMotorista;
+import modelVB.BusinessTransporte;
 import modelVO.Motorista;
+import modelVO.Transporte;
 
 /**
  *
@@ -15,6 +17,7 @@ import modelVO.Motorista;
  */
 public class Fachada implements Ifachada {
     private BusinessMotorista bMotorista;
+    private BusinessTransporte bTransporte;
     private static Fachada instance;
 
     private Fachada() {
@@ -42,13 +45,34 @@ public class Fachada implements Ifachada {
     }
 
     @Override
-    public List<Motorista> getAll() {
+    public List<Motorista> getAllMotorista() {
         return bMotorista.getAll();
     }
 
     @Override
-    public boolean remover(String cpf) {
+    public boolean removerMotorista(String cpf) {
         return bMotorista.remover(cpf);
+    }
+
+   
+    @Override
+    public boolean salvar(Transporte transporte) {
+       return bTransporte.salvar(transporte);
+    }
+
+    @Override
+    public boolean editar(Transporte transporte) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Transporte> getAllTransporte() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean removerTransporte(String placa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -19,4 +19,12 @@ public class SQLUtil {
          public static String INSERT_ALL = "insert into motorista(nome,sobrenome,rg,cpf,data_nascimento,cnh) "
                 + "values (?,?,?,?,?,?)";
     }
+    
+    public static class Transporte{
+        public static String INSERT_ALL="insert into transporte(cor,placa,chassi,id_motorista,id_tipo_transporte,id_destino) "
+                + "values (?,?,?,?,?,?,)";
+        public static String INSERT="insert into transporte(cor,placa,chassi) "
+                + "values (?,?,?)";
 }
+}
+

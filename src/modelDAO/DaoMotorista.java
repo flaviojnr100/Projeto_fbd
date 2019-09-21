@@ -28,7 +28,8 @@ public class DaoMotorista {
     private Connection conexao;
     private PreparedStatement statement;
     
-    public boolean salvar(Motorista motorista) throws SQLException{
+    public boolean salvar(Motorista motorista){
+        try{
         this.conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
         this.statement = conexao.prepareStatement(SQLUtil.Motorista.INSERT_ALL);
        statement.setString(1, motorista.getNome());
@@ -39,7 +40,11 @@ public class DaoMotorista {
        statement.setString(6, motorista.getCnh());
        statement.execute();
        conexao.close();
-      return true;
+       return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoMotorista.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
     public Motorista buscarCpf(String cpf){
         Motorista motorista = null;

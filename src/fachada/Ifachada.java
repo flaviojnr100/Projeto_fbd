@@ -7,6 +7,7 @@ package fachada;
 
 import java.util.List;
 import modelVO.Motorista;
+import modelVO.Transporte;
 
 /**
  *
@@ -15,7 +16,11 @@ import modelVO.Motorista;
 public interface Ifachada {
     public boolean salvar(Motorista motorista);
     public boolean editar(Motorista motorista);
-    public List<Motorista> getAll();
-    public boolean remover(String cpf);
+    public List<Motorista> getAllMotorista();
+    public boolean removerMotorista(String cpf);
+     public boolean salvar(Transporte transporte);
+    public boolean editar(Transporte transporte);
+    public List<Transporte> getAllTransporte();
+    public boolean removerTransporte(String placa);
         
 }

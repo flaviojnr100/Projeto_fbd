@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelDAO.DaoMotorista;
+import modelDAO.DaoTransporte;
+import modelVO.Transporte;
 
 /**
  *
@@ -18,18 +20,12 @@ import modelDAO.DaoMotorista;
  */
 public class App {
     public static void main(String[] args) {
-        Motorista motorista = new Motorista("Marcos", "Vinicius", "546532127", "326598", "12/56/1236", "654312321");
-        
+        Motorista motorista = new Motorista("Roberta", "Vinicius", "546532127", "326598", "12/56/1236", "654312321");
+        Transporte transporte = new Transporte("Amarelo", "1235cvn", "3554fd");
         Fachada fachada1 =Fachada.getInstance();
         fachada1.salvar(motorista);
-     //   DaoMotorista da = new DaoMotorista();
-       // try {
-      //      da.salvar(motorista);
-            
-            // System.out.println(SQLConexao.getConnectionInstance(SQLConexao.BD_CONEXAO).toString());
-      //  } catch (SQLException ex) {
-      //      Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-      //  }
+        fachada1.salvar(transporte);
+     
         
         
     }

@@ -14,20 +14,23 @@ import java.util.List;
  * @author Flavio
  */
 public class Transporte {
+    private int id;
     private Motorista motorista;
     private String cor;
     private String placa;
     private String chassi;
     private Tipo_transporte tipo;
+    private Destino destino;
     private List<Assento> assentos = new ArrayList<>();
     private List<Horario> horarios = new ArrayList<>();
 
-    public Transporte(String cor, String placa, String chassi, Tipo_transporte tipo,Motorista motorista) {
+    public Transporte(String cor, String placa, String chassi, Tipo_transporte tipo,Motorista motorista,Destino destino) {
         this.cor = cor;
         this.placa = placa;
         this.chassi = chassi;
         this.tipo = tipo;
         this.motorista = motorista;
+        this.destino = destino;
     }
     public Transporte(String cor, String placa, String chassi) {
         this.cor = cor;
@@ -82,6 +85,22 @@ public class Transporte {
 
     public void setMotorista(Motorista motorista) {
         this.motorista = motorista;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Destino getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Destino destino) {
+        this.destino = destino;
     }
     
     
