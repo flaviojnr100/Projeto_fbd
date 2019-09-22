@@ -10,6 +10,7 @@ package modelVO;
  * @author Flavio
  */
 public abstract class Entidade_empresa {
+    private int id;
     private String nome;
     private String cnpj;
 
@@ -32,6 +33,14 @@ public abstract class Entidade_empresa {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

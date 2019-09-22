@@ -10,6 +10,7 @@ package modelVO;
  * @author Flavio
  */
 public class Destino{
+    private int id;
     private String nome;
     private Endereco endereco;
 
@@ -17,6 +18,10 @@ public class Destino{
         this.nome = nome;
         this.endereco = endereco;
     }
+
+    public Destino() {
+    }
+    
 
     public String getNome() {
         return nome;
@@ -32,6 +37,14 @@ public class Destino{
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

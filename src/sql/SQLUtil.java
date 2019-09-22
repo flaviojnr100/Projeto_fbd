@@ -32,5 +32,28 @@ public class SQLUtil {
                 + "values (?,?,?)";
         public static String BUSCAR_CHASSI="select * from transporte where chassi = ?";
 }
+    public static class Destino{
+        public static String INSERT_ALL = "insert into destino(nome,id_endereco) values(?,?)";
+        public static String BUSCAR_ALL = "select * from destino";
+        public static String BUSCAR_ID = "select * from destino where id=?";
+        public static String BUSCAR_NOME = "select * from destino where nome=?";
+        public static String REMOVE_ID = "delete from destino where id=?";
+        public static String EDITAR = "update destino set nome=?,id_endereco=?";
+    }
+    public static class Endereco{
+        public static String INSERT_ALL = "insert into endereco(estado,rua,bairro,cidade,complemento) values (?,?,?,?,?)";
+        public static String BUSCAR_ID = "select * from endereco where id=?";
+    }
+    
+    public static class Tipo_transporte{
+        public static String INSERT_ALL = "insert into tipo_transporte(nome,assentos,id_empresa) values(?,?,?)";
+        public static String BUSCAR_ID = "select * from tipo_transporte where id=?";
+    }
+    public static class Empresa{
+        public static String INSERT_ALL = "insert into empresa(nome,cnpj) values(?,?)";
+        public static String BUSCAR_ID = "select * from empresa where id=?";
+        
+    }
+    
 }
 

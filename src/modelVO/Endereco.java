@@ -24,6 +24,10 @@ public class Endereco {
         this.cidade = cidade;
     }
 
+    public Endereco() {
+    }
+    
+
     public String getEstado() {
         return estado;
     }

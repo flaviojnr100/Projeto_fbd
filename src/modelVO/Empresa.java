@@ -14,5 +14,10 @@ public class Empresa extends Entidade_empresa{
     public Empresa(String nome, String cnpj) {
         super(nome, cnpj);
     }
+
+    public Empresa() {
+        super(null, null);
+    }
+    
     
 }

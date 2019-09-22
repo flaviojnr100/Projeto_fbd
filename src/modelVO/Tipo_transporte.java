@@ -13,11 +13,17 @@ public class Tipo_transporte {
     private int id;
     private String nome;
     private int assentos;
+    private Empresa empresa;
 
-    public Tipo_transporte(String nome, int assentos) {
+    public Tipo_transporte(String nome, int assentos,Empresa empresa) {
         this.nome = nome;
         this.assentos = assentos;
+        this.empresa = empresa;
     }
+
+    public Tipo_transporte() {
+    }
+    
 
     public String getNome() {
         return nome;
@@ -41,6 +47,14 @@ public class Tipo_transporte {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
     
 }
