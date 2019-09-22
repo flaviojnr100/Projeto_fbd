@@ -39,6 +39,10 @@ public class Transporte {
         
     }
 
+    public Transporte() {
+    }
+    
+
     public String getCor() {
         return cor;
     }

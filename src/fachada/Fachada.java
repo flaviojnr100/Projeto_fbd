@@ -22,6 +22,7 @@ public class Fachada implements Ifachada {
 
     private Fachada() {
         this.bMotorista = new BusinessMotorista();
+        this.bTransporte = new BusinessTransporte();
     }
     public static Fachada getInstance(){
         if(instance == null){
@@ -38,11 +39,12 @@ public class Fachada implements Ifachada {
         
         return bMotorista.salvar(motorista);
     }
-
     @Override
-    public boolean editar(Motorista motorista) {
-        return bMotorista.editar(motorista);
+    public Motorista buscarCpf(String cpf) {
+        return bMotorista.buscarCpf(cpf);
     }
+
+   
 
     @Override
     public List<Motorista> getAllMotorista() {
@@ -53,7 +55,15 @@ public class Fachada implements Ifachada {
     public boolean removerMotorista(String cpf) {
         return bMotorista.remover(cpf);
     }
-
+    @Override
+    public boolean verificarExistenciaMotorista(String cpf) {
+       return bMotorista.verificarExistencia(cpf);
+    }
+    
+    @Override
+    public boolean editar(Motorista motorista, Motorista motorista_atualizado) {
+        return bMotorista.editar(motorista, motorista_atualizado);
+    }
    
     @Override
     public boolean salvar(Transporte transporte) {
@@ -74,5 +84,13 @@ public class Fachada implements Ifachada {
     public boolean removerTransporte(String placa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
+
+    
+
+   
+
+    
     
 }

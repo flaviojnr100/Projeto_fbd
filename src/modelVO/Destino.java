@@ -9,13 +9,13 @@ package modelVO;
  *
  * @author Flavio
  */
-public class Destino extends Endereco {
+public class Destino{
     private String nome;
-    
+    private Endereco endereco;
 
-    public Destino(String nome,String estado, String rua, String bairro, String cidade) {
-        super(estado, rua, bairro, cidade);
+    public Destino(String nome,Endereco endereco) {
         this.nome = nome;
+        this.endereco = endereco;
     }
 
     public String getNome() {
@@ -25,6 +25,15 @@ public class Destino extends Endereco {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+    
     
     
 }

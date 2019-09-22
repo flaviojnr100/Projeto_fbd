@@ -18,6 +18,11 @@ public class SQLUtil {
     public static class Motorista{
          public static String INSERT_ALL = "insert into motorista(nome,sobrenome,rg,cpf,data_nascimento,cnh) "
                 + "values (?,?,?,?,?,?)";
+         public static String BUSCAR_CPF = "select * from motorista where cpf=?";
+         public static String BUSCAR_ALL = "select * from motorista";
+         public static String REMOVER_CPF = "delete from motorista where cpf = ?";
+         public static String EDITAR = "update motorista set nome = ?,sobrenome=?,rg=?,cpf=?,data_nascimento=?,cnh=? where id = ? and cpf = ?";
+         public static String BUSCAR_ID = "select * from motorista where id=?";
     }
     
     public static class Transporte{
@@ -25,6 +30,7 @@ public class SQLUtil {
                 + "values (?,?,?,?,?,?,)";
         public static String INSERT="insert into transporte(cor,placa,chassi) "
                 + "values (?,?,?)";
+        public static String BUSCAR_CHASSI="select * from transporte where chassi = ?";
 }
 }
 

@@ -12,13 +12,14 @@ import java.util.List;
  *
  * @author Flavio
  */
-public class Rodoviaria extends Endereco{
+public class Rodoviaria{
     private String nome;
+    private Endereco endereco;
     private List<Empresa> empresas = new ArrayList<>();
 
-    public Rodoviaria(String nome,String estado, String rua, String bairro, String cidade) {
-        super(estado, rua, bairro, cidade);
+    public Rodoviaria(String nome,Endereco endereco) {
         this.nome = nome;
+        this.endereco = endereco;
     }
 
     public String getNome() {
@@ -32,6 +33,15 @@ public class Rodoviaria extends Endereco{
     public List<Empresa> getEmpresas() {
         return empresas;
     }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+    
     
     
 }

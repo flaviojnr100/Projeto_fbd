@@ -17,6 +17,11 @@ public class Motorista extends Pessoa {
         this.cnh = cnh;
     }
 
+    public Motorista() {
+        super(null, null, null);
+    }
+    
+
     public String getCnh() {
         return cnh;
     }

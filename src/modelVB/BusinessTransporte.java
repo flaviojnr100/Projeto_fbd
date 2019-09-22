@@ -19,11 +19,11 @@ import modelVO.Transporte;
 public class BusinessTransporte {
     private DaoTransporte dao;
 
-    public BusinessTransporte(DaoTransporte dao) {
-        this.dao = dao;
+    public BusinessTransporte() {
+        this.dao = new DaoTransporte();
     }
       public boolean salvar(Transporte transporte){
-           if(transporte.getDestino()==null || transporte.getMotorista()==null){
+           if(transporte.getDestino()== null && transporte.getMotorista()== null){
                return dao.salvar2(transporte);
            }
           return dao.salvar(transporte);

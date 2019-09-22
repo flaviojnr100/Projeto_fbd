@@ -15,9 +15,11 @@ import modelVO.Transporte;
  */
 public interface Ifachada {
     public boolean salvar(Motorista motorista);
-    public boolean editar(Motorista motorista);
+    public boolean editar(Motorista motorista,Motorista motorista_atualizado);
     public List<Motorista> getAllMotorista();
     public boolean removerMotorista(String cpf);
+    public Motorista buscarCpf(String cpf);
+    public boolean verificarExistenciaMotorista(String cpf);
      public boolean salvar(Transporte transporte);
     public boolean editar(Transporte transporte);
     public List<Transporte> getAllTransporte();

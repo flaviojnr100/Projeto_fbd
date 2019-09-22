@@ -9,7 +9,7 @@ package modelVO;
  *
  * @author Flavio
  */
-public abstract class Endereco {
+public class Endereco {
     private int id;
     private String estado;
     private String rua;

@@ -7,10 +7,12 @@ package modelDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelVO.Motorista;
 import modelVO.Transporte;
 import sql.SQLConexao;
 import sql.SQLUtil;
@@ -22,6 +24,7 @@ import sql.SQLUtil;
 public class DaoTransporte {
     private Connection conexao;
     private PreparedStatement statement;
+    private ResultSet result;
     public boolean salvar(Transporte transporte){
         this.conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
         try {
@@ -31,7 +34,7 @@ public class DaoTransporte {
             statement.setString(3, transporte.getChassi());
             statement.setString(4, transporte.getMotorista().getId()+"");
             statement.setString(5, transporte.getTipo().getId()+"");
-            statement.setString(6,transporte.getDestino().getId()+"");
+            statement.setString(6,transporte.getDestino().getEndereco().getId()+"");
             
             statement.execute();
             conexao.close();
@@ -64,7 +67,28 @@ public class DaoTransporte {
         return transporte;
     }
     public Transporte buscarChassi(String chassi){
-        Transporte transporte = null;
+        Transporte transporte = new Transporte();
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Transporte.BUSCAR_CHASSI);
+            statement.setString(1, chassi);
+            result = statement.executeQuery();
+            if(result.next()){
+                transporte.setId(result.getInt(1));
+                transporte.setCor(result.getString(2));
+                transporte.setPlaca(result.getString(3));
+                transporte.setChassi(result.getString(4));
+                transporte.setMotorista(new DaoMotorista().buscarId(result.getInt(5)));
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
         return transporte;
     }
     public List<Transporte> getAll(){
