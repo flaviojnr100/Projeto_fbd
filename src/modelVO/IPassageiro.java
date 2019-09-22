@@ -17,6 +17,8 @@ public interface IPassageiro {
     public void setSobrenome(String sobrenome);
     public String getCpf();
     public void setCpf(String cpf);
+    public int getId();
+    public void setId(int id);
     
     
     

@@ -5,24 +5,29 @@
  */
 package modelVO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Flavio
  */
 public class Passageiro extends Pessoa implements IPassageiro {
-    private Bilhete bilhete;
+    private List<Bilhete> bilhete;
     public Passageiro(String nome, String sobrenome, String cpf,Bilhete bilhete) {
         super(nome, sobrenome, cpf);
-        this.bilhete = bilhete;
+        this.bilhete = new ArrayList<>();
     }
 
-    public Bilhete getBilhete() {
+    public List<Bilhete> getBilhete() {
         return bilhete;
     }
 
-    public void setBilhete(Bilhete bilhete) {
+    public void setBilhete(List<Bilhete> bilhete) {
         this.bilhete = bilhete;
     }
+
+   
     
 
     

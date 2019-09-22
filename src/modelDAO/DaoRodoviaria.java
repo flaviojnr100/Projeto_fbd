@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelVO.Motorista;
+
+import modelVO.Rodoviaria;
 import sql.SQLConexao;
 import sql.SQLUtil;
 
@@ -25,22 +26,18 @@ public class DaoRodoviaria {
     private Connection conexao;
     private PreparedStatement statement;
     private ResultSet result;
-    public boolean salvar(Motorista motorista){
-       return true;
-    }
-    public Motorista buscarCpf(String cpf){
-       return null;
-    }
-    public boolean editar(Motorista motorista, Motorista motorista_atualizado){
-      return true;
-    }
-    public List<Motorista> getAll(){
-       return null;
-    }
-    public boolean remover(String cpf){
-      return true;
-    }
-    public boolean verificarExistencia(String cpf){
+    public boolean salvar(Rodoviaria rodoviaria){
         return true;
     }
+    
+    public boolean editar(Rodoviaria rodoviaria, Rodoviaria rodoviaria_atualizado){
+      return true;
+    }
+    public List<Rodoviaria> getAll(){
+       return null;
+    }
+    public boolean remover(int id){
+      return true;
+    }
+    
 }

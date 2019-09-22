@@ -10,6 +10,7 @@ package modelVO;
  * @author Flavio
  */
 public class Bilhete {
+    private int id;
     private String data;
     private String hora;
     private Pagamento pagamento;
@@ -52,6 +53,14 @@ public class Bilhete {
 
     public void setAssento(Assento assento) {
         this.assento = assento;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }
