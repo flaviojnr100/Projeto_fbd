@@ -33,9 +33,6 @@ public class DaoRodoviaria {
     public boolean editar(Rodoviaria rodoviaria, Rodoviaria rodoviaria_atualizado){
       return true;
     }
-    public Rodoviaria buscarId(int id){
-        return null;
-    }
     public List<Rodoviaria> getAll(){
        return null;
     }
