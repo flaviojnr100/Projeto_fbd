@@ -5,9 +5,9 @@
  */
 package app;
 
-import Controller.ControllerCadastroEmpresa;
-import Controller.ControllerCadastroFuncionario;
-import Controller.ControllerRodoviaria;
+
+
+
 import modelVO.Motorista;
 import fachada.Fachada;
 import java.sql.SQLException;
@@ -17,10 +17,13 @@ import java.util.logging.Logger;
 import modelDAO.DaoMotorista;
 import modelDAO.DaoTransporte;
 import modelVO.Transporte;
-import view.CadastroEmpresa;
-import view.CadastroFuncionario;
-import view.CadastroRodoviaria;
-import view.Login;
+
+
+import view.CadastroTipoTransporte;
+import view.CadastroTransporte;
+import view.ConsultarTransporte;
+
+
 
 /**
  *
@@ -47,9 +50,7 @@ public class App {
     new ControllerCadastroEmpresa(cc);
     cc.setVisible(true);
         */
-        CadastroRodoviaria cr = new CadastroRodoviaria();
-        new ControllerRodoviaria(cr);
-        cr.setVisible(true);
+       new ConsultarTransporte().setVisible(true);
     }
     
 }

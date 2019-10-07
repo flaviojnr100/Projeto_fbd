@@ -14,12 +14,12 @@ import javax.swing.JTextField;
  *
  * @author Flavio
  */
-public class CadastroTransporte extends javax.swing.JFrame {
+public class EditarTransporte extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroTransporte
      */
-    public CadastroTransporte() {
+    public EditarTransporte() {
         initComponents();
     }
 
@@ -43,7 +43,7 @@ public class CadastroTransporte extends javax.swing.JFrame {
         btnAdicionarRota = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaRota = new javax.swing.JList<>();
-        btnCadastrar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -133,9 +133,9 @@ public class CadastroTransporte extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
         );
 
-        btnCadastrar.setBackground(new java.awt.Color(255, 255, 255));
-        btnCadastrar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnCadastrar.setText("Cadastrar");
+        btnEditar.setBackground(new java.awt.Color(255, 255, 255));
+        btnEditar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEditar.setText("Editar");
 
         btnLimpar.setBackground(new java.awt.Color(255, 255, 255));
         btnLimpar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -242,7 +242,7 @@ public class CadastroTransporte extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -273,7 +273,7 @@ public class CadastroTransporte extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -311,26 +311,27 @@ public class CadastroTransporte extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroTransporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarTransporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroTransporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarTransporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroTransporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarTransporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroTransporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarTransporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroTransporte().setVisible(true);
+                new EditarTransporte().setVisible(true);
             }
         });
     }
 
     public JButton getBtnCadastrar() {
-        return btnCadastrar;
+        return btnEditar;
     }
 
     public JButton getBtnLimpar() {
@@ -366,7 +367,7 @@ public class CadastroTransporte extends javax.swing.JFrame {
     private javax.swing.JButton btnAdicionarMotorista;
     private javax.swing.JButton btnAdicionarRota;
     private javax.swing.JButton btnAdicionarTransporte;
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSair;
     private javax.swing.JFormattedTextField chassiText;
