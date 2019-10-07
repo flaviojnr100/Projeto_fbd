@@ -22,6 +22,7 @@ import modelVO.Transporte;
 import view.CadastroTipoTransporte;
 import view.CadastroTransporte;
 import view.ConsultarTransporte;
+import view.TelaLogin;
 
 
 
@@ -50,7 +51,7 @@ public class App {
     new ControllerCadastroEmpresa(cc);
     cc.setVisible(true);
         */
-       new ConsultarTransporte().setVisible(true);
+       new TelaLogin().setVisible(true);
     }
     
 }
