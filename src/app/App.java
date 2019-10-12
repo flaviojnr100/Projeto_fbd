@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import modelDAO.DaoMotorista;
 import modelDAO.DaoTransporte;
 import modelVO.Transporte;
+import view.CadastroFuncionario;
 import view.CadastroMotorista;
 
 
@@ -52,7 +53,7 @@ public class App {
     new ControllerCadastroEmpresa(cc);
     cc.setVisible(true);
         */
-       new CadastroMotorista().setVisible(true);
+       new CadastroFuncionario().setVisible(true);
     }
     
 }
