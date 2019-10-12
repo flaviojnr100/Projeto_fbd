@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import modelDAO.DaoMotorista;
 import modelDAO.DaoTransporte;
 import modelVO.Transporte;
+import view.CadastroMotorista;
 
 
 import view.CadastroTipoTransporte;
@@ -51,7 +52,7 @@ public class App {
     new ControllerCadastroEmpresa(cc);
     cc.setVisible(true);
         */
-       new TelaLogin().setVisible(true);
+       new CadastroMotorista().setVisible(true);
     }
     
 }
