@@ -20,11 +20,13 @@ import modelVO.Transporte;
 import view.CadastroFuncionario;
 import view.CadastroMotorista;
 import view.CadastroPassageiro;
+import view.CadastroRota;
 
 
 import view.CadastroTipoTransporte;
 import view.CadastroTransporte;
 import view.ConsultarPassageiro;
+import view.ConsultarRota;
 import view.ConsultarTransporte;
 import view.DashBoard;
 import view.TelaLogin;
@@ -56,7 +58,7 @@ public class App {
     new ControllerCadastroEmpresa(cc);
     cc.setVisible(true);
         */
-       new ConsultarPassageiro().setVisible(true);
+      new ConsultarRota().setVisible(true);
     }
     
 }
