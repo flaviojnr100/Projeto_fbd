@@ -19,10 +19,12 @@ import modelDAO.DaoTransporte;
 import modelVO.Transporte;
 import view.CadastroFuncionario;
 import view.CadastroMotorista;
+import view.CadastroPassageiro;
 
 
 import view.CadastroTipoTransporte;
 import view.CadastroTransporte;
+import view.ConsultarPassageiro;
 import view.ConsultarTransporte;
 import view.DashBoard;
 import view.TelaLogin;
@@ -54,7 +56,7 @@ public class App {
     new ControllerCadastroEmpresa(cc);
     cc.setVisible(true);
         */
-       new DashBoard().setVisible(true);
+       new ConsultarPassageiro().setVisible(true);
     }
     
 }
