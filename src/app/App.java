@@ -24,6 +24,7 @@ import view.CadastroMotorista;
 import view.CadastroTipoTransporte;
 import view.CadastroTransporte;
 import view.ConsultarTransporte;
+import view.DashBoard;
 import view.TelaLogin;
 
 
@@ -53,7 +54,7 @@ public class App {
     new ControllerCadastroEmpresa(cc);
     cc.setVisible(true);
         */
-       new CadastroFuncionario().setVisible(true);
+       new DashBoard().setVisible(true);
     }
     
 }
