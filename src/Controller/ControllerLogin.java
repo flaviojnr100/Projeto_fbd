@@ -45,6 +45,9 @@ public class ControllerLogin {
             if(e.getSource() == tela.getBtnEntrar()){
                 if(tela.getUsuarioTxt().getText().equals("adm") && tela.getSenhaTxt().getText().equals("adm")){
                     principal.setVisible(true);
+                    tela.setVisible(false);
+                }else{
+                    Mensagens.mensagem("Login ou senha incorreto !!");
                 }
             }
         }
