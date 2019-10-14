@@ -5,6 +5,10 @@
  */
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 /**
  *
  * @author Flavio
@@ -29,11 +33,11 @@ public class DashBoard extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnEfetuarViagem = new javax.swing.JButton();
+        btnConsultarViagem = new javax.swing.JButton();
+        btnConsultarVeiculos = new javax.swing.JButton();
+        btnConsultarRotas = new javax.swing.JButton();
+        btnConsultarPassageiros = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
@@ -43,27 +47,27 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuFuncionarioCadastro = new javax.swing.JMenuItem();
+        jMenuFuncionarioConsulta = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuMotoristaCadastro = new javax.swing.JMenuItem();
+        jMenuMotoristaConsulta = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuVeiculoCadastro = new javax.swing.JMenuItem();
+        jMenuVeiculoConsulta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuPassageiroCadastro = new javax.swing.JMenuItem();
+        jMenuPassageiroConsulta = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuRotaCadastro = new javax.swing.JMenuItem();
+        jMenuRotaConsulta = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuFinanceiroConsulta = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuSobre = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
-        jMenu10 = new javax.swing.JMenu();
+        Sair = new javax.swing.JMenu();
+        jMenuEncerrarSistema = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -76,35 +80,35 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/estrada2.png"))); // NOI18N
-        jButton1.setText("Efetuar viagem");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 265, 104));
+        btnEfetuarViagem.setBackground(new java.awt.Color(255, 255, 255));
+        btnEfetuarViagem.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnEfetuarViagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/gpslogo_oficial.png"))); // NOI18N
+        btnEfetuarViagem.setText("Efetuar viagem");
+        jPanel2.add(btnEfetuarViagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 265, 104));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/gpslogo_oficial.png"))); // NOI18N
-        jButton2.setText("Consultar viagens");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 265, 110));
+        btnConsultarViagem.setBackground(new java.awt.Color(255, 255, 255));
+        btnConsultarViagem.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnConsultarViagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/estrada2.png"))); // NOI18N
+        btnConsultarViagem.setText("Consultar viagens");
+        jPanel2.add(btnConsultarViagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 265, 110));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/logo_onibus_oficial.png"))); // NOI18N
-        jButton3.setText("Consultar veiculos");
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 265, -1));
+        btnConsultarVeiculos.setBackground(new java.awt.Color(255, 255, 255));
+        btnConsultarVeiculos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnConsultarVeiculos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/logo_onibus_oficial.png"))); // NOI18N
+        btnConsultarVeiculos.setText("Consultar veiculos");
+        jPanel2.add(btnConsultarVeiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 265, -1));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rota.png"))); // NOI18N
-        jButton4.setText("Consultar rotas");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 265, 111));
+        btnConsultarRotas.setBackground(new java.awt.Color(255, 255, 255));
+        btnConsultarRotas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnConsultarRotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rota.png"))); // NOI18N
+        btnConsultarRotas.setText("Consultar rotas");
+        jPanel2.add(btnConsultarRotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 265, 111));
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/passageiros.png"))); // NOI18N
-        jButton5.setText("Consultar passageiros");
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, 105));
+        btnConsultarPassageiros.setBackground(new java.awt.Color(255, 255, 255));
+        btnConsultarPassageiros.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnConsultarPassageiros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/passageiros.png"))); // NOI18N
+        btnConsultarPassageiros.setText("Consultar passageiros");
+        jPanel2.add(btnConsultarPassageiros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, 105));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(902, 0, 300, 650));
 
@@ -168,90 +172,105 @@ public class DashBoard extends javax.swing.JFrame {
         jMenu1.setText("Funcionario");
         jMenu1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Cadastro");
-        jMenu1.add(jMenuItem1);
+        jMenuFuncionarioCadastro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuFuncionarioCadastro.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuFuncionarioCadastro.setText("Cadastro");
+        jMenu1.add(jMenuFuncionarioCadastro);
 
-        jMenuItem2.setText("Consulta");
-        jMenu1.add(jMenuItem2);
+        jMenuFuncionarioConsulta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuFuncionarioConsulta.setText("Consulta");
+        jMenu1.add(jMenuFuncionarioConsulta);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Motorista");
         jMenu2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Cadastro");
-        jMenu2.add(jMenuItem3);
+        jMenuMotoristaCadastro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuMotoristaCadastro.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuMotoristaCadastro.setText("Cadastro");
+        jMenu2.add(jMenuMotoristaCadastro);
 
-        jMenuItem4.setText("Consulta");
-        jMenu2.add(jMenuItem4);
+        jMenuMotoristaConsulta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuMotoristaConsulta.setText("Consulta");
+        jMenu2.add(jMenuMotoristaConsulta);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Veiculo");
         jMenu3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem5.setText("Cadastro");
-        jMenu3.add(jMenuItem5);
+        jMenuVeiculoCadastro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuVeiculoCadastro.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuVeiculoCadastro.setText("Cadastro");
+        jMenu3.add(jMenuVeiculoCadastro);
 
-        jMenuItem6.setText("Consulta");
-        jMenu3.add(jMenuItem6);
+        jMenuVeiculoConsulta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuVeiculoConsulta.setText("Consulta");
+        jMenu3.add(jMenuVeiculoConsulta);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Passageiro");
         jMenu4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem7.setText("Cadastro");
-        jMenu4.add(jMenuItem7);
+        jMenuPassageiroCadastro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuPassageiroCadastro.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuPassageiroCadastro.setText("Cadastro");
+        jMenu4.add(jMenuPassageiroCadastro);
 
-        jMenuItem8.setText("Consulta");
-        jMenu4.add(jMenuItem8);
+        jMenuPassageiroConsulta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuPassageiroConsulta.setText("Consulta");
+        jMenu4.add(jMenuPassageiroConsulta);
 
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Rota");
         jMenu5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem9.setText("Cadastro");
-        jMenu5.add(jMenuItem9);
+        jMenuRotaCadastro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuRotaCadastro.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuRotaCadastro.setText("Cadastro");
+        jMenu5.add(jMenuRotaCadastro);
 
-        jMenuItem10.setText("Consulta");
-        jMenu5.add(jMenuItem10);
+        jMenuRotaConsulta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuRotaConsulta.setText("Consulta");
+        jMenu5.add(jMenuRotaConsulta);
 
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Financeiro");
         jMenu6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem11.setText("Cadastro");
-        jMenu6.add(jMenuItem11);
-
-        jMenuItem12.setText("Consulta");
-        jMenu6.add(jMenuItem12);
+        jMenuFinanceiroConsulta.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuFinanceiroConsulta.setText("Consulta");
+        jMenu6.add(jMenuFinanceiroConsulta);
 
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Opções");
         jMenu7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem13.setText("Sobre");
-        jMenu7.add(jMenuItem13);
+        jMenuSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuSobre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuSobre.setText("Sobre");
+        jMenu7.add(jMenuSobre);
 
+        jMenuItem14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuItem14.setText("Personalizar");
         jMenu7.add(jMenuItem14);
 
         jMenuBar1.add(jMenu7);
 
-        jMenu10.setText("Sair");
-        jMenu10.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jMenuBar1.add(jMenu10);
+        Sair.setText("Sair");
+        Sair.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+
+        jMenuEncerrarSistema.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuEncerrarSistema.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuEncerrarSistema.setText("Encerrar o sistema");
+        Sair.add(jMenuEncerrarSistema);
+
+        jMenuBar1.add(Sair);
 
         setJMenuBar(jMenuBar1);
 
@@ -309,17 +328,94 @@ public class DashBoard extends javax.swing.JFrame {
         });
     }
 
+    public JMenu getSair() {
+        return Sair;
+    }
+
+    public JButton getBtnConsultarPassageiros() {
+        return btnConsultarPassageiros;
+    }
+
+    public JButton getBtnConsultarRotas() {
+        return btnConsultarRotas;
+    }
+
+    public JButton getBtnConsultarVeiculos() {
+        return btnConsultarVeiculos;
+    }
+
+    public JButton getBtnConsultarViagem() {
+        return btnConsultarViagem;
+    }
+
+    public JButton getBtnEfetuarViagem() {
+        return btnEfetuarViagem;
+    }
+
+    public JMenuItem getjMenuFinanceiroConsulta() {
+        return jMenuFinanceiroConsulta;
+    }
+
+    public JMenuItem getjMenuFuncionarioCadastro() {
+        return jMenuFuncionarioCadastro;
+    }
+
+    public JMenuItem getjMenuFuncionarioConsulta() {
+        return jMenuFuncionarioConsulta;
+    }
+
+    public JMenuItem getjMenuMotoristaCadastro() {
+        return jMenuMotoristaCadastro;
+    }
+
+    public JMenuItem getjMenuMotoristaConsulta() {
+        return jMenuMotoristaConsulta;
+    }
+
+    public JMenuItem getjMenuPassageiroCadastro() {
+        return jMenuPassageiroCadastro;
+    }
+
+    public JMenuItem getjMenuPassageiroConsulta() {
+        return jMenuPassageiroConsulta;
+    }
+
+    public JMenuItem getjMenuRotaCadastro() {
+        return jMenuRotaCadastro;
+    }
+
+    public JMenuItem getjMenuRotaConsulta() {
+        return jMenuRotaConsulta;
+    }
+
+    public JMenuItem getjMenuSobre() {
+        return jMenuSobre;
+    }
+
+    public JMenuItem getjMenuVeiculoCadastro() {
+        return jMenuVeiculoCadastro;
+    }
+
+    public JMenuItem getjMenuVeiculoConsulta() {
+        return jMenuVeiculoConsulta;
+    }
+
+    public JMenuItem getjMenuEncerrarSistema() {
+        return jMenuEncerrarSistema;
+    }
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JMenu Sair;
+    private javax.swing.JButton btnConsultarPassageiros;
+    private javax.swing.JButton btnConsultarRotas;
+    private javax.swing.JButton btnConsultarVeiculos;
+    private javax.swing.JButton btnConsultarViagem;
+    private javax.swing.JButton btnEfetuarViagem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -327,20 +423,20 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuEncerrarSistema;
+    private javax.swing.JMenuItem jMenuFinanceiroConsulta;
+    private javax.swing.JMenuItem jMenuFuncionarioCadastro;
+    private javax.swing.JMenuItem jMenuFuncionarioConsulta;
     private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuMotoristaCadastro;
+    private javax.swing.JMenuItem jMenuMotoristaConsulta;
+    private javax.swing.JMenuItem jMenuPassageiroCadastro;
+    private javax.swing.JMenuItem jMenuPassageiroConsulta;
+    private javax.swing.JMenuItem jMenuRotaCadastro;
+    private javax.swing.JMenuItem jMenuRotaConsulta;
+    private javax.swing.JMenuItem jMenuSobre;
+    private javax.swing.JMenuItem jMenuVeiculoCadastro;
+    private javax.swing.JMenuItem jMenuVeiculoConsulta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

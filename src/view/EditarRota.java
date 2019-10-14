@@ -59,7 +59,7 @@ public class EditarRota extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

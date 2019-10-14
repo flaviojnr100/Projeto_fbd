@@ -8,6 +8,7 @@ package view;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JList;
 import javax.swing.JTextField;
 
 /**
@@ -34,8 +35,8 @@ public class CadastroTransporte extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        comboHorario = new javax.swing.JComboBox<>();
+        btnAdicionarHorario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaHorario = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
@@ -60,7 +61,7 @@ public class CadastroTransporte extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -69,10 +70,10 @@ public class CadastroTransporte extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Horários:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        jComboBox1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        comboHorario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton1.setText("+");
+        btnAdicionarHorario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAdicionarHorario.setText("+");
 
         listaHorario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(listaHorario);
@@ -82,9 +83,9 @@ public class CadastroTransporte extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(comboHorario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnAdicionarHorario)
                 .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
@@ -92,8 +93,8 @@ public class CadastroTransporte extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(comboHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdicionarHorario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
         );
@@ -143,7 +144,7 @@ public class CadastroTransporte extends javax.swing.JFrame {
 
         btnSair.setBackground(new java.awt.Color(255, 255, 255));
         btnSair.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnSair.setText("Sair");
+        btnSair.setText("Cancelar");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de transporte:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
@@ -254,8 +255,8 @@ public class CadastroTransporte extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57))))
+                        .addComponent(btnSair)
+                        .addGap(47, 47, 47))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,9 +361,42 @@ public class CadastroTransporte extends javax.swing.JFrame {
     public JFormattedTextField getPlacaText() {
         return placaText;
     }
+
+    public JButton getBtnAdicionarMotorista() {
+        return btnAdicionarMotorista;
+    }
+
+    public JButton getBtnAdicionarRota() {
+        return btnAdicionarRota;
+    }
+
+    public JButton getBtnAdicionarTransporte() {
+        return btnAdicionarTransporte;
+    }
+
+    public JComboBox<String> getComboHorario() {
+        return comboHorario;
+    }
+
+    public JComboBox<String> getComboRota() {
+        return comboRota;
+    }
+
+    public JList<String> getListaHorario() {
+        return listaHorario;
+    }
+
+    public JList<String> getListaRota() {
+        return listaRota;
+    }
+
+    public JButton getBtnAdicionarHorario() {
+        return btnAdicionarHorario;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdicionarHorario;
     private javax.swing.JButton btnAdicionarMotorista;
     private javax.swing.JButton btnAdicionarRota;
     private javax.swing.JButton btnAdicionarTransporte;
@@ -370,12 +404,11 @@ public class CadastroTransporte extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSair;
     private javax.swing.JFormattedTextField chassiText;
+    private javax.swing.JComboBox<String> comboHorario;
     private javax.swing.JComboBox<String> comboMotorista;
     private javax.swing.JComboBox<String> comboRota;
     private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JTextField corText;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
