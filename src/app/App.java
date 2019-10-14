@@ -25,6 +25,7 @@ import view.CadastroRota;
 
 import view.CadastroTipoTransporte;
 import view.CadastroTransporte;
+import view.CadastroViagem;
 import view.ConsultarPassageiro;
 import view.ConsultarRota;
 import view.ConsultarTransporte;
@@ -58,7 +59,7 @@ public class App {
     new ControllerCadastroEmpresa(cc);
     cc.setVisible(true);
         */
-      new ConsultarRota().setVisible(true);
+      new CadastroViagem().setVisible(true);
     }
     
 }
