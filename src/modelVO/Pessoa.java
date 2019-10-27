@@ -32,6 +32,16 @@ public abstract class Pessoa {
         
     }
 
+    public Pessoa(int id, String nome, String sobrenome, String rg, String cpf, String data_nascimento) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.data_nascimento = data_nascimento;
+    }
+   
+
     public String getNome() {
         return nome;
     }

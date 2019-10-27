@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.awt.Color;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -13,7 +16,7 @@ import javax.swing.JTextField;
  *
  * @author Flavio
  */
-public class CadastroTipoTransporte extends javax.swing.JFrame {
+public class CadastroTipoTransporte extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form CadastroTipoTransporte
@@ -177,4 +180,11 @@ public class CadastroTipoTransporte extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nomeText;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        btnCadastrar.setBackground((Color)arg);
+        btnSair.setBackground((Color)arg);
+        jPanel1.setBackground((Color)arg);
+    }
 }

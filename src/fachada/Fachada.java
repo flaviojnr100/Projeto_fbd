@@ -32,7 +32,7 @@ public class Fachada implements Ifachada {
         return instance;
     }
     
-    
+    //motorista
     
     @Override
     public boolean salvar(Motorista motorista) {
@@ -64,7 +64,11 @@ public class Fachada implements Ifachada {
     public boolean editar(Motorista motorista, Motorista motorista_atualizado) {
         return bMotorista.editar(motorista, motorista_atualizado);
     }
+    public List<Motorista> buscarLikeNome(String nome,String busca){
+        return bMotorista.buscarLikeNome(nome,busca);
+    }
    
+    //Transporte
     @Override
     public boolean salvar(Transporte transporte) {
        return bTransporte.salvar(transporte);

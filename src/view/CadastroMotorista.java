@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.awt.Color;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
@@ -13,7 +16,7 @@ import javax.swing.JTextField;
  *
  * @author Flavio
  */
-public class CadastroMotorista extends javax.swing.JFrame {
+public class CadastroMotorista extends javax.swing.JFrame implements Observer{
 
     /**
      * Creates new form CadastroMotorista
@@ -261,6 +264,10 @@ public class CadastroMotorista extends javax.swing.JFrame {
     public JTextField getSobrenomeTxt() {
         return sobrenomeTxt;
     }
+
+    public JFormattedTextField getCpfTxt() {
+        return cpfTxt;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
@@ -281,4 +288,14 @@ public class CadastroMotorista extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField rgTxt;
     private javax.swing.JTextField sobrenomeTxt;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        btnCadastrar.setBackground((Color)arg);
+        btnCancelar.setBackground((Color)arg);
+        btnLimpar.setBackground((Color)arg);
+        jPanel1.setBackground((Color)arg);
+        jPanel2.setBackground((Color)arg);
+        
+    }
 }

@@ -22,6 +22,11 @@ public class SQLUtil {
          public static String REMOVER_CPF = "delete from motorista where cpf = ?";
          public static String EDITAR = "update motorista set nome = ?,sobrenome=?,rg=?,cpf=?,data_nascimento=?,cnh=? where id = ? and cpf = ?";
          public static String BUSCAR_ID = "select * from motorista where id=?";
+         public static String VERIFICAREXISTENCIA = "select count(cpf) from motorista where cpf=?";
+         public static String BUSCARLIKENOME = "select * from motorista where nome like ?";
+         public static String BUSCARLIKERG = "select * from motorista where rg like ?";
+         public static String BUSCARLIKECPF = "select * from motorista where cpf like ?";
+         public static String BUSCARLIKECNH = "select * from motorista where cnh like ?";
     }
     
     public static class Transporte{

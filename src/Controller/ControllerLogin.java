@@ -28,9 +28,13 @@ public class ControllerLogin {
     private void Control(){
         tela.getBtnEntrar().addActionListener(new Botoes());
         tela.getBtnSair().addActionListener(new Botoes());
-        tela.getBtnEntrar().addKeyListener(new Botoes());
+      /*  tela.getBtnEntrar().addKeyListener(new Botoes());
         tela.getBtnSair().addKeyListener(new Botoes());
+        tela.getUsuarioTxt().addKeyListener(new Botoes());
+        tela.getSenhaTxt().addKeyListener(new Botoes());
         
+        tela.getSenhaTxt().addKeyListener(new Botoes());
+        */
         
     }
     private class Botoes implements ActionListener,KeyListener{
@@ -59,13 +63,19 @@ public class ControllerLogin {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                tela.getBtnEntrar().doClick();
-            }
+            if(tela.getUsuarioTxt().hasFocus() || tela.getSenhaTxt().hasFocus() || tela.getBtnEntrar().hasFocus()){
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                
+                    tela.getBtnEntrar().doClick();
+                }
+                
             if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+                
                 tela.getBtnSair().doClick();
+                }
             }
-        }
+    }
+        
 
         @Override
         public void keyReleased(KeyEvent e) {

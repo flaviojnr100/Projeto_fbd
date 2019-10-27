@@ -20,6 +20,7 @@ import modelVO.Motorista;
 
 import sql.SQLUtil;
 import sql.SQLConexao;
+import sun.applet.Main;
 
 /**
  *
@@ -172,11 +173,49 @@ public class DaoMotorista {
         
     }
     public boolean verificarExistencia(String cpf){
-        Motorista motorista = this.buscarCpf(cpf);
-        if(motorista!=null){
-            return true;
-        }else{
+       
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Motorista.VERIFICAREXISTENCIA);
+            statement.setString(1, cpf);
+            ResultSet r = statement.executeQuery();
+            if(r.next()){
+            if(r.getInt(1)==0){
+                return true;
+            }
             return false;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoMotorista.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+       return false;
+    }
+    
+    public List<Motorista> buscarLike(String nome,String busca){
+        List<Motorista> motorista= new ArrayList<>();
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(busca);
+            statement.setString(1, nome+"%");
+            result = statement.executeQuery();
+            while(result.next()){
+                motorista.add(new Motorista(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5) ,result.getString(6),result.getString(7)));
+            }
+            return motorista;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoMotorista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
+    }
+    public static void main(String[] args) {
+        DaoMotorista dm = new DaoMotorista();
+        List<Motorista> motoristas = dm.buscarLike("55",SQLUtil.Motorista.BUSCARLIKERG);
+        for(Motorista m:motoristas){
+            System.out.println("RG: "+m.getNome());
         }
     }
     

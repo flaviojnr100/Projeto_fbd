@@ -5,15 +5,19 @@
  */
 package view;
 
+import java.awt.Color;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Flavio
  */
-public class DashBoard extends javax.swing.JFrame {
+public class DashBoard extends javax.swing.JFrame implements Observer{
 
     /**
      * Creates new form DashBoard
@@ -32,7 +36,7 @@ public class DashBoard extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        painelBotoes = new javax.swing.JPanel();
         btnEfetuarViagem = new javax.swing.JButton();
         btnConsultarViagem = new javax.swing.JButton();
         btnConsultarVeiculos = new javax.swing.JButton();
@@ -40,7 +44,7 @@ public class DashBoard extends javax.swing.JFrame {
         btnConsultarPassageiros = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel5 = new javax.swing.JPanel();
+        fundoPrincipal = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -65,7 +69,7 @@ public class DashBoard extends javax.swing.JFrame {
         jMenuFinanceiroConsulta = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuSobre = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuPersonalizar = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenu();
         jMenuEncerrarSistema = new javax.swing.JMenuItem();
 
@@ -76,48 +80,48 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        painelBotoes.setBackground(new java.awt.Color(255, 255, 255));
+        painelBotoes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        painelBotoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnEfetuarViagem.setBackground(new java.awt.Color(255, 255, 255));
         btnEfetuarViagem.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEfetuarViagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/gpslogo_oficial.png"))); // NOI18N
         btnEfetuarViagem.setText("Efetuar viagem");
-        jPanel2.add(btnEfetuarViagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 265, 104));
+        painelBotoes.add(btnEfetuarViagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 265, 104));
 
         btnConsultarViagem.setBackground(new java.awt.Color(255, 255, 255));
         btnConsultarViagem.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnConsultarViagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/estrada2.png"))); // NOI18N
         btnConsultarViagem.setText("Consultar viagens");
-        jPanel2.add(btnConsultarViagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 265, 110));
+        painelBotoes.add(btnConsultarViagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 265, 110));
 
         btnConsultarVeiculos.setBackground(new java.awt.Color(255, 255, 255));
         btnConsultarVeiculos.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnConsultarVeiculos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/logo_onibus_oficial.png"))); // NOI18N
         btnConsultarVeiculos.setText("Consultar veiculos");
-        jPanel2.add(btnConsultarVeiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 265, -1));
+        painelBotoes.add(btnConsultarVeiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 265, -1));
 
         btnConsultarRotas.setBackground(new java.awt.Color(255, 255, 255));
         btnConsultarRotas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnConsultarRotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/rota.png"))); // NOI18N
         btnConsultarRotas.setText("Consultar rotas");
-        jPanel2.add(btnConsultarRotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 265, 111));
+        painelBotoes.add(btnConsultarRotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 265, 111));
 
         btnConsultarPassageiros.setBackground(new java.awt.Color(255, 255, 255));
         btnConsultarPassageiros.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnConsultarPassageiros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/passageiros.png"))); // NOI18N
         btnConsultarPassageiros.setText("Consultar passageiros");
-        jPanel2.add(btnConsultarPassageiros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, 105));
+        painelBotoes.add(btnConsultarPassageiros, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, 105));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(902, 0, 300, 650));
+        jPanel1.add(painelBotoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(902, 0, 300, 650));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        fundoPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -133,24 +137,24 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/on.png"))); // NOI18N
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, 11));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout fundoPrincipalLayout = new javax.swing.GroupLayout(fundoPrincipal);
+        fundoPrincipal.setLayout(fundoPrincipalLayout);
+        fundoPrincipalLayout.setHorizontalGroup(
+            fundoPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoPrincipalLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(840, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        fundoPrincipalLayout.setVerticalGroup(
+            fundoPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoPrincipalLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(493, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(jPanel5);
+        jScrollPane1.setViewportView(fundoPrincipal);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -256,9 +260,9 @@ public class DashBoard extends javax.swing.JFrame {
         jMenuSobre.setText("Sobre");
         jMenu7.add(jMenuSobre);
 
-        jMenuItem14.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jMenuItem14.setText("Personalizar");
-        jMenu7.add(jMenuItem14);
+        jMenuPersonalizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuPersonalizar.setText("Personalizar");
+        jMenu7.add(jMenuPersonalizar);
 
         jMenuBar1.add(jMenu7);
 
@@ -328,6 +332,10 @@ public class DashBoard extends javax.swing.JFrame {
         });
     }
 
+    public JPanel getFundoPrincipal() {
+        return fundoPrincipal;
+    }
+    
     public JMenu getSair() {
         return Sair;
     }
@@ -403,6 +411,26 @@ public class DashBoard extends javax.swing.JFrame {
     public JMenuItem getjMenuEncerrarSistema() {
         return jMenuEncerrarSistema;
     }
+
+    public JMenuItem getjMenuPersonalizar() {
+        return jMenuPersonalizar;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    public JPanel getjPanel4() {
+        return jPanel4;
+    }
+
+    public JPanel getPainelBotoes() {
+        return painelBotoes;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -412,6 +440,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultarVeiculos;
     private javax.swing.JButton btnConsultarViagem;
     private javax.swing.JButton btnEfetuarViagem;
+    private javax.swing.JPanel fundoPrincipal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -427,21 +456,35 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuFinanceiroConsulta;
     private javax.swing.JMenuItem jMenuFuncionarioCadastro;
     private javax.swing.JMenuItem jMenuFuncionarioConsulta;
-    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuMotoristaCadastro;
     private javax.swing.JMenuItem jMenuMotoristaConsulta;
     private javax.swing.JMenuItem jMenuPassageiroCadastro;
     private javax.swing.JMenuItem jMenuPassageiroConsulta;
+    private javax.swing.JMenuItem jMenuPersonalizar;
     private javax.swing.JMenuItem jMenuRotaCadastro;
     private javax.swing.JMenuItem jMenuRotaConsulta;
     private javax.swing.JMenuItem jMenuSobre;
     private javax.swing.JMenuItem jMenuVeiculoCadastro;
     private javax.swing.JMenuItem jMenuVeiculoConsulta;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel painelBotoes;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        fundoPrincipal.setBackground((Color) arg);
+        jPanel1.setBackground((Color) arg);
+        jPanel3.setBackground((Color) arg);
+        jPanel4.setBackground((Color) arg);
+        painelBotoes.setBackground((Color) arg);
+        btnConsultarPassageiros.setBackground((Color) arg);
+        btnConsultarRotas.setBackground((Color) arg);
+        btnConsultarVeiculos.setBackground((Color) arg);
+        btnConsultarViagem.setBackground((Color) arg);
+        btnEfetuarViagem.setBackground((Color) arg);
+        jMenuBar1.setBackground((Color) arg);
+    }
 }

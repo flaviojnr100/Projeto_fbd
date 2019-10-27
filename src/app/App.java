@@ -5,9 +5,6 @@
  */
 package app;
 
-
-
-
 import Controller.ControllerCadastroFuncionario;
 import Controller.ControllerCadastroMotorista;
 import Controller.ControllerCadastroPassageiro;
@@ -16,10 +13,12 @@ import Controller.ControllerCadastroTipoTransporte;
 import Controller.ControllerCadastroTransporte;
 import Controller.ControllerCadastroViagem;
 import Controller.ControllerCarregamento;
+import Controller.ControllerConsultarMotorista;
 import Controller.ControllerDashBoard;
+import Controller.ControllerEditarMotorista;
 import Controller.ControllerFinanceiro;
 import Controller.ControllerLogin;
-import modelVO.Motorista;
+import Controller.ControllerTelaPersonalizar;
 import fachada.Fachada;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,6 +26,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelDAO.DaoMotorista;
 import modelDAO.DaoTransporte;
+import modelVB.BusinessMotorista;
+import modelVO.Motorista;
 import modelVO.Transporte;
 import view.CadastroFuncionario;
 import view.CadastroMotorista;
@@ -52,6 +53,7 @@ import view.EditarTransporte;
 import view.Financeiro;
 import view.TelaCarregamento;
 import view.TelaLogin;
+import view.TelaPersonalizar;
 
 
 
@@ -64,7 +66,9 @@ public class App {
        
      //   Motorista motorista1 = new Motorista("Roberta", "Paula", "546532127", "326598", "12/56/1236", "654312321");
        // Transporte transporte = new Transporte("Amarelo", "1235cvn", "3554fd");
-     //   Fachada fachada1 =Fachada.getInstance();
+        Fachada fachada1 =Fachada.getInstance();
+        
+        //System.out.println(""+fachada1.verificarExistenciaMotorista("555.555.555-55546456"));
     //     Motorista motorista = fachada1.buscarCpf("326598");
     //    fachada1.editar(motorista, motorista1);
       
@@ -80,6 +84,9 @@ public class App {
     new ControllerCadastroEmpresa(cc);
     cc.setVisible(true);
         */
+       // System.out.println("  .   .   -  ".length());
+       //Arrumar o problema de validar cadastro(Colorir os campos invalidos)
+  
       CadastroFuncionario cFuncionario = new CadastroFuncionario();
       new ControllerCadastroFuncionario(cFuncionario);
       ConsultarFuncionario ccFuncionario = new ConsultarFuncionario();
@@ -91,9 +98,14 @@ public class App {
       EditarPassageiro ePassageiro = new EditarPassageiro();
       
       CadastroMotorista cMotorista = new CadastroMotorista();
-      new ControllerCadastroMotorista(cMotorista);
+      
       ConsultarMotorista ccMotorista = new ConsultarMotorista();
       EditarMotorista eMotorista = new EditarMotorista();
+      ControllerEditarMotorista ceMotorista = new ControllerEditarMotorista(eMotorista, fachada1);
+      ControllerConsultarMotorista cccMotorista = new ControllerConsultarMotorista(ccMotorista, fachada1,ceMotorista,cMotorista);
+      new ControllerCadastroMotorista(cMotorista,fachada1,cccMotorista);
+      cccMotorista.addObserver(ccMotorista);
+      ceMotorista.addObserver(ccMotorista);
       
       CadastroRota cRota = new CadastroRota();
       new ControllerCadastroRota(cRota);
@@ -115,8 +127,13 @@ public class App {
       Financeiro financeiro = new Financeiro();
       new ControllerFinanceiro(financeiro);
       
+      
+      
       DashBoard dash = new DashBoard();
-      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem);
+      TelaPersonalizar personalizar = new TelaPersonalizar();
+      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista);
+      ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
+      c.addObserver(dash);
       TelaLogin telaLogin = new TelaLogin();
       new ControllerLogin(telaLogin, dash);
      // telaLogin.setVisible(true);
@@ -125,6 +142,7 @@ public class App {
       new ControllerCarregamento(tCarregamento, telaLogin);
       
         
+       
       
       
     }

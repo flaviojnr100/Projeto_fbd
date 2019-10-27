@@ -5,6 +5,9 @@
  */
 package view;
 
+import java.awt.Color;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -14,7 +17,7 @@ import javax.swing.JList;
  *
  * @author Flavio
  */
-public class CadastroViagem extends javax.swing.JFrame {
+public class CadastroViagem extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form CadastroViagem
@@ -479,4 +482,32 @@ public class CadastroViagem extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSobrenome;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        btnAdicionarPassageiro.setBackground((Color)arg);
+        btnAdicionarRota.setBackground((Color)arg);
+        btnAdicionarTransporte.setBackground((Color)arg);
+        btnCancelar.setBackground((Color)arg);
+        btnConcluir.setBackground((Color)arg);
+        btnFinalizar.setBackground((Color)arg);
+        jPanel1.setBackground((Color)arg);
+        jPanel10.setBackground((Color)arg);
+        jPanel11.setBackground((Color)arg);
+        jPanel2.setBackground((Color)arg);
+        jPanel3.setBackground((Color)arg);
+        jPanel4.setBackground((Color)arg);
+        jPanel5.setBackground((Color)arg);
+        jPanel6.setBackground((Color)arg);
+        jPanel7.setBackground((Color)arg);
+        jPanel8.setBackground((Color)arg);
+        jPanel9.setBackground((Color)arg);
+        comboHorario.setBackground((Color)arg);
+        comboPassageiro.setBackground((Color)arg);
+        comboRota.setBackground((Color)arg);
+        comboTransporte.setBackground((Color)arg);
+        jList1.setBackground((Color)arg);
+        
+        
+    }
 }

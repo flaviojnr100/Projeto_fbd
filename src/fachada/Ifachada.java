@@ -20,6 +20,7 @@ public interface Ifachada {
     public boolean removerMotorista(String cpf);
     public Motorista buscarCpf(String cpf);
     public boolean verificarExistenciaMotorista(String cpf);
+    
      public boolean salvar(Transporte transporte);
     public boolean editar(Transporte transporte);
     public List<Transporte> getAllTransporte();
