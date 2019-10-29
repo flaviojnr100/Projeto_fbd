@@ -45,8 +45,9 @@ public class ControllerDashBoard {
     private Financeiro financeiro;
     private TelaPersonalizar telaPersonalizar;
     private ControllerConsultarMotorista cccMotorista;
+    private ControllerConsultarFuncionario cccFuncionario;
 
-    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota, Financeiro financeiro,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista) {
+    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota, Financeiro financeiro,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario) {
         this.principal = principal;
         this.cFuncionario = cFuncionario;
         this.ccFuncionario = ccFuncionario;
@@ -63,6 +64,7 @@ public class ControllerDashBoard {
         this.ccViagem = ccViagem;
         this.telaPersonalizar = telaPersonalizar;
         this.cccMotorista = cccMotorista;
+        this.cccFuncionario = cccFuncionario;
         Control();
     }
     
@@ -136,6 +138,11 @@ public class ControllerDashBoard {
             
             if(e.getSource() == principal.getjMenuFuncionarioConsulta()){
                 ccFuncionario.setVisible(true);
+                boolean condicao = cccFuncionario.Limpar();
+                cccFuncionario.colocar();
+                if(condicao){
+                    ccFuncionario.setVisible(true);
+                }
             }
             if(e.getSource() == principal.getjMenuMotoristaCadastro()){
                 cMotorista.setVisible(true);

@@ -6,8 +6,10 @@
 package fachada;
 
 import java.util.List;
+import modelVB.BusinessFuncionario;
 import modelVB.BusinessMotorista;
 import modelVB.BusinessTransporte;
+import modelVO.Funcionario;
 import modelVO.Motorista;
 import modelVO.Transporte;
 
@@ -18,11 +20,13 @@ import modelVO.Transporte;
 public class Fachada implements Ifachada {
     private BusinessMotorista bMotorista;
     private BusinessTransporte bTransporte;
+    private BusinessFuncionario bFuncionario;
     private static Fachada instance;
 
     private Fachada() {
         this.bMotorista = new BusinessMotorista();
         this.bTransporte = new BusinessTransporte();
+        this.bFuncionario = new BusinessFuncionario();
     }
     public static Fachada getInstance(){
         if(instance == null){
@@ -88,9 +92,29 @@ public class Fachada implements Ifachada {
     public boolean removerTransporte(String placa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
-
+    //Funcionario
+    public boolean salvar(Funcionario funcionario) {
+        return bFuncionario.salvar(funcionario);
+    }
+    public List<Funcionario> getAllFuncionario(){
+        return bFuncionario.getAll();
+    }
+    public boolean removerFuncionario(String cpf){
+        return bFuncionario.removerCpf(cpf);
+    }
+    public boolean editarFuncionario(Funcionario funcionario,Funcionario funcionario_antigo){
+        return bFuncionario.editar(funcionario, funcionario_antigo);
+    }
+    public Funcionario buscarCpfFuncionario(String cpf){
+        return bFuncionario.buscarCpf(cpf);
+    }
+     public List<Funcionario> buscarLike(String nome,String busca){
+         return bFuncionario.buscarLike(nome, busca);
+     }
+   
+    public boolean verificarCpfFuncionario(String cpf){
+        return bFuncionario.verificarCpf(cpf);
+    }
     
 
    

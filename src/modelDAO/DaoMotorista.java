@@ -150,6 +150,7 @@ public class DaoMotorista {
             
             }
             System.gc();
+            conexao.close();
             return motoristas;
         } catch (SQLException ex) {
             Logger.getLogger(DaoMotorista.class.getName()).log(Level.SEVERE, null, ex);
@@ -179,6 +180,7 @@ public class DaoMotorista {
             statement = conexao.prepareStatement(SQLUtil.Motorista.VERIFICAREXISTENCIA);
             statement.setString(1, cpf);
             ResultSet r = statement.executeQuery();
+            conexao.close();
             if(r.next()){
             if(r.getInt(1)==0){
                 return true;
@@ -201,6 +203,7 @@ public class DaoMotorista {
             statement = conexao.prepareStatement(busca);
             statement.setString(1, nome+"%");
             result = statement.executeQuery();
+            conexao.close();
             while(result.next()){
                 motorista.add(new Motorista(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5) ,result.getString(6),result.getString(7)));
             }
@@ -211,12 +214,7 @@ public class DaoMotorista {
         return null;
         
     }
-    public static void main(String[] args) {
-        DaoMotorista dm = new DaoMotorista();
-        List<Motorista> motoristas = dm.buscarLike("55",SQLUtil.Motorista.BUSCARLIKERG);
-        for(Motorista m:motoristas){
-            System.out.println("RG: "+m.getNome());
-        }
-    }
+    
+    
     
 }

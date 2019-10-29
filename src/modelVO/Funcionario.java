@@ -10,9 +10,26 @@ package modelVO;
  * @author Flavio
  */
 public class Funcionario extends Pessoa {
-    
-    public Funcionario(String nome, String sobrenome, String rg, String cpf, String data_nascimento) {
+    private String login;
+    private String senha;
+    public Funcionario(String nome, String sobrenome, String rg, String cpf, String data_nascimento,String login,String senha) {
         super(nome, sobrenome, rg, cpf, data_nascimento);
+        this.login=login;
+        this.senha = senha;
+    }
+
+    public Funcionario(int id, String nome, String sobrenome, String rg, String cpf, String data_nascimento,String login, String senha) {
+        super(id, nome, sobrenome, rg, cpf, data_nascimento);
+        this.login = login;
+        this.senha = senha;
+    }
+    
+    public String getLogin() {
+        return login;
+    }
+
+    public String getSenha() {
+        return senha;
     }
     
 }

@@ -27,6 +27,7 @@ public class SQLUtil {
          public static String BUSCARLIKERG = "select * from motorista where rg like ?";
          public static String BUSCARLIKECPF = "select * from motorista where cpf like ?";
          public static String BUSCARLIKECNH = "select * from motorista where cnh like ?";
+         
     }
     
     public static class Transporte{
@@ -70,13 +71,17 @@ public class SQLUtil {
         
     }
      public static class Funcionario{
-        public static String INSERT_ALL = "insert into funcionario(nome,sobrenome,rg,cpf,data_nascimento,id_empresa) values(?,?,?,?,?,?)";
+        public static String INSERT_ALL = "insert into funcionario(nome,sobrenome,rg,cpf,data_nascimento,login,senha) values(?,?,?,?,?,?,?)";
         public static String BUSCAR_CPF = "select * from funcionario where cpf=?";
         public static String BUSCAR_ALL = "select * from funcionario";
         public static String BUSCAR_ID = "select * from funcionario where id=?";
         public static String REMOVER_CPF = "delete from funcionario where cpf=?";
-        public static String EDITAR_CPF = "update funcionario set nome=?,sobrenome=?,rg=?,cpf=?,data_nascimento=?,id_empresa=? where id=? and cpf=?";
-        
+        public static String EDITAR_CPF = "update funcionario set nome=?,sobrenome=?,rg=?,cpf=?,data_nascimento=?,login=?,senha=? where id=? and cpf=?";
+        public static String BUSCARLIKENOME = "select * from funcionario where nome like ?";
+        public static String BUSCARLIKERG = "select * from funcionario where rg like ?";
+        public static String BUSCARLIKECPF = "select * from funcionario where cpf like ?";
+        public static String BUSCARLIKELOGIN = "select * from funcionario where login like ?";
+        public static String VERIFICARCPF = "select count(cpf) from funcionario where cpf=?";
     }
     
     public static class Agencia_bancaria{

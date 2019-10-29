@@ -13,8 +13,10 @@ import Controller.ControllerCadastroTipoTransporte;
 import Controller.ControllerCadastroTransporte;
 import Controller.ControllerCadastroViagem;
 import Controller.ControllerCarregamento;
+import Controller.ControllerConsultarFuncionario;
 import Controller.ControllerConsultarMotorista;
 import Controller.ControllerDashBoard;
+import Controller.ControllerEditarFuncionario;
 import Controller.ControllerEditarMotorista;
 import Controller.ControllerFinanceiro;
 import Controller.ControllerLogin;
@@ -27,6 +29,7 @@ import java.util.logging.Logger;
 import modelDAO.DaoMotorista;
 import modelDAO.DaoTransporte;
 import modelVB.BusinessMotorista;
+import modelVO.Funcionario;
 import modelVO.Motorista;
 import modelVO.Transporte;
 import view.CadastroFuncionario;
@@ -67,6 +70,7 @@ public class App {
      //   Motorista motorista1 = new Motorista("Roberta", "Paula", "546532127", "326598", "12/56/1236", "654312321");
        // Transporte transporte = new Transporte("Amarelo", "1235cvn", "3554fd");
         Fachada fachada1 =Fachada.getInstance();
+        //fachada1.salvar(new Funcionario("flavio", "cordeiro", "345346", "6546756", "12/12/1212", "fj", "234"));
         
         //System.out.println(""+fachada1.verificarExistenciaMotorista("555.555.555-55546456"));
     //     Motorista motorista = fachada1.buscarCpf("326598");
@@ -88,9 +92,15 @@ public class App {
        //Arrumar o problema de validar cadastro(Colorir os campos invalidos)
   
       CadastroFuncionario cFuncionario = new CadastroFuncionario();
-      new ControllerCadastroFuncionario(cFuncionario);
       ConsultarFuncionario ccFuncionario = new ConsultarFuncionario();
+      new ControllerCadastroFuncionario(cFuncionario,fachada1,ccFuncionario);
+      
       EditarFuncionario eFuncionario = new EditarFuncionario();
+      ControllerEditarFuncionario ecFuncionario = new ControllerEditarFuncionario(eFuncionario, fachada1);
+      ControllerConsultarFuncionario cccFuncionario = new ControllerConsultarFuncionario(ccFuncionario, fachada1,ecFuncionario,cFuncionario);
+      
+      cccFuncionario.addObserver(ccFuncionario);
+      ecFuncionario.addObserver(ccFuncionario);
       
       CadastroPassageiro cPassageiro = new CadastroPassageiro();
       new ControllerCadastroPassageiro(cPassageiro);
@@ -131,7 +141,7 @@ public class App {
       
       DashBoard dash = new DashBoard();
       TelaPersonalizar personalizar = new TelaPersonalizar();
-      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista);
+      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario);
       ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
       c.addObserver(dash);
       TelaLogin telaLogin = new TelaLogin();
