@@ -9,6 +9,8 @@ import fachada.Fachada;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -42,8 +44,15 @@ public class ControllerCadastroMotorista {
         tela.getCpfTxt().addMouseListener(new Botoes());
         tela.getDataTxt().addMouseListener(new Botoes());
         tela.getCnhTxt().addMouseListener(new Botoes());
+        
+        tela.getNomeTxt().addKeyListener(new Botoes());
+        tela.getSobrenomeTxt().addKeyListener(new Botoes());
+        tela.getRgTxt().addKeyListener(new Botoes());
+        tela.getCpfTxt().addKeyListener(new Botoes());
+        tela.getDataTxt().addKeyListener(new Botoes());
+        tela.getCnhTxt().addKeyListener(new Botoes());
     }
-    private class Botoes extends MouseAdapter implements ActionListener{
+    private class Botoes extends MouseAdapter implements ActionListener,KeyListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -122,6 +131,25 @@ public class ControllerCadastroMotorista {
             if(e.getSource() == tela.getCnhTxt()){
                 tela.getCnhTxt().setBackground(Color.WHITE);
             }
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+            
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(tela.getNomeTxt().hasFocus() || tela.getSobrenomeTxt().hasFocus() || tela.getRgTxt().hasFocus() || tela.getCpfTxt().hasFocus() || tela.getDataTxt().hasFocus() || tela.getCnhTxt().hasFocus()){
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                tela.getBtnCadastrar().doClick();
+                }
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            
         }
         
         

@@ -15,9 +15,11 @@ import Controller.ControllerCadastroViagem;
 import Controller.ControllerCarregamento;
 import Controller.ControllerConsultarFuncionario;
 import Controller.ControllerConsultarMotorista;
+import Controller.ControllerConsultarPassageiro;
 import Controller.ControllerDashBoard;
 import Controller.ControllerEditarFuncionario;
 import Controller.ControllerEditarMotorista;
+import Controller.ControllerEditarPassageiro;
 import Controller.ControllerFinanceiro;
 import Controller.ControllerLogin;
 import Controller.ControllerTelaPersonalizar;
@@ -103,9 +105,15 @@ public class App {
       ecFuncionario.addObserver(ccFuncionario);
       
       CadastroPassageiro cPassageiro = new CadastroPassageiro();
-      new ControllerCadastroPassageiro(cPassageiro);
+      
       ConsultarPassageiro ccPassageiro = new ConsultarPassageiro();
       EditarPassageiro ePassageiro = new EditarPassageiro();
+      ControllerEditarPassageiro ecPassageiro = new ControllerEditarPassageiro(ePassageiro, fachada1);
+      ControllerConsultarPassageiro cccPassageiro = new ControllerConsultarPassageiro(ccPassageiro, fachada1,ecPassageiro,cPassageiro);
+      new ControllerCadastroPassageiro(cPassageiro,fachada1,cccPassageiro);
+      cccPassageiro.addObserver(ccPassageiro);
+      ecPassageiro.addObserver(ccPassageiro);
+      
       
       CadastroMotorista cMotorista = new CadastroMotorista();
       
@@ -141,7 +149,7 @@ public class App {
       
       DashBoard dash = new DashBoard();
       TelaPersonalizar personalizar = new TelaPersonalizar();
-      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario);
+      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro);
       ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
       c.addObserver(dash);
       TelaLogin telaLogin = new TelaLogin();

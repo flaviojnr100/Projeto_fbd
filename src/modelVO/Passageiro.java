@@ -13,12 +13,15 @@ import java.util.List;
  * @author Flavio
  */
 public class Passageiro extends Pessoa implements IPassageiro {
-    private List<Bilhete> bilhete;
-    public Passageiro(String nome, String sobrenome, String cpf,Bilhete bilhete) {
+    private List<Bilhete> bilhete = new ArrayList<>();
+    public Passageiro(String nome, String sobrenome, String cpf) {
         super(nome, sobrenome, cpf);
-        this.bilhete = new ArrayList<>();
+        
     }
-
+     public Passageiro(int id, String nome, String sobrenome, String cpf) {
+        super(id,nome, sobrenome, cpf);
+        
+    }
     public List<Bilhete> getBilhete() {
         return bilhete;
     }

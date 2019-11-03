@@ -5,17 +5,30 @@
  */
 package view;
 
+import Controller.ControllerCadastroPassageiro;
+import Controller.ControllerConsultarPassageiro;
+import Controller.ControllerEditarPassageiro;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Flavio
  */
-public class ConsultarPassageiro extends javax.swing.JFrame {
+public class ConsultarPassageiro extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form ConsultarPassageiro
      */
     public ConsultarPassageiro() {
         initComponents();
+        jRadioNome.setSelected(true);
     }
 
     /**
@@ -28,16 +41,37 @@ public class ConsultarPassageiro extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuAtualizar = new javax.swing.JMenuItem();
+        jMenuCadastrar = new javax.swing.JMenuItem();
+        jMenuEditar = new javax.swing.JMenuItem();
+        jMenuRemover = new javax.swing.JMenuItem();
+        jMenuSair = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        buscarTxt = new javax.swing.JTextField();
+        BtnBuscar = new javax.swing.JButton();
+        jRadioNome = new javax.swing.JRadioButton();
+        jRadioCpf = new javax.swing.JRadioButton();
+        jRadioCodBilhete = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablePassageiro = new javax.swing.JTable();
+
+        jMenuAtualizar.setText("Atualizar");
+        jPopupMenu1.add(jMenuAtualizar);
+
+        jMenuCadastrar.setText("Cadastrar");
+        jPopupMenu1.add(jMenuCadastrar);
+
+        jMenuEditar.setText("Editar");
+        jPopupMenu1.add(jMenuEditar);
+
+        jMenuRemover.setText("Remover");
+        jPopupMenu1.add(jMenuRemover);
+
+        jMenuSair.setText("Sair");
+        jPopupMenu1.add(jMenuSair);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -48,25 +82,25 @@ public class ConsultarPassageiro extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Busca:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/busca.png"))); // NOI18N
-        jButton1.setText("Buscar");
+        BtnBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        BtnBuscar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        BtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/busca.png"))); // NOI18N
+        BtnBuscar.setText("Buscar");
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton1.setText("Nome");
+        jRadioNome.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioNome);
+        jRadioNome.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioNome.setText("Nome");
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton2.setText("CPF");
+        jRadioCpf.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioCpf);
+        jRadioCpf.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioCpf.setText("CPF");
 
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton3.setText("Código do bilhete");
+        jRadioCodBilhete.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioCodBilhete);
+        jRadioCodBilhete.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioCodBilhete.setText("Código do bilhete");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -76,14 +110,14 @@ public class ConsultarPassageiro extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(jRadioNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton2)
+                        .addComponent(jRadioCpf)
                         .addGap(86, 86, 86)
-                        .addComponent(jRadioButton3))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jRadioCodBilhete))
+                    .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(BtnBuscar)
                 .addGap(8, 8, 8))
         );
         jPanel2Layout.setVerticalGroup(
@@ -91,20 +125,20 @@ public class ConsultarPassageiro extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(jRadioNome)
+                    .addComponent(jRadioCpf)
+                    .addComponent(jRadioCodBilhete))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Passageiros:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePassageiro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -136,7 +170,7 @@ public class ConsultarPassageiro extends javax.swing.JFrame {
                 "Código", "Nome", "Sobrenome", "CPF"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTablePassageiro);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -226,17 +260,94 @@ public class ConsultarPassageiro extends javax.swing.JFrame {
         });
     }
 
+    public JButton getBtnBuscar() {
+        return BtnBuscar;
+    }
+
+    public JTextField getBuscarTxt() {
+        return buscarTxt;
+    }
+
+    public JRadioButton getjRadioCodBilhete() {
+        return jRadioCodBilhete;
+    }
+
+    public JRadioButton getjRadioCpf() {
+        return jRadioCpf;
+    }
+
+    public JRadioButton getjRadioNome() {
+        return jRadioNome;
+    }
+
+    public JTable getjTablePassageiro() {
+        return jTablePassageiro;
+    }
+
+    public JMenuItem getjMenuAtualizar() {
+        return jMenuAtualizar;
+    }
+
+    public JMenuItem getjMenuCadastrar() {
+        return jMenuCadastrar;
+    }
+
+    public JMenuItem getjMenuEditar() {
+        return jMenuEditar;
+    }
+
+    public JMenuItem getjMenuRemover() {
+        return jMenuRemover;
+    }
+
+    public JMenuItem getjMenuSair() {
+        return jMenuSair;
+    }
+
+    public JPopupMenu getjPopupMenu1() {
+        return jPopupMenu1;
+    }
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnBuscar;
+    private javax.swing.JTextField buscarTxt;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem jMenuAtualizar;
+    private javax.swing.JMenuItem jMenuCadastrar;
+    private javax.swing.JMenuItem jMenuEditar;
+    private javax.swing.JMenuItem jMenuRemover;
+    private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JRadioButton jRadioCodBilhete;
+    private javax.swing.JRadioButton jRadioCpf;
+    private javax.swing.JRadioButton jRadioNome;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jTablePassageiro;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof ControllerConsultarPassageiro && ((ControllerConsultarPassageiro)o).getTela().getjMenuRemover().equals(arg)){
+            ((ControllerConsultarPassageiro)o).limpar();
+            ((ControllerConsultarPassageiro)o).colocarDados();
+        }else if(o instanceof ControllerConsultarPassageiro && ((ControllerConsultarPassageiro)o).getTela().getjMenuAtualizar().equals(arg)){
+            ((ControllerConsultarPassageiro)o).limpar();
+            ((ControllerConsultarPassageiro)o).colocarDados();
+        }else if(o instanceof ControllerEditarPassageiro){
+            String [] dados = (String []) arg;
+            jTablePassageiro.getModel().setValueAt(Integer.parseInt(dados[dados.length-2]), Integer.parseInt(dados[dados.length-1]), 0);
+            for(int i=0;i<dados.length-2;i++){
+                jTablePassageiro.getModel().setValueAt(dados[i], Integer.parseInt(dados[dados.length-1]), i+1);
+            }
+            
+        }else if(o instanceof ControllerConsultarPassageiro && ((ControllerConsultarPassageiro)o).getTela().getBtnBuscar().equals(arg)){
+            ((ControllerConsultarPassageiro)o).limpar();
+            ((ControllerConsultarPassageiro)o).colocarDados(((ControllerConsultarPassageiro)o).getPassageiroLike());
+        }
+        
+    }
 }

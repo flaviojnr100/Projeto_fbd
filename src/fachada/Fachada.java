@@ -8,9 +8,11 @@ package fachada;
 import java.util.List;
 import modelVB.BusinessFuncionario;
 import modelVB.BusinessMotorista;
+import modelVB.BusinessPassageiro;
 import modelVB.BusinessTransporte;
 import modelVO.Funcionario;
 import modelVO.Motorista;
+import modelVO.Passageiro;
 import modelVO.Transporte;
 
 /**
@@ -21,12 +23,14 @@ public class Fachada implements Ifachada {
     private BusinessMotorista bMotorista;
     private BusinessTransporte bTransporte;
     private BusinessFuncionario bFuncionario;
+    private BusinessPassageiro bPassageiro;
     private static Fachada instance;
 
     private Fachada() {
         this.bMotorista = new BusinessMotorista();
         this.bTransporte = new BusinessTransporte();
         this.bFuncionario = new BusinessFuncionario();
+        this.bPassageiro = new BusinessPassageiro();
     }
     public static Fachada getInstance(){
         if(instance == null){
@@ -115,8 +119,26 @@ public class Fachada implements Ifachada {
     public boolean verificarCpfFuncionario(String cpf){
         return bFuncionario.verificarCpf(cpf);
     }
+    //passageiro
     
-
+    public boolean salvar(Passageiro passageiro){
+        return bPassageiro.salvar(passageiro);
+    }
+    public List<Passageiro> getAllPassageiro(){
+        return bPassageiro.getAll();
+    }
+    public boolean removerPassageiro(String cpf){
+        return bPassageiro.removerCpf(cpf);
+    }
+    public boolean editarPassageiro(Passageiro passageiro,Passageiro passageiro_novo){
+        return bPassageiro.editar(passageiro, passageiro_novo);
+    }
+    public Passageiro buscarCpfPassageiro(String cpf){
+        return bPassageiro.buscarCpf(cpf);
+    }
+    public List<Passageiro> buscarLikePassageiro(String nome,String busca){
+        return bPassageiro.buscaLike(nome, busca);
+    }
    
 
     

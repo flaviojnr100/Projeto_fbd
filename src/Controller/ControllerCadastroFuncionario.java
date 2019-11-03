@@ -8,6 +8,9 @@ package Controller;
 import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import modelVO.Funcionario;
 import view.CadastroFuncionario;
 import view.ConsultarFuncionario;
@@ -31,9 +34,15 @@ public class ControllerCadastroFuncionario {
         tela.getBtnCadastrar().addActionListener(new Botoes());
         tela.getBtnLimpar().addActionListener(new Botoes());
         tela.getBtnCancelar().addActionListener(new Botoes());
+        tela.getNomeTxt().addKeyListener(new Botoes());
+        tela.getSobrenomeTxt().addKeyListener(new Botoes());
+        tela.getCpfTxt().addKeyListener(new Botoes());
+        tela.getLoginTxt().addKeyListener(new Botoes());
+        tela.getSenhaTxt().addKeyListener(new Botoes());
+        tela.getConfirmarTxt().addKeyListener(new Botoes());
         
     }
-    private class Botoes implements ActionListener{
+    private class Botoes extends KeyAdapter implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -63,6 +72,14 @@ public class ControllerCadastroFuncionario {
             }
             if(e.getSource() == tela.getBtnCancelar()){
                 tela.setVisible(false);
+            }
+        }
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(tela.getCpfTxt().hasFocus() || tela.getNomeTxt().hasFocus() || tela.getSobrenomeTxt().hasFocus() || tela.getLoginTxt().hasFocus() || tela.getSenhaTxt().hasFocus() || tela.getConfirmarTxt().hasFocus()){
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    tela.getBtnCadastrar().doClick();
+                }
             }
         }
     

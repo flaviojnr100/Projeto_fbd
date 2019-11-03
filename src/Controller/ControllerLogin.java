@@ -28,13 +28,13 @@ public class ControllerLogin {
     private void Control(){
         tela.getBtnEntrar().addActionListener(new Botoes());
         tela.getBtnSair().addActionListener(new Botoes());
-      /*  tela.getBtnEntrar().addKeyListener(new Botoes());
+        tela.getBtnEntrar().addKeyListener(new Botoes());
         tela.getBtnSair().addKeyListener(new Botoes());
         tela.getUsuarioTxt().addKeyListener(new Botoes());
         tela.getSenhaTxt().addKeyListener(new Botoes());
         
         tela.getSenhaTxt().addKeyListener(new Botoes());
-        */
+        
         
     }
     private class Botoes implements ActionListener,KeyListener{
@@ -58,7 +58,7 @@ public class ControllerLogin {
 
         @Override
         public void keyTyped(KeyEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
         }
 
         @Override
@@ -79,7 +79,7 @@ public class ControllerLogin {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
         }
     
     }

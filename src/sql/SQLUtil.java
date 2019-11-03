@@ -62,12 +62,16 @@ public class SQLUtil {
         public static String BUSCAR_ID = "select * from rodoviaria where id=?";
     }
     public static class Passageiro{
-        public static String INSERT_ALL = "insert into passageiro(nome,sobrenome,cpf,id_passageiro_bilhete) values(?,?,?,?)";
+        public static String INSERT_ALL = "insert into passageiro(nome,sobrenome,cpf) values(?,?,?)";
         public static String BUSCAR_CPF = "select * from passageiro where cpf=?";
         public static String BUSCAR_ALL = "select * from passageiro";
         public static String BUSCAR_ID = "select * from passageiro where id=?";
         public static String REMOVER_CPF = "delete from passageiro where cpf=?";
-        public static String EDITAR_CPF = "update passageiro set nome=?,sobrenome=?,cpf=?,id_passageiro_bilhete=? where id=? and cpf=?";
+        public static String EDITAR_CPF = "update passageiro set nome=?,sobrenome=?,cpf=? where id=? and cpf=?";
+        public static String BUSCARLIKENOME = "select * from passageiro where nome like ?";
+        public static String BUSCARLIKECPF = "select * from passageiro where cpf like ?";
+        //public static String BUSCARLIKEBILHETE = "select * from passageiro where cpf like ?";
+        public static String VERIFICARCPF = "select count(cpf) from passageiro where cpf=?";
         
     }
      public static class Funcionario{

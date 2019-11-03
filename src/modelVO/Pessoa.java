@@ -31,6 +31,13 @@ public abstract class Pessoa {
         this.cpf = cpf;
         
     }
+    public Pessoa(int id,String nome, String sobrenome, String cpf) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.cpf = cpf;
+        this.id = id;
+        
+    }
 
     public Pessoa(int id, String nome, String sobrenome, String rg, String cpf, String data_nascimento) {
         this.id = id;

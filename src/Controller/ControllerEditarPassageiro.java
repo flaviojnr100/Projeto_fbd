@@ -10,29 +10,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Observable;
 import modelVO.Passageiro;
-import view.CadastroPassageiro;
+import view.EditarPassageiro;
 import view.Mensagens;
 
 /**
  *
  * @author Flavio
  */
-public class ControllerCadastroPassageiro{
-    private CadastroPassageiro tela;
+public class ControllerEditarPassageiro extends Observable {
+    private EditarPassageiro tela;
     private Fachada fachada;
-    private ControllerConsultarPassageiro cccPassageiro;
-    public ControllerCadastroPassageiro(CadastroPassageiro tela,Fachada fachada,ControllerConsultarPassageiro cccPassageiro) {
+    private Passageiro editarPassageiro;
+    private int linha;
+    public ControllerEditarPassageiro(EditarPassageiro tela, Fachada fachada) {
         this.tela = tela;
         this.fachada = fachada;
-        this.cccPassageiro = cccPassageiro;
         Control();
     }
-    
     private void Control(){
-        tela.getBtnCadastrar().addActionListener(new Botoes());
+        tela.getBtnEditar().addActionListener(new Botoes());
         tela.getBtnLimpar().addActionListener(new Botoes());
         tela.getBtnCancelar().addActionListener(new Botoes());
         tela.getNomeTxt().addKeyListener(new Botoes());
@@ -43,13 +41,15 @@ public class ControllerCadastroPassageiro{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() == tela.getBtnCadastrar()){
-                if(fachada.salvar(new Passageiro(tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getCpfTxt().getText()))){
-                    Mensagens.mensagem("Cadastro realizado com sucesso!");
-                    tela.getBtnLimpar().doClick();
+            if(e.getSource() == tela.getBtnEditar()){
+                if(fachada.editarPassageiro(editarPassageiro, new Passageiro(tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getCpfTxt().getText()))){
+                    Mensagens.mensagem("Registro editado com sucesso!");
+                    setChanged();
+                    String [] dados={tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getCpfTxt().getText(),editarPassageiro.getId()+"",linha+""};
+                    notifyObservers(dados);
                     tela.getBtnCancelar().doClick();
-                    cccPassageiro.getTela().getjMenuAtualizar().doClick();
-                    
+                }else{
+                    Mensagens.mensagem("Erro ao editar o registro!");
                 }
             }
             if(e.getSource() == tela.getBtnLimpar()){
@@ -61,14 +61,34 @@ public class ControllerCadastroPassageiro{
                 tela.setVisible(false);
             }
         }
-         @Override
+        @Override
         public void keyPressed(KeyEvent e) {
             if(tela.getNomeTxt().hasFocus() || tela.getSobrenomeTxt().hasFocus() || tela.getCpfTxt().hasFocus()){
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    tela.getBtnCadastrar().doClick();
+                    tela.getBtnEditar().doClick();
                 }
-            }
+            }   
         }
-    
     }
+
+    public Passageiro getEditarPassageiro() {
+        return editarPassageiro;
+    }
+
+    public void setEditarPassageiro(Passageiro editarPassageiro) {
+        this.editarPassageiro = editarPassageiro;
+    }
+
+    public EditarPassageiro getTela() {
+        return tela;
+    }
+
+    public int getLinha() {
+        return linha;
+    }
+
+    public void setLinha(int linha) {
+        this.linha = linha;
+    }
+    
 }
