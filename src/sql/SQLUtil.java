@@ -31,17 +31,19 @@ public class SQLUtil {
     }
     
     public static class Transporte{
-        public static String INSERT_ALL="insert into transporte(cor,placa,chassi,id_motorista,id_tipo_transporte,id_destino,id_transporte_horario) values (?,?,?,?,?,?,?)";
+        public static String INSERT_ALL="insert into transporte(cor,placa,chassi,id_motorista,id_tipo_transporte,id_destino) values (?,?,?,?,?,?)";
         public static String INSERT="insert into transporte(cor,placa,chassi) values (?,?,?)";
         public static String BUSCAR_CHASSI="select * from transporte where chassi = ?";
+        public static String BUSCAR_ALL = "select * from transporte";
+        public static String REMOVER_PLACA = "delete from transporte where id=? and placa = ?";
 }
     public static class Destino{
-        public static String INSERT_ALL = "insert into destino(nome,id_endereco) values(?,?)";
-        public static String BUSCAR_ALL = "select * from destino";
-        public static String BUSCAR_ID = "select * from destino where id=?";
-        public static String BUSCAR_NOME = "select * from destino where nome=?";
-        public static String REMOVE_ID = "delete from destino where id=?";
-        public static String EDITAR = "update destino set nome=?,id_endereco=?";
+        public static String INSERT_ALL = "insert into rota(nome,id_endereco_partida,horario,id_endereco_destino) values(?,?,?,?)";
+        public static String BUSCAR_ALL = "select * from rota";
+        public static String BUSCAR_ID = "select * from rota where id=?";
+        public static String BUSCAR_NOME = "select * from rota where nome=?";
+        public static String REMOVE_ID = "delete from rota where id=?";
+        public static String EDITAR = "update rota set nome=?,id_endereco=?";
     }
     public static class Endereco{
         public static String INSERT_ALL = "insert into endereco(estado,rua,bairro,cidade,complemento) values (?,?,?,?,?)";
@@ -49,8 +51,10 @@ public class SQLUtil {
     }
     
     public static class Tipo_transporte{
-        public static String INSERT_ALL = "insert into tipo_transporte(nome,assentos,id_empresa) values(?,?,?)";
+        public static String INSERT_ALL = "insert into tipo_transporte(nome,assentos) values(?,?)";
         public static String BUSCAR_ID = "select * from tipo_transporte where id=?";
+        public static String BUSCAR_ALL = "select * from tipo_transporte";
+        public static String BUSCAR_NOME = "select * from tipo_transporte where nome=?";
     }
     public static class Empresa{
         public static String INSERT_ALL = "insert into empresa(nome,cnpj) values(?,?)";

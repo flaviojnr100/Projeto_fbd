@@ -47,8 +47,10 @@ public class ControllerDashBoard {
     private ControllerConsultarMotorista cccMotorista;
     private ControllerConsultarFuncionario cccFuncionario;
     private ControllerConsultarPassageiro cccPassageiro;
+    private ControllerCadastroTransporte ccVeiculo;
+    private ControllerConsultarTransporte cccVeiculo;
 
-    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota, Financeiro financeiro,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro) {
+    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota, Financeiro financeiro,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo) {
         this.principal = principal;
         this.cFuncionario = cFuncionario;
         this.ccFuncionario = ccFuncionario;
@@ -67,6 +69,8 @@ public class ControllerDashBoard {
         this.cccMotorista = cccMotorista;
         this.cccFuncionario = cccFuncionario;
         this.cccPassageiro = cccPassageiro;
+        this.ccVeiculo = ccVeiculo;
+        this.cccVeiculo = cccVeiculo;
         Control();
     }
     
@@ -114,6 +118,7 @@ public class ControllerDashBoard {
                 cViagem.setVisible(true);
             }
             if(e.getSource() == principal.getBtnConsultarViagem()){
+                
                 ccViagem.setVisible(true);
             }
             if(e.getSource() == principal.getBtnConsultarVeiculos()){
@@ -157,10 +162,16 @@ public class ControllerDashBoard {
                 }
             }
             if(e.getSource() == principal.getjMenuVeiculoCadastro()){
+                ccVeiculo.montarComboMotorista();
+                ccVeiculo.montarComboTipo();
+                ccVeiculo.montarComboRota();
                 cTransporte.setVisible(true);
             }
             if(e.getSource() == principal.getjMenuVeiculoConsulta()){
-                ccTransporte.setVisible(true);
+                if(cccVeiculo.limpar()){
+                    cccVeiculo.ColocarDados();
+                    ccTransporte.setVisible(true);
+                }
             }
             if(e.getSource() == principal.getjMenuPassageiroCadastro()){
                 cPassageiro.setVisible(true);

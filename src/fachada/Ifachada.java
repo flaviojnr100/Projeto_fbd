@@ -24,6 +24,6 @@ public interface Ifachada {
      public boolean salvar(Transporte transporte);
     public boolean editar(Transporte transporte);
     public List<Transporte> getAllTransporte();
-    public boolean removerTransporte(String placa);
+    public boolean removerTransporte(int id,String placa);
         
 }

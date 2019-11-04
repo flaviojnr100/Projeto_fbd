@@ -16,6 +16,7 @@ import Controller.ControllerCarregamento;
 import Controller.ControllerConsultarFuncionario;
 import Controller.ControllerConsultarMotorista;
 import Controller.ControllerConsultarPassageiro;
+import Controller.ControllerConsultarTransporte;
 import Controller.ControllerDashBoard;
 import Controller.ControllerEditarFuncionario;
 import Controller.ControllerEditarMotorista;
@@ -121,7 +122,7 @@ public class App {
       EditarMotorista eMotorista = new EditarMotorista();
       ControllerEditarMotorista ceMotorista = new ControllerEditarMotorista(eMotorista, fachada1);
       ControllerConsultarMotorista cccMotorista = new ControllerConsultarMotorista(ccMotorista, fachada1,ceMotorista,cMotorista);
-      new ControllerCadastroMotorista(cMotorista,fachada1,cccMotorista);
+      ControllerCadastroMotorista cadMotorista =  new ControllerCadastroMotorista(cMotorista,fachada1,cccMotorista);
       cccMotorista.addObserver(ccMotorista);
       ceMotorista.addObserver(ccMotorista);
       
@@ -130,13 +131,23 @@ public class App {
       ConsultarRota ccRota = new ConsultarRota();
       EditarRota eRota = new EditarRota();
       
+      
       CadastroTipoTransporte cTipoTransporte = new CadastroTipoTransporte();
-      new ControllerCadastroTipoTransporte(cTipoTransporte);
       
       CadastroTransporte cTransporte = new CadastroTransporte();
-      new ControllerCadastroTransporte(cTransporte);
+      ControllerCadastroTransporte cccTransporte = new ControllerCadastroTransporte(cTransporte, fachada1, cMotorista, cTipoTransporte, cRota);
       ConsultarTransporte ccTransporte = new ConsultarTransporte();
       EditarTransporte eTransporte = new EditarTransporte();
+      
+      
+      ControllerCadastroTipoTransporte ccTipo = new ControllerCadastroTipoTransporte(cTipoTransporte,fachada1,cccTransporte);
+      
+      ControllerConsultarTransporte ccccTransporte = new ControllerConsultarTransporte(ccTransporte, fachada1);
+      cccTransporte.addObserver(cTransporte);
+      ccTipo.addObserver(cTransporte);
+      cadMotorista.addObserver(cTransporte);
+      
+      
       
       CadastroViagem cViagem = new CadastroViagem();
       new ControllerCadastroViagem(cViagem);
@@ -149,7 +160,7 @@ public class App {
       
       DashBoard dash = new DashBoard();
       TelaPersonalizar personalizar = new TelaPersonalizar();
-      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro);
+      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte);
       ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
       c.addObserver(dash);
       TelaLogin telaLogin = new TelaLogin();

@@ -12,14 +12,33 @@ package modelVO;
 public class Destino{
     private int id;
     private String nome;
-    private Endereco endereco;
-
-    public Destino(String nome,Endereco endereco) {
+    private Endereco partida;
+    private Endereco destino;
+    private String horario;
+    public Destino(int id, String nome, Endereco partida, Endereco destino,String horario) {
+        this.id = id;
         this.nome = nome;
-        this.endereco = endereco;
+        this.partida = partida;
+        this.destino = destino;
+        this.horario = horario;
     }
 
+    public Destino(String nome, Endereco partida, Endereco destino,String horario) {
+        this.nome = nome;
+        this.partida = partida;
+        this.destino = destino;
+        this.horario = horario;
+    }
+    
+    
+    
+
+    
+
     public Destino() {
+    }
+    public Destino(int id) {
+        this.id = id;
     }
     
 
@@ -31,13 +50,7 @@ public class Destino{
         this.nome = nome;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+    
 
     public int getId() {
         return id;
@@ -45,6 +58,30 @@ public class Destino{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Endereco getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Endereco partida) {
+        this.partida = partida;
+    }
+
+    public Endereco getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Endereco destino) {
+        this.destino = destino;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
     
     

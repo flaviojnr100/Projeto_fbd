@@ -22,7 +22,7 @@ public class Transporte {
     private Tipo_transporte tipo;
     private Destino destino;
     private List<Assento> assentos = new ArrayList<>();
-    private List<Horario> horarios = new ArrayList<>();
+    private String horarios;
 
     public Transporte(String cor, String placa, String chassi, Tipo_transporte tipo,Motorista motorista,Destino destino) {
         this.cor = cor;
@@ -31,6 +31,15 @@ public class Transporte {
         this.tipo = tipo;
         this.motorista = motorista;
         this.destino = destino;
+    }
+     public Transporte(int id,String cor, String placa, String chassi, Tipo_transporte tipo,Motorista motorista,Destino destino) {
+        this.cor = cor;
+        this.placa = placa;
+        this.chassi = chassi;
+        this.tipo = tipo;
+        this.motorista = motorista;
+        this.destino = destino;
+        this.id=id;
     }
     public Transporte(String cor, String placa, String chassi) {
         this.cor = cor;
@@ -79,10 +88,7 @@ public class Transporte {
         return assentos;
     }
 
-    public List<Horario> getHorarios() {
-        return horarios;
-    }
-
+    
     public Motorista getMotorista() {
         return motorista;
     }

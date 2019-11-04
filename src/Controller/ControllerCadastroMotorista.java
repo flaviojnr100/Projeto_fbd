@@ -14,6 +14,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Observable;
 import javax.swing.JOptionPane;
 import modelVO.Motorista;
 import view.CadastroMotorista;
@@ -23,7 +24,7 @@ import view.Mensagens;
  *
  * @author Flavio
  */
-public class ControllerCadastroMotorista {
+public class ControllerCadastroMotorista extends Observable {
     private CadastroMotorista tela;
     private Fachada fachada;
     private ControllerConsultarMotorista cMotorista;
@@ -61,6 +62,8 @@ public class ControllerCadastroMotorista {
                 if(!tela.getNomeTxt().getText().equals("") && !tela.getSobrenomeTxt().getText().equals("")){
                     if(!fachada.salvar(new Motorista(tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getCnhTxt().getText()))){
                         Mensagens.mensagem("Esse motorista já foi cadastrado!");
+                        setChanged();
+                        notifyObservers();
                     }else{
                         Mensagens.mensagem("Cadastro realizado com sucesso!");
                         tela.getBtnLimpar().doClick();

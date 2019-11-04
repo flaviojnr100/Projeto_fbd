@@ -6,13 +6,18 @@
 package fachada;
 
 import java.util.List;
+import modelDAO.DaoTipo_transporte;
 import modelVB.BusinessFuncionario;
 import modelVB.BusinessMotorista;
 import modelVB.BusinessPassageiro;
+import modelVB.BusinessRota;
+import modelVB.BusinessTipo_transporte;
 import modelVB.BusinessTransporte;
+import modelVO.Destino;
 import modelVO.Funcionario;
 import modelVO.Motorista;
 import modelVO.Passageiro;
+import modelVO.Tipo_transporte;
 import modelVO.Transporte;
 
 /**
@@ -24,6 +29,8 @@ public class Fachada implements Ifachada {
     private BusinessTransporte bTransporte;
     private BusinessFuncionario bFuncionario;
     private BusinessPassageiro bPassageiro;
+    private BusinessTipo_transporte bTipo_transporte;
+    private BusinessRota bDestino;
     private static Fachada instance;
 
     private Fachada() {
@@ -31,6 +38,8 @@ public class Fachada implements Ifachada {
         this.bTransporte = new BusinessTransporte();
         this.bFuncionario = new BusinessFuncionario();
         this.bPassageiro = new BusinessPassageiro();
+        this.bTipo_transporte = new BusinessTipo_transporte();
+        this.bDestino = new BusinessRota();
     }
     public static Fachada getInstance(){
         if(instance == null){
@@ -89,12 +98,12 @@ public class Fachada implements Ifachada {
 
     @Override
     public List<Transporte> getAllTransporte() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bTransporte.getAll();
     }
 
     @Override
-    public boolean removerTransporte(String placa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean removerTransporte(int id,String placa) {
+        return bTransporte.remover(id, placa);
     }
     //Funcionario
     public boolean salvar(Funcionario funcionario) {
@@ -140,7 +149,25 @@ public class Fachada implements Ifachada {
         return bPassageiro.buscaLike(nome, busca);
     }
    
-
+    //Tipo transporte
+     
+    public boolean salvarTipo_transporte(Tipo_transporte tipo){
+        return bTipo_transporte.salvar(tipo);
+    }
+    public List<Tipo_transporte> getAllTipoTransporte(){
+        return bTipo_transporte.getAll();
+    }
+    public Tipo_transporte buscarIdTipo_Transporte(int id){
+        return bTipo_transporte.buscarId(id);
+    }
+    
+    //Destino
+    public boolean salvarDestino(Destino destino){
+        return bDestino.salvar(destino);
+    }
+    public List<Destino> getAllDestino(){
+        return bDestino.getAll();
+    }
     
     
 }

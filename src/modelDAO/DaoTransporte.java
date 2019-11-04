@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,16 @@ public class DaoTransporte {
     private Connection conexao;
     private PreparedStatement statement;
     private ResultSet result;
+    private DaoTipo_transporte tipoDao;
+    private DaoMotorista motoristaDao;
+    private DaoDestino destinoDao;
+
+    public DaoTransporte() {
+        this.tipoDao = new DaoTipo_transporte();
+        this.motoristaDao = new DaoMotorista();
+        this.destinoDao = new DaoDestino();
+    }
+    
     public boolean salvar(Transporte transporte){
         this.conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
         try {
@@ -32,9 +43,10 @@ public class DaoTransporte {
             statement.setString(1, transporte.getCor());
             statement.setString(2, transporte.getPlaca());
             statement.setString(3, transporte.getChassi());
-            statement.setString(4, transporte.getMotorista().getId()+"");
-            statement.setString(5, transporte.getTipo().getId()+"");
-            statement.setString(6,transporte.getDestino().getEndereco().getId()+"");
+            statement.setInt(4, transporte.getMotorista().getId());
+            statement.setInt(5, transporte.getTipo().getId());
+            statement.setInt(6, transporte.getDestino().getId());
+            
             
             statement.execute();
             conexao.close();
@@ -92,8 +104,37 @@ public class DaoTransporte {
         return transporte;
     }
     public List<Transporte> getAll(){
+        List<Transporte> transportes = new ArrayList<>();
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Transporte.BUSCAR_ALL);
+            result = statement.executeQuery();
+            conexao.close();
+            while(result.next()){
+                transportes.add(new Transporte(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), tipoDao.buscarId(result.getInt(6)), motoristaDao.buscarId(result.getInt(5)), destinoDao.buscarId(7)));
+            }
+            return transportes;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
-    public boolean remover(String placa){return true;}
+    public boolean remover(int id,String placa){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Transporte.REMOVER_PLACA);
+            statement.setInt(1,id);
+            statement.setString(2,placa);
+            statement.execute();
+            conexao.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    
     
 }

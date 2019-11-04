@@ -23,9 +23,9 @@ public class BusinessTransporte {
         this.dao = new DaoTransporte();
     }
       public boolean salvar(Transporte transporte){
-           if(transporte.getDestino()== null && transporte.getMotorista()== null){
-               return dao.salvar2(transporte);
-           }
+          // if(transporte.getDestino()== null && transporte.getMotorista()== null){
+         //      return dao.salvar2(transporte);
+         //  }
           return dao.salvar(transporte);
      
         
@@ -37,13 +37,21 @@ public class BusinessTransporte {
         
     }
     public List<Transporte> getAll(){
-        if(dao.getAll().size()>1){
-            return dao.getAll();
-        }
-        return null;
-    }
-    public boolean remover(String placa){
         
-        return dao.remover(placa);
+        return dao.getAll();
+        
+        
     }
+    public boolean remover(int id,String placa){
+        
+        return dao.remover(id,placa);
+    }
+    public static void main(String []args){
+        BusinessTransporte bt = new BusinessTransporte();
+        System.out.println("Nome: "+bt.getAll().get(0).getMotorista().getNome());
+        System.out.println("Nome: "+bt.getAll().get(0).getMotorista().getSobrenome());
+        System.out.println("Nome: "+bt.getAll().get(0).getMotorista().getCpf());
+        System.out.println("Nome: "+bt.getAll().get(0).getMotorista().getCnh());
+    }
+    
 }
