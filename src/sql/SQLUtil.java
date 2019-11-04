@@ -90,6 +90,8 @@ public class SQLUtil {
         public static String BUSCARLIKECPF = "select * from funcionario where cpf like ?";
         public static String BUSCARLIKELOGIN = "select * from funcionario where login like ?";
         public static String VERIFICARCPF = "select count(cpf) from funcionario where cpf=?";
+        public static String AUTENTICAR = "select count(nome) from funcionario where login=? and senha=?";
+        public static String BUSCAR_LOGIN = "select * from funcionario where login=? and senha=?";
     }
     
     public static class Agencia_bancaria{
@@ -132,5 +134,11 @@ public class SQLUtil {
         public static String REMOVER_NUMERO = "delete from assento where numero=?";
         public static String EDITAR_ID = "update assento set numero=?,posicao=?,estado_ocupacao=?,id_transporte_assento=? where id=?";
     }
+    
+    public static class Acesso{
+        public static String SALVAR_ACESSO = "insert into acesso(cod_funcionario,horario,data) values(?,?,?)";
+        public static String BUSCAR_ALL = "select * from acesso";
+    }
+    
 }
 

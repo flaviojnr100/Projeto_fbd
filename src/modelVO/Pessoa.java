@@ -47,6 +47,10 @@ public abstract class Pessoa {
         this.cpf = cpf;
         this.data_nascimento = data_nascimento;
     }
+
+    public Pessoa() {
+    }
+    
    
 
     public String getNome() {

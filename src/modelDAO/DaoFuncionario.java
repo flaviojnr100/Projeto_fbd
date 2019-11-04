@@ -140,6 +140,37 @@ public class DaoFuncionario {
         return null;
         
     }
+    public Funcionario buscarId(int id){
+         try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Funcionario.BUSCAR_ID);
+            statement.setInt(1, id);
+            result = statement.executeQuery();
+            if(result.next()){
+                return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+     public Funcionario buscarLogin(String login,String senha){
+         try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Funcionario.BUSCAR_LOGIN);
+            statement.setString(1, login);
+            statement.setString(2, senha);
+            result = statement.executeQuery();
+            if(result.next()){
+                return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
     public boolean verificarCpf(String cpf){
         
         try {
@@ -160,6 +191,27 @@ public class DaoFuncionario {
         
         return false;
     }
+    public boolean autenticar(Funcionario funcionario){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Funcionario.AUTENTICAR);
+            statement.setString(1, funcionario.getLogin());
+            statement.setString(2, funcionario.getSenha());
+            result = statement.executeQuery();
+            if(result.next()){
+                if(result.getInt(1)==1){
+                    return true;
+                }
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+   
 
    
 }

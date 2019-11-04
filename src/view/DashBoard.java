@@ -69,6 +69,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         jMenuFinanceiroConsulta = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuSobre = new javax.swing.JMenuItem();
+        jMenuControleAcesso = new javax.swing.JMenuItem();
         jMenuPersonalizar = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenu();
         jMenuEncerrarSistema = new javax.swing.JMenuItem();
@@ -260,6 +261,10 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         jMenuSobre.setText("Sobre");
         jMenu7.add(jMenuSobre);
 
+        jMenuControleAcesso.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuControleAcesso.setText("Controle de acesso");
+        jMenu7.add(jMenuControleAcesso);
+
         jMenuPersonalizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuPersonalizar.setText("Personalizar");
         jMenu7.add(jMenuPersonalizar);
@@ -431,6 +436,11 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     public JPanel getPainelBotoes() {
         return painelBotoes;
     }
+
+    public JMenuItem getjMenuControleAcesso() {
+        return jMenuControleAcesso;
+    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -452,6 +462,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuControleAcesso;
     private javax.swing.JMenuItem jMenuEncerrarSistema;
     private javax.swing.JMenuItem jMenuFinanceiroConsulta;
     private javax.swing.JMenuItem jMenuFuncionarioCadastro;

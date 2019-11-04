@@ -49,8 +49,10 @@ public class ControllerDashBoard {
     private ControllerConsultarPassageiro cccPassageiro;
     private ControllerCadastroTransporte ccVeiculo;
     private ControllerConsultarTransporte cccVeiculo;
+    private ControllerControleAcesso ccAcesso;
+    
 
-    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota, Financeiro financeiro,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo) {
+    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota, Financeiro financeiro,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo,ControllerControleAcesso ccAcesso) {
         this.principal = principal;
         this.cFuncionario = cFuncionario;
         this.ccFuncionario = ccFuncionario;
@@ -71,6 +73,7 @@ public class ControllerDashBoard {
         this.cccPassageiro = cccPassageiro;
         this.ccVeiculo = ccVeiculo;
         this.cccVeiculo = cccVeiculo;
+        this.ccAcesso = ccAcesso;
         Control();
     }
     
@@ -96,6 +99,8 @@ public class ControllerDashBoard {
         
         principal.getjMenuSobre().addActionListener(new Menu());
         principal.getjMenuPersonalizar().addActionListener(new Menu());
+        principal.getjMenuControleAcesso().addActionListener(new Menu());
+        
         
         principal.getjMenuEncerrarSistema().addActionListener(new Menu());
         
@@ -194,6 +199,13 @@ public class ControllerDashBoard {
             }
             if(e.getSource() == principal.getjMenuSobre()){
                 
+            }
+            if(e.getSource() == principal.getjMenuControleAcesso()){
+                if(ccAcesso.limpar()){
+                    ccAcesso.colocarDados();
+                    ccAcesso.getTela().setVisible(true);
+                    
+                }
             }
             if(e.getSource() == principal.getjMenuPersonalizar()){
                 telaPersonalizar.setVisible(true);

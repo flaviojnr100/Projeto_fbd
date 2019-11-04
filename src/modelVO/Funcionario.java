@@ -23,6 +23,10 @@ public class Funcionario extends Pessoa {
         this.login = login;
         this.senha = senha;
     }
+    public Funcionario(String login,String senha){
+        this.login = login;
+        this.senha = senha;
+    }
     
     public String getLogin() {
         return login;

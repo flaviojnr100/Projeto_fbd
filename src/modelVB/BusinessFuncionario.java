@@ -31,6 +31,9 @@ public class BusinessFuncionario {
     public Funcionario buscarCpf(String cpf){
         return dao.buscarCpf(cpf);
     }
+    public Funcionario buscarLogin(String login,String senha){
+        return dao.buscarLogin(login, senha);
+    }
     public List<Funcionario> getAll(){
         return dao.getAll();
         
@@ -49,6 +52,9 @@ public class BusinessFuncionario {
     public boolean verificarCpf(String cpf){
         return dao.verificarCpf(cpf);
     }
+     public boolean autenticar(Funcionario funcionario){
+         return dao.autenticar(funcionario);
+     }
      
     
    

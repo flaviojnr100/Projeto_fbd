@@ -17,6 +17,7 @@ import Controller.ControllerConsultarFuncionario;
 import Controller.ControllerConsultarMotorista;
 import Controller.ControllerConsultarPassageiro;
 import Controller.ControllerConsultarTransporte;
+import Controller.ControllerControleAcesso;
 import Controller.ControllerDashBoard;
 import Controller.ControllerEditarFuncionario;
 import Controller.ControllerEditarMotorista;
@@ -50,6 +51,7 @@ import view.ConsultarPassageiro;
 import view.ConsultarRota;
 import view.ConsultarTransporte;
 import view.ConsultarViagem;
+import view.ControleAcesso;
 import view.DashBoard;
 import view.EditarFuncionario;
 import view.EditarMotorista;
@@ -156,15 +158,16 @@ public class App {
       Financeiro financeiro = new Financeiro();
       new ControllerFinanceiro(financeiro);
       
-      
+      ControleAcesso cAcesso = new ControleAcesso();
+      ControllerControleAcesso ccAcesso = new ControllerControleAcesso(cAcesso, fachada1);
       
       DashBoard dash = new DashBoard();
       TelaPersonalizar personalizar = new TelaPersonalizar();
-      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte);
+      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso);
       ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
       c.addObserver(dash);
       TelaLogin telaLogin = new TelaLogin();
-      new ControllerLogin(telaLogin, dash);
+      ControllerLogin cLogin = new ControllerLogin(telaLogin, dash,fachada1);
      // telaLogin.setVisible(true);
       TelaCarregamento tCarregamento = new TelaCarregamento();
       tCarregamento.setVisible(true);

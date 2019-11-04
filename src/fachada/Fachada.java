@@ -7,12 +7,14 @@ package fachada;
 
 import java.util.List;
 import modelDAO.DaoTipo_transporte;
+import modelVB.BusinessAcesso;
 import modelVB.BusinessFuncionario;
 import modelVB.BusinessMotorista;
 import modelVB.BusinessPassageiro;
 import modelVB.BusinessRota;
 import modelVB.BusinessTipo_transporte;
 import modelVB.BusinessTransporte;
+import modelVO.Acesso;
 import modelVO.Destino;
 import modelVO.Funcionario;
 import modelVO.Motorista;
@@ -31,6 +33,7 @@ public class Fachada implements Ifachada {
     private BusinessPassageiro bPassageiro;
     private BusinessTipo_transporte bTipo_transporte;
     private BusinessRota bDestino;
+    private BusinessAcesso bAcesso;
     private static Fachada instance;
 
     private Fachada() {
@@ -40,6 +43,7 @@ public class Fachada implements Ifachada {
         this.bPassageiro = new BusinessPassageiro();
         this.bTipo_transporte = new BusinessTipo_transporte();
         this.bDestino = new BusinessRota();
+        this.bAcesso = new BusinessAcesso();
     }
     public static Fachada getInstance(){
         if(instance == null){
@@ -121,6 +125,9 @@ public class Fachada implements Ifachada {
     public Funcionario buscarCpfFuncionario(String cpf){
         return bFuncionario.buscarCpf(cpf);
     }
+    public Funcionario buscarLogin(String login,String senha){
+        return bFuncionario.buscarLogin(login, senha);
+    }
      public List<Funcionario> buscarLike(String nome,String busca){
          return bFuncionario.buscarLike(nome, busca);
      }
@@ -128,6 +135,10 @@ public class Fachada implements Ifachada {
     public boolean verificarCpfFuncionario(String cpf){
         return bFuncionario.verificarCpf(cpf);
     }
+     public boolean autenticar(Funcionario funcionario){
+         return bFuncionario.autenticar(funcionario);
+     }
+    
     //passageiro
     
     public boolean salvar(Passageiro passageiro){
@@ -169,5 +180,11 @@ public class Fachada implements Ifachada {
         return bDestino.getAll();
     }
     
-    
+    //acesso
+    public boolean salvar(Funcionario funcionario,String horario,String data){
+        return bAcesso.salvar(funcionario, horario, data);
+    }
+    public List<Acesso> getAllAcesso(){
+        return bAcesso.getAll();
+    }
 }
