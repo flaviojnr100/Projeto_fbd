@@ -60,7 +60,29 @@ public class DaoAcesso {
             conexao.close();
             while(result.next()){
                 
-                Acesso ac = new Acesso(result.getInt(1), funcionarioDao.buscarId(result.getInt(2)), result.getString(3), result.getString(4)); 
+                Acesso ac = new Acesso(result.getInt(1), new Funcionario(result.getString(2)), result.getString(3), result.getString(4)); 
+                
+                acessos.add(ac);
+            }
+            return acessos;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoAcesso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public List<Acesso> buscaLike(String nome,String sql){
+        List<Acesso> acessos = new ArrayList<>();
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(sql);
+            statement.setString(1, nome+"%");
+            result = statement.executeQuery();
+            conexao.close();
+            while(result.next()){
+                
+                Acesso ac = new Acesso(result.getInt(1), new Funcionario(result.getString(2)), result.getString(3), result.getString(4)); 
                 
                 acessos.add(ac);
             }

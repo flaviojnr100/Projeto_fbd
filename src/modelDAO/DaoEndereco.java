@@ -67,5 +67,56 @@ public class DaoEndereco {
         return null;
         
     }
+    
+    public boolean verificarExistencia(Endereco endereco){
+        
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Endereco.VERIFICAR_EXISTENCIA);
+            
+            statement.setString(1, endereco.getEstado());
+            statement.setString(2, endereco.getRua());
+            statement.setString(3, endereco.getBairro());
+            statement.setString(4, endereco.getCidade());
+            result = statement.executeQuery();
+             conexao.close();
+            if(result.next()){
+                if(result.getInt(1) == 1){
+                    return false;
+                }else{
+                    return true;
+                    
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEndereco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+    
+       public int retornar_id(Endereco endereco){
+        
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Endereco.RETORNAR_ID);
+            
+            statement.setString(1, endereco.getEstado());
+            statement.setString(2, endereco.getRua());
+            statement.setString(3, endereco.getBairro());
+            statement.setString(4, endereco.getCidade());
+            result = statement.executeQuery();
+             conexao.close();
+            if(result.next()){
+                return result.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEndereco.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return 0;
+    }
    
 }

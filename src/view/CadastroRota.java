@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 
 /**
@@ -63,7 +64,7 @@ public class CadastroRota extends javax.swing.JFrame implements Observer {
         jLabel11 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        precoTxt = new javax.swing.JTextField();
+        precoTxt = new javax.swing.JFormattedTextField();
         jPanel6 = new javax.swing.JPanel();
         horarioTxt = new javax.swing.JFormattedTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -252,6 +253,13 @@ public class CadastroRota extends javax.swing.JFrame implements Observer {
         jLabel12.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel12.setText("Preço da viagem:");
 
+        try {
+            precoTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##,##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        precoTxt.setToolTipText("");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -260,17 +268,17 @@ public class CadastroRota extends javax.swing.JFrame implements Observer {
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
-                .addComponent(precoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(precoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(precoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(precoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -457,9 +465,11 @@ public class CadastroRota extends javax.swing.JFrame implements Observer {
         return nomeTxt;
     }
 
-    public JTextField getPrecoTxt() {
+    public JFormattedTextField getPrecoTxt() {
         return precoTxt;
     }
+
+    
 
     public JTextField getRua2Txt() {
         return rua2Txt;
@@ -467,6 +477,10 @@ public class CadastroRota extends javax.swing.JFrame implements Observer {
 
     public JTextField getRuaTxt() {
         return ruaTxt;
+    }
+
+    public JFormattedTextField getHorarioTxt() {
+        return horarioTxt;
     }
     
 
@@ -503,7 +517,7 @@ public class CadastroRota extends javax.swing.JFrame implements Observer {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTextField nomeTxt;
-    private javax.swing.JTextField precoTxt;
+    private javax.swing.JFormattedTextField precoTxt;
     private javax.swing.JTextField rua2Txt;
     private javax.swing.JTextField ruaTxt;
     // End of variables declaration//GEN-END:variables

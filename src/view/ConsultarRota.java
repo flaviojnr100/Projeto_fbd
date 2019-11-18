@@ -5,17 +5,28 @@
  */
 package view;
 
+import Controller.ControllerConsultarRota;
+import java.util.Observable;
+import java.util.Observer;
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Flavio
  */
-public class ConsultarRota extends javax.swing.JFrame {
+public class ConsultarRota extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form ConsultarRota
      */
     public ConsultarRota() {
         initComponents();
+        jRadioNome.setSelected(true);
     }
 
     /**
@@ -28,16 +39,36 @@ public class ConsultarRota extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuAtualizar = new javax.swing.JMenuItem();
+        jMenuCadastrar = new javax.swing.JMenuItem();
+        jMenuEditar = new javax.swing.JMenuItem();
+        jMenuRemover = new javax.swing.JMenuItem();
+        jMenuSair = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        buscarTxt = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jRadioNome = new javax.swing.JRadioButton();
+        jRadioPreco = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableRotas = new javax.swing.JTable();
+
+        jMenuAtualizar.setText("Atualizar");
+        jPopupMenu1.add(jMenuAtualizar);
+
+        jMenuCadastrar.setText("Cadastrar");
+        jPopupMenu1.add(jMenuCadastrar);
+
+        jMenuEditar.setText("Editar");
+        jPopupMenu1.add(jMenuEditar);
+
+        jMenuRemover.setText("Remover");
+        jPopupMenu1.add(jMenuRemover);
+
+        jMenuSair.setText("Sair");
+        jPopupMenu1.add(jMenuSair);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -47,25 +78,20 @@ public class ConsultarRota extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Busca:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/busca.png"))); // NOI18N
-        jButton1.setText("Buscar");
+        btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/busca.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton1.setText("Nome");
+        jRadioNome.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioNome);
+        jRadioNome.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioNome.setText("Nome");
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton2.setText("Preço");
-
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton3.setText("Cidade");
+        jRadioPreco.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioPreco);
+        jRadioPreco.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioPreco.setText("Preço");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -73,16 +99,15 @@ public class ConsultarRota extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton3))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addComponent(jRadioNome)
+                        .addGap(60, 60, 60)
+                        .addComponent(jRadioPreco))
+                    .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -90,23 +115,22 @@ public class ConsultarRota extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(jRadioNome)
+                    .addComponent(jRadioPreco))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rotas:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableRotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -139,7 +163,7 @@ public class ConsultarRota extends javax.swing.JFrame {
                 "Código", "Nome", "Preço"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableRotas);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -223,17 +247,81 @@ public class ConsultarRota extends javax.swing.JFrame {
         });
     }
 
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    
+
+    public JRadioButton getjRadioNome() {
+        return jRadioNome;
+    }
+
+    public JRadioButton getjRadioPreco() {
+        return jRadioPreco;
+    }
+
+    public JTable getjTableRotas() {
+        return jTableRotas;
+    }
+
+    public JTextField getBuscarTxt() {
+        return buscarTxt;
+    }
+
+    public JMenuItem getjMenuAtualizar() {
+        return jMenuAtualizar;
+    }
+
+    public JMenuItem getjMenuCadastrar() {
+        return jMenuCadastrar;
+    }
+
+    public JMenuItem getjMenuEditar() {
+        return jMenuEditar;
+    }
+
+    public JMenuItem getjMenuRemover() {
+        return jMenuRemover;
+    }
+
+    public JMenuItem getjMenuSair() {
+        return jMenuSair;
+    }
+
+    public JPopupMenu getjPopupMenu1() {
+        return jPopupMenu1;
+    }
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JTextField buscarTxt;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem jMenuAtualizar;
+    private javax.swing.JMenuItem jMenuCadastrar;
+    private javax.swing.JMenuItem jMenuEditar;
+    private javax.swing.JMenuItem jMenuRemover;
+    private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JRadioButton jRadioNome;
+    private javax.swing.JRadioButton jRadioPreco;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jTableRotas;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof ControllerConsultarRota && arg.equals("atualizar")){
+            ((ControllerConsultarRota)o).LimparDados();
+            ((ControllerConsultarRota)o).colocarDados();
+        }
+        if(o instanceof ControllerConsultarRota && arg.equals("like")){
+            ((ControllerConsultarRota)o).LimparDados();
+            ((ControllerConsultarRota)o).colocarDados(((ControllerConsultarRota)o).getRotasLike());
+        }
+    }
 }

@@ -5,6 +5,9 @@
  */
 package view;
 
+import Controller.ControllerControleAcesso;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
@@ -14,7 +17,7 @@ import javax.swing.JTextField;
  *
  * @author Flavio
  */
-public class ControleAcesso extends javax.swing.JFrame {
+public class ControleAcesso extends javax.swing.JFrame implements Observer{
 
     /**
      * Creates new form ControleAcesso
@@ -234,6 +237,16 @@ public class ControleAcesso extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAcessos;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof ControllerControleAcesso && arg.equals("busca")){
+            ((ControllerControleAcesso)o).limparLike();
+            ((ControllerControleAcesso)o).colocarDados(((ControllerControleAcesso)o).getAcessoLike());
+            
+            
+        }
+    }
 
     
 

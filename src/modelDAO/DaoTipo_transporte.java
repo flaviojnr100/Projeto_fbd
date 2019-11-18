@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelVO.Assento;
 import modelVO.Tipo_transporte;
 import sql.SQLConexao;
 import sql.SQLUtil;
@@ -25,7 +26,7 @@ public class DaoTipo_transporte {
     private Connection conexao;
     private PreparedStatement statement;
     private ResultSet result;
-    
+    private DaoAssento assentoDao = new DaoAssento();
     public boolean salvar(Tipo_transporte t_transporte){
         try {
             conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
@@ -35,6 +36,7 @@ public class DaoTipo_transporte {
             
             statement.execute();
             conexao.close();
+            adicionarAssentos(t_transporte.getAssentos());
             return true;
             
         } catch (SQLException ex) {
@@ -49,12 +51,8 @@ public class DaoTipo_transporte {
             statement = conexao.prepareStatement(SQLUtil.Tipo_transporte.BUSCAR_ID);
             statement.setInt(1, id);
             result = statement.executeQuery();
-            
+            conexao.close();
             if(result.next()){
-                
-                
-                
-                conexao.close();
                 return new Tipo_transporte(result.getInt(1), result.getString(2),result.getInt(3));
                 
             }
@@ -80,6 +78,19 @@ public class DaoTipo_transporte {
             Logger.getLogger(DaoTipo_transporte.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    public void adicionarAssentos(int numero){
+        int i=0;
+        List<Assento> assentos = new ArrayList<>();
+        while(i<numero){
+            assentos.add(new Assento(i+1));
+            i++;
+        }
+        for(Assento a:assentos){
+            if(assentoDao.buscarNumero(a.getNumero())==null){
+                assentoDao.salvar(a);
+            }
+        }
     }
    
 }

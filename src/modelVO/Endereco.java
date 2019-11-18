@@ -17,11 +17,12 @@ public class Endereco {
     private String cidade;
     private String complemento;
 
-    public Endereco(String estado, String rua, String bairro, String cidade) {
+    public Endereco(String estado, String rua, String bairro, String cidade,String complemento) {
         this.estado = estado;
         this.rua = rua;
         this.bairro = bairro;
         this.cidade = cidade;
+        this.complemento = complemento;
     }
 
     public Endereco() {

@@ -25,5 +25,16 @@ public class BusinessRota {
     public List<Destino> getAll(){
         return dao.getAll();
     }
-    
+    public Destino buscarId(int id){
+        return dao.buscarId(id);
+    }
+    public boolean editar(int id,Destino destino){
+        return dao.editar(id, destino);
+    }
+    public boolean removerId(int id){
+        return dao.removerId(id);
+    }
+     public List<Destino> buscaLike(String nome,String busca){
+         return dao.buscaLike(nome, busca);
+     }
 }

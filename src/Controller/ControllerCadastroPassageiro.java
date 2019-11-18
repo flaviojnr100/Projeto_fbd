@@ -44,7 +44,7 @@ public class ControllerCadastroPassageiro{
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnCadastrar()){
-                if(fachada.salvar(new Passageiro(tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getCpfTxt().getText()))){
+                if(fachada.salvar(new Passageiro(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getCpfTxt().getText()))){
                     Mensagens.mensagem("Cadastro realizado com sucesso!");
                     tela.getBtnLimpar().doClick();
                     tela.getBtnCancelar().doClick();

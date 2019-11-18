@@ -80,8 +80,8 @@ public class ControllerConsultarPassageiro extends Observable {
             if(e.getSource() == tela.getjMenuEditar()){
                 
                 ePassageiro.setEditarPassageiro(fachada.buscarCpfPassageiro((String) tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 3)));
-                ePassageiro.getTela().getNomeTxt().setText(ePassageiro.getEditarPassageiro().getNome());
-                ePassageiro.getTela().getSobrenomeTxt().setText(ePassageiro.getEditarPassageiro().getSobrenome());
+                ePassageiro.getTela().getNomeTxt().setText(ePassageiro.getEditarPassageiro().getNome().toLowerCase());
+                ePassageiro.getTela().getSobrenomeTxt().setText(ePassageiro.getEditarPassageiro().getSobrenome().toLowerCase());
                 ePassageiro.getTela().getCpfTxt().setText(ePassageiro.getEditarPassageiro().getCpf());
                 ePassageiro.setLinha(tela.getjTablePassageiro().getSelectedRow());
                 ePassageiro.getTela().setVisible(true);

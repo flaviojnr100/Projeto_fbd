@@ -36,7 +36,7 @@ public class ControllerCadastroTipoTransporte extends Observable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnCadastrar()){
-                if(fachada.salvarTipo_transporte(new Tipo_transporte(tela.getNomeText().getText(), Integer.parseInt(tela.getAssentosText().getText())))){
+                if(fachada.salvarTipo_transporte(new Tipo_transporte(tela.getNomeText().getText().toUpperCase(), Integer.parseInt(tela.getAssentosText().getText())))){
                     Mensagens.mensagem("Cadastro realizado com sucesso!");
                     setChanged();
                     notifyObservers();

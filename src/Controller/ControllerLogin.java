@@ -8,6 +8,7 @@ package Controller;
 import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.SimpleDateFormat;
@@ -46,7 +47,7 @@ public class ControllerLogin {
         
         
     }
-    private class Botoes implements ActionListener,KeyListener{
+    private class Botoes extends KeyAdapter implements ActionListener,KeyListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -60,20 +61,19 @@ public class ControllerLogin {
                     if(!(tela.getUsuarioTxt().getText().equals("adm") && tela.getSenhaTxt().getText().equals("adm"))){
                         fachada.salvar(fachada.buscarLogin(tela.getUsuarioTxt().getText(), tela.getSenhaTxt().getText()), getHorario(), getDataAtual());
                     }
+                    tela.getUsuarioTxt().setText("");
+                    tela.getSenhaTxt().setText("");
                     principal.setVisible(true);
                     tela.setVisible(false);
                 }else{
-                    Mensagens.mensagem("Login ou senha incorreto !!");
+                    if(!tela.getUsuarioTxt().getText().equals("") && !tela.getSenhaTxt().getText().equals("")){
+                        Mensagens.mensagem("Login ou senha incorreto !!");
+                    }
                 }
             }
         }
 
-        @Override
-        public void keyTyped(KeyEvent e) {
-            
-        }
-
-        @Override
+                
         public void keyPressed(KeyEvent e) {
             if(tela.getUsuarioTxt().hasFocus() || tela.getSenhaTxt().hasFocus() || tela.getBtnEntrar().hasFocus()){
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
@@ -88,11 +88,7 @@ public class ControllerLogin {
            
     }
         
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-             
-        }
+        
     
     }
     public String getDataAtual(){

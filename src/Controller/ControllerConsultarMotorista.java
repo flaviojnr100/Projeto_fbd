@@ -64,7 +64,7 @@ public class ControllerConsultarMotorista extends Observable {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnBuscar()){
                 if(tela.getjRadioNome().isSelected()){   
-                    motoristasLike = fachada.buscarLikeNome(tela.getBuscaTxt().getText(), SQLUtil.Motorista.BUSCARLIKENOME);
+                    motoristasLike = fachada.buscarLikeNome(tela.getBuscaTxt().getText().toUpperCase(), SQLUtil.Motorista.BUSCARLIKENOME);
                 }else if(tela.getjRadioRg().isSelected()){
                     motoristasLike = fachada.buscarLikeNome(tela.getBuscaTxt().getText(), SQLUtil.Motorista.BUSCARLIKERG);
                 }else if(tela.getjRadioCpf().isSelected()){
@@ -85,7 +85,7 @@ public class ControllerConsultarMotorista extends Observable {
         public void keyReleased(KeyEvent e) {
             if(tela.getBuscaTxt().hasFocus()){
                 if(tela.getjRadioNome().isSelected()){   
-                    motoristasLike = fachada.buscarLikeNome(tela.getBuscaTxt().getText(), SQLUtil.Motorista.BUSCARLIKENOME);
+                    motoristasLike = fachada.buscarLikeNome(tela.getBuscaTxt().getText().toUpperCase(), SQLUtil.Motorista.BUSCARLIKENOME);
                 }else if(tela.getjRadioRg().isSelected()){
                     motoristasLike = fachada.buscarLikeNome(tela.getBuscaTxt().getText(), SQLUtil.Motorista.BUSCARLIKERG);
                 }else if(tela.getjRadioCpf().isSelected()){

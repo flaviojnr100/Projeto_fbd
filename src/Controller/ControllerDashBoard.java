@@ -22,6 +22,7 @@ import view.ConsultarViagem;
 import view.DashBoard;
 import view.Financeiro;
 import view.Mensagens;
+import view.TelaLogin;
 import view.TelaPersonalizar;
 
 /**
@@ -44,15 +45,17 @@ public class ControllerDashBoard {
     private ConsultarRota ccRota;
     private Financeiro financeiro;
     private TelaPersonalizar telaPersonalizar;
+    private TelaLogin tLogin;
     private ControllerConsultarMotorista cccMotorista;
     private ControllerConsultarFuncionario cccFuncionario;
     private ControllerConsultarPassageiro cccPassageiro;
     private ControllerCadastroTransporte ccVeiculo;
     private ControllerConsultarTransporte cccVeiculo;
     private ControllerControleAcesso ccAcesso;
-    
-
-    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota, Financeiro financeiro,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo,ControllerControleAcesso ccAcesso) {
+    private ControllerConsultarRota cccRota;
+    private ControllerCadastroViagem cccViagem;
+    private ControllerConsultarViagem ccccViagem;
+    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota, Financeiro financeiro,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo,ControllerControleAcesso ccAcesso,TelaLogin tLogin,ControllerConsultarRota cccRota,ControllerCadastroViagem cccViagem,ControllerConsultarViagem ccccViagem) {
         this.principal = principal;
         this.cFuncionario = cFuncionario;
         this.ccFuncionario = ccFuncionario;
@@ -74,6 +77,10 @@ public class ControllerDashBoard {
         this.ccVeiculo = ccVeiculo;
         this.cccVeiculo = cccVeiculo;
         this.ccAcesso = ccAcesso;
+        this.tLogin = tLogin;
+        this.cccRota = cccRota;
+        this.cccViagem = cccViagem;
+        this.ccccViagem = ccccViagem;
         Control();
     }
     
@@ -102,6 +109,7 @@ public class ControllerDashBoard {
         principal.getjMenuControleAcesso().addActionListener(new Menu());
         
         
+        principal.getjMenuLogoff().addActionListener(new Menu());
         principal.getjMenuEncerrarSistema().addActionListener(new Menu());
         
         principal.getBtnEfetuarViagem().addActionListener(new Botoes());
@@ -113,6 +121,7 @@ public class ControllerDashBoard {
         
         
         
+        
     }
     
     private class Botoes implements ActionListener{
@@ -120,11 +129,26 @@ public class ControllerDashBoard {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == principal.getBtnEfetuarViagem()){
+                cccViagem.desabilitarEvento();
+                cccViagem.montarComboPassageiro();
+                cccViagem.montarComboRota();
+                cccViagem.montarComboTransporte();
+                cccViagem.getTela().getComboPassageiro().setSelectedIndex(0);
+                cccViagem.getTela().getLblNome().setText(cccViagem.getFachada().getAllPassageiro().get(0).getNome());
+                cccViagem.getTela().getLblSobrenome().setText(cccViagem.getFachada().getAllPassageiro().get(0).getSobrenome());
+                cccViagem.getTela().getLblCpf().setText(cccViagem.getFachada().getAllPassageiro().get(0).getCpf());
+                cccViagem.setComboMarcado(0);
+                cccViagem.montarAssentos();
+                cccViagem.habilitarEvento();
                 cViagem.setVisible(true);
             }
             if(e.getSource() == principal.getBtnConsultarViagem()){
-                
-                ccViagem.setVisible(true);
+                if(ccccViagem.limpar()){
+                    ccccViagem.colocarDados();
+                    ccViagem.setVisible(true);
+                }else{
+                    Mensagens.mensagem("Não há viagens registrado no sistema!");
+                }
             }
             if(e.getSource() == principal.getBtnConsultarVeiculos()){
                 principal.getjMenuVeiculoConsulta().doClick();
@@ -167,9 +191,15 @@ public class ControllerDashBoard {
                 }
             }
             if(e.getSource() == principal.getjMenuVeiculoCadastro()){
+                ccVeiculo.desabilitarEvento();
                 ccVeiculo.montarComboMotorista();
                 ccVeiculo.montarComboTipo();
                 ccVeiculo.montarComboRota();
+                
+                ccVeiculo.getTela().getComboMotorista().setSelectedIndex(0);
+                ccVeiculo.getTela().getComboRota().setSelectedIndex(0);
+                ccVeiculo.getTela().getComboTipo().setSelectedIndex(0);
+                ccVeiculo.habilitarEvento();
                 cTransporte.setVisible(true);
             }
             if(e.getSource() == principal.getjMenuVeiculoConsulta()){
@@ -192,7 +222,10 @@ public class ControllerDashBoard {
                 cRota.setVisible(true);
             }
             if(e.getSource() == principal.getjMenuRotaConsulta()){
-                ccRota.setVisible(true);
+                if(cccRota.LimparDados()){
+                    cccRota.colocarDados();
+                    ccRota.setVisible(true);
+                }
             }
             if(e.getSource() == principal.getjMenuFinanceiroConsulta()){
                 financeiro.setVisible(true);
@@ -210,6 +243,12 @@ public class ControllerDashBoard {
             if(e.getSource() == principal.getjMenuPersonalizar()){
                 telaPersonalizar.setVisible(true);
             }
+            
+            if(e.getSource() == principal.getjMenuLogoff()){
+                principal.setVisible(false);
+                tLogin.setVisible(true);
+            }
+            
             if(e.getSource() == principal.getjMenuEncerrarSistema()){
                 if(Mensagens.mensagemConfirmacao("Deseja sair do sistema?")){
                     System.exit(0);

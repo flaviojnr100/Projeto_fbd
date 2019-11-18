@@ -16,12 +16,15 @@ import Controller.ControllerCarregamento;
 import Controller.ControllerConsultarFuncionario;
 import Controller.ControllerConsultarMotorista;
 import Controller.ControllerConsultarPassageiro;
+import Controller.ControllerConsultarRota;
 import Controller.ControllerConsultarTransporte;
+import Controller.ControllerConsultarViagem;
 import Controller.ControllerControleAcesso;
 import Controller.ControllerDashBoard;
 import Controller.ControllerEditarFuncionario;
 import Controller.ControllerEditarMotorista;
 import Controller.ControllerEditarPassageiro;
+import Controller.ControllerEditarRota;
 import Controller.ControllerFinanceiro;
 import Controller.ControllerLogin;
 import Controller.ControllerTelaPersonalizar;
@@ -30,11 +33,14 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelDAO.DaoDestino;
 import modelDAO.DaoMotorista;
 import modelDAO.DaoTransporte;
 import modelVB.BusinessMotorista;
+import modelVO.Destino;
 import modelVO.Funcionario;
 import modelVO.Motorista;
+import modelVO.Tipo_transporte;
 import modelVO.Transporte;
 import view.CadastroFuncionario;
 import view.CadastroMotorista;
@@ -129,10 +135,15 @@ public class App {
       ceMotorista.addObserver(ccMotorista);
       
       CadastroRota cRota = new CadastroRota();
-      new ControllerCadastroRota(cRota);
       ConsultarRota ccRota = new ConsultarRota();
       EditarRota eRota = new EditarRota();
+      new ControllerCadastroRota(cRota,fachada1,ccRota);
+     
+      ControllerEditarRota ceRota = new ControllerEditarRota(eRota, fachada1);
+      ControllerConsultarRota cccRota = new ControllerConsultarRota(ccRota,fachada1,eRota,ceRota,cRota);
       
+      ceRota.setCccRota(cccRota);
+      cccRota.addObserver(ccRota);
       
       CadastroTipoTransporte cTipoTransporte = new CadastroTipoTransporte();
       
@@ -148,32 +159,43 @@ public class App {
       cccTransporte.addObserver(cTransporte);
       ccTipo.addObserver(cTransporte);
       cadMotorista.addObserver(cTransporte);
+      cccTransporte.addObserver(cTransporte);
       
-      
+      ccccTransporte.addObserver(ccTransporte);
       
       CadastroViagem cViagem = new CadastroViagem();
-      new ControllerCadastroViagem(cViagem);
+      ControllerCadastroViagem cccViagem = new ControllerCadastroViagem(cViagem, fachada1, cPassageiro, cRota,cTransporte);
       ConsultarViagem ccViagem = new ConsultarViagem();
+      ControllerConsultarViagem ccccViagem = new ControllerConsultarViagem(ccViagem, fachada1);
       
+      cccViagem.addObserver(cViagem);
       Financeiro financeiro = new Financeiro();
       new ControllerFinanceiro(financeiro);
       
       ControleAcesso cAcesso = new ControleAcesso();
       ControllerControleAcesso ccAcesso = new ControllerControleAcesso(cAcesso, fachada1);
       
+      TelaLogin telaLogin = new TelaLogin();
       DashBoard dash = new DashBoard();
       TelaPersonalizar personalizar = new TelaPersonalizar();
-      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso);
+      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso,telaLogin,cccRota,cccViagem,ccccViagem);
       ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
       c.addObserver(dash);
-      TelaLogin telaLogin = new TelaLogin();
+     
       ControllerLogin cLogin = new ControllerLogin(telaLogin, dash,fachada1);
      // telaLogin.setVisible(true);
       TelaCarregamento tCarregamento = new TelaCarregamento();
       tCarregamento.setVisible(true);
       new ControllerCarregamento(tCarregamento, telaLogin);
+      ccAcesso.addObserver(cAcesso);
+      
+
+  
       
         
+  
+  
+       
        
       
       

@@ -37,7 +37,7 @@ public class BusinessPassageiro {
         return dao.getAll();
     }
     public boolean editar(Passageiro passageiro,Passageiro passageiro_novo){
-        if(passageiro.getCpf().equals(passageiro_novo) || dao.buscarCpf(passageiro_novo.getCpf())==null){
+        if(passageiro.getCpf().equals(passageiro_novo.getCpf()) || dao.buscarCpf(passageiro_novo.getCpf())==null){
             return dao.editar(passageiro, passageiro_novo);
         }
         return false;

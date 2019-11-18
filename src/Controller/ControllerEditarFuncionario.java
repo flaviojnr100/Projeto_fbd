@@ -42,9 +42,9 @@ public class ControllerEditarFuncionario extends Observable {
             if(e.getSource() == tela.getBtnEditar()){
                 if(tela.getSenhaTxt().getText().equals(tela.getConfirmarTxt().getText()) && (editarFuncionario.getCpf().equals(tela.getCpfTxt().getText()) || fachada.verificarCpfFuncionario(tela.getCpfTxt().getText()))){
                      
-                if(fachada.editarFuncionario(editarFuncionario,new Funcionario(tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getLoginTxt().getText(), tela.getSenhaTxt().getText()))){
+                if(fachada.editarFuncionario(editarFuncionario,new Funcionario(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getLoginTxt().getText(), tela.getSenhaTxt().getText()))){
                     Mensagens.mensagem("Registro editado com sucesso!");
-                    String [] fu={tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getLoginTxt().getText(),linha+"",editarFuncionario.getId()+""};
+                    String [] fu={tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getLoginTxt().getText(),linha+"",editarFuncionario.getId()+""};
                     setChanged();
                     notifyObservers(fu);
                     tela.getBtnCancelar().doClick();

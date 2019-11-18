@@ -72,6 +72,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         jMenuControleAcesso = new javax.swing.JMenuItem();
         jMenuPersonalizar = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenu();
+        jMenuLogoff = new javax.swing.JMenuItem();
         jMenuEncerrarSistema = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -274,6 +275,10 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         Sair.setText("Sair");
         Sair.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
+        jMenuLogoff.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jMenuLogoff.setText("Fazer logoff");
+        Sair.add(jMenuLogoff);
+
         jMenuEncerrarSistema.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
         jMenuEncerrarSistema.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuEncerrarSistema.setText("Encerrar o sistema");
@@ -440,6 +445,10 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     public JMenuItem getjMenuControleAcesso() {
         return jMenuControleAcesso;
     }
+
+    public JMenuItem getjMenuLogoff() {
+        return jMenuLogoff;
+    }
     
     
 
@@ -467,6 +476,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     private javax.swing.JMenuItem jMenuFinanceiroConsulta;
     private javax.swing.JMenuItem jMenuFuncionarioCadastro;
     private javax.swing.JMenuItem jMenuFuncionarioConsulta;
+    private javax.swing.JMenuItem jMenuLogoff;
     private javax.swing.JMenuItem jMenuMotoristaCadastro;
     private javax.swing.JMenuItem jMenuMotoristaConsulta;
     private javax.swing.JMenuItem jMenuPassageiroCadastro;

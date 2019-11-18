@@ -39,9 +39,9 @@ public class ControllerEditarMotorista extends Observable {
         public void actionPerformed(ActionEvent e) {
             if(tela.getBtnEditar() == e.getSource()){
                 if(Mensagens.mensagemConfirmacao("Deseja fazer a alteração no registro?")){
-                    if((tela.getCpfTxt().getText().equals(editarMotorista.getCpf()) || fachada.verificarExistenciaMotorista(tela.getCpfTxt().getText())) && fachada.editar(editarMotorista, new Motorista(tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getCnhTxt().getText()))){
+                    if((tela.getCpfTxt().getText().equals(editarMotorista.getCpf()) || fachada.verificarExistenciaMotorista(tela.getCpfTxt().getText())) && fachada.editar(editarMotorista, new Motorista(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getCnhTxt().getText()))){
                         
-                        String [] m={tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getCnhTxt().getText(),colunaSelecionada+""};
+                        String [] m={tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getCnhTxt().getText(),colunaSelecionada+""};
                         setChanged();
                         notifyObservers(m);
                         tela.getBtnCancelar().doClick();

@@ -13,13 +13,12 @@ public class Bilhete {
     private int id;
     private String data;
     private String hora;
-    private Pagamento pagamento;
+    
     private Assento assento;
 
-    public Bilhete(String data, String hora, Pagamento pagamento, Assento assento) {
+    public Bilhete(String data, String hora, Assento assento) {
         this.data = data;
         this.hora = hora;
-        this.pagamento = pagamento;
         this.assento = assento;
     }
 
@@ -39,14 +38,7 @@ public class Bilhete {
         this.hora = hora;
     }
 
-    public Pagamento getPagamento() {
-        return pagamento;
-    }
-
-    public void setPagamento(Pagamento pagamento) {
-        this.pagamento = pagamento;
-    }
-
+    
     public Assento getAssento() {
         return assento;
     }

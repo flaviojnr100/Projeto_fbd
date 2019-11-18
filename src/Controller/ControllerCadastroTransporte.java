@@ -8,6 +8,8 @@ package Controller;
 import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -33,7 +35,7 @@ public class ControllerCadastroTransporte extends Observable {
     private CadastroMotorista cMotorista;
     private CadastroTipoTransporte cTipoTransporte;
     private CadastroRota cRota;
-    
+    private mudarCombo mudarE = new mudarCombo();
 
     public ControllerCadastroTransporte(CadastroTransporte tela, Fachada fachada, CadastroMotorista cMotorista, CadastroTipoTransporte cTipoTransporte, CadastroRota cRota) {
         this.tela = tela;
@@ -52,6 +54,8 @@ public class ControllerCadastroTransporte extends Observable {
         tela.getBtnAdicionarMotorista().addActionListener(new Botoes());
         tela.getBtnAdicionarRota().addActionListener(new Botoes());
         tela.getBtnAdicionarTransporte().addActionListener(new Botoes());
+        
+        tela.getComboRota().addItemListener(mudarE);
     }
     
     public void montarComboMotorista(){
@@ -60,6 +64,7 @@ public class ControllerCadastroTransporte extends Observable {
         for(Motorista m:motoristas){
             tela.getComboMotorista().addItem(m.getNome()+" "+m.getSobrenome());
         }
+        
     }
     public void montarComboTipo(){
         tela.getComboTipo().removeAllItems();
@@ -67,13 +72,17 @@ public class ControllerCadastroTransporte extends Observable {
         for(Tipo_transporte ti:tipo){
             tela.getComboTipo().addItem(ti.getNome()+", Nº de assentos: "+ti.getAssentos());
         }
+        
     }
     public void montarComboRota(){
+        tela.getComboRota().removeItemListener(new mudarCombo());
         tela.getComboRota().removeAllItems();
         List<Destino> destinos = fachada.getAllDestino();
         for(Destino d:destinos){
-            tela.getComboRota().addItem(d.getNome());
+            tela.getComboRota().addItem(d.getNome()+", Horario: "+d.getHorario());
         }
+        
+        
     }
     
     private class Botoes implements ActionListener{
@@ -81,19 +90,34 @@ public class ControllerCadastroTransporte extends Observable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnCadastrar()){
-                if(fachada.salvar(new Transporte(tela.getCorText().getText(), tela.getPlacaText().getText(), tela.getChassiText().getText(), getTipos().get(tela.getComboTipo().getSelectedIndex()), getMotoristas().get(tela.getComboMotorista().getSelectedIndex()), new Destino(4)))){
-                    Mensagens.mensagem("Cadastrado com sucesso!");
-                    tela.getBtnLimpar().doClick();
-                    tela.getBtnSair().doClick();
-                    montarComboMotorista();
-                    montarComboRota();
-                    montarComboTipo();
+                Transporte transporte = new Transporte(tela.getCorText().getText().toUpperCase(), tela.getPlacaText().getText().toUpperCase(), tela.getChassiText().getText().toUpperCase(), getTipos().get(tela.getComboTipo().getSelectedIndex()), getMotoristas().get(tela.getComboMotorista().getSelectedIndex()), fachada.buscarIdDestino(fachada.getAllDestino().get(tela.getComboRota().getSelectedIndex()).getId()));
+                              
+                    if(fachada.salvar(transporte)){
+                        Mensagens.mensagem("Cadastrado com sucesso!");
+                        tela.getBtnLimpar().doClick();
+                        tela.getBtnSair().doClick();
+                        desabilitarEvento();
+                        montarComboMotorista();
+                        montarComboRota();
+                        montarComboTipo();
+                        habilitarEvento();
+                
                 }else{
-                    Mensagens.mensagem("Erro ao cadastrar!");
+                    if(tela.getComboMotorista().getSelectedItem().equals("Vazio")){
+                        Mensagens.mensagem("Erro, não pode efetuar o cadastro sem escolher um motorista, cadastre pelo menos um");
+                    }
+                    if(tela.getComboRota().getSelectedItem().equals("Vazio")){
+                        Mensagens.mensagem("Erro, não pode efetuar o cadastro sem escolher uma rota, cadastre pelo menos um");
+                    }
+                    if(tela.getComboTipo().getSelectedItem().equals("Vazio")){
+                        Mensagens.mensagem("Erro, não pode efetuar o cadastro sem escolher o tipo do veiculo, cadastre pelo menos um");
+                    }
                 }
             }
             if(e.getSource() == tela.getBtnLimpar()){
-            
+                tela.getCorText().setText("");
+                tela.getPlacaText().setText("");
+                tela.getChassiText().setText("");
             }
             if(e.getSource() == tela.getBtnSair()){
                 tela.setVisible(false);
@@ -109,6 +133,13 @@ public class ControllerCadastroTransporte extends Observable {
             }
         }
     }
+    
+    public void desabilitarEvento(){
+        tela.getComboRota().removeItemListener(mudarE);
+    }
+    public void habilitarEvento(){
+        tela.getComboRota().addItemListener(mudarE);
+    }
 
     public List<Motorista> getMotoristas() {
         return fachada.getAllMotorista();
@@ -118,6 +149,26 @@ public class ControllerCadastroTransporte extends Observable {
 
     public List<Tipo_transporte> getTipos() {
         return fachada.getAllTipoTransporte();
+    }
+    
+    private class mudarCombo implements ItemListener{
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if(e.getSource() == tela.getComboRota()){
+                List<Destino> rotas = fachada.getAllDestino();
+                String texto = "Nome: "+rotas.get(tela.getComboRota().getSelectedIndex()).getNome()+"\nCidade de partida: "+rotas.get(tela.getComboRota().getSelectedIndex()).getPartida().getCidade()+"\nCidade de destino: "+rotas.get(tela.getComboRota().getSelectedIndex()).getDestino().getCidade()+"\nHorario: "+rotas.get(tela.getComboRota().getSelectedIndex()).getHorario()+"\nPreço: "+rotas.get(tela.getComboRota().getSelectedIndex()).getPreco();
+                setChanged();
+                notifyObservers(texto);
+              
+                
+                    
+            }
+        }
+    }
+
+    public CadastroTransporte getTela() {
+        return tela;
     }
 
     

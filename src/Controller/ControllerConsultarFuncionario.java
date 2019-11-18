@@ -58,7 +58,7 @@ public class ControllerConsultarFuncionario extends java.util.Observable {
         public void keyReleased(KeyEvent e) {
             if(tela.getBuscarTxt().hasFocus()){
                 if(tela.getjRadioNome().isSelected()){
-                    funcionarioLike = fachada.buscarLike(tela.getBuscarTxt().getText(), SQLUtil.Funcionario.BUSCARLIKENOME);
+                    funcionarioLike = fachada.buscarLike(tela.getBuscarTxt().getText().toUpperCase(), SQLUtil.Funcionario.BUSCARLIKENOME);
                 }else if(tela.getjRadioRg().isSelected()){
                     funcionarioLike = fachada.buscarLike(tela.getBuscarTxt().getText(), SQLUtil.Funcionario.BUSCARLIKERG);
                 }else if(tela.getjRadioCpf().isSelected()){
@@ -104,8 +104,8 @@ public class ControllerConsultarFuncionario extends java.util.Observable {
             if(e.getSource() == tela.getjMenuEditar()){
                 String cpf = (String) tela.getjTableFuncionarios().getModel().getValueAt(tela.getjTableFuncionarios().getSelectedRow(), 4);
                 Funcionario funcionario = fachada.buscarCpfFuncionario(cpf);
-                eFuncionario.getTela().getNomeTxt().setText(funcionario.getNome()+"");
-                eFuncionario.getTela().getSobrenomeTxt().setText(funcionario.getSobrenome()+"");
+                eFuncionario.getTela().getNomeTxt().setText(funcionario.getNome().toLowerCase()+"");
+                eFuncionario.getTela().getSobrenomeTxt().setText(funcionario.getSobrenome().toLowerCase()+"");
                 eFuncionario.getTela().getRgTxt().setText(funcionario.getRg()+"");
                 eFuncionario.getTela().getCpfTxt().setText(funcionario.getCpf()+"");
                 eFuncionario.getTela().getDataTxt().setText(funcionario.getData_nascimento()+"");

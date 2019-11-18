@@ -5,6 +5,13 @@
  */
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Flavio
@@ -16,6 +23,7 @@ public class ConsultarViagem extends javax.swing.JFrame {
      */
     public ConsultarViagem() {
         initComponents();
+        jRadioPassageiro.setSelected(true);
     }
 
     /**
@@ -28,17 +36,38 @@ public class ConsultarViagem extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuAtualizar = new javax.swing.JMenuItem();
+        jMenuCadastrar = new javax.swing.JMenuItem();
+        jMenuEditar = new javax.swing.JMenuItem();
+        jMenuRemover = new javax.swing.JMenuItem();
+        jMenuSair = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        buscarTxt = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jRadioPassageiro = new javax.swing.JRadioButton();
+        jRadioHorario = new javax.swing.JRadioButton();
+        jRadioData = new javax.swing.JRadioButton();
+        jRadioPreco = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableViagens = new javax.swing.JTable();
+
+        jMenuAtualizar.setText("Atualizar");
+        jPopupMenu1.add(jMenuAtualizar);
+
+        jMenuCadastrar.setText("Cadastrar");
+        jPopupMenu1.add(jMenuCadastrar);
+
+        jMenuEditar.setText("Editar");
+        jPopupMenu1.add(jMenuEditar);
+
+        jMenuRemover.setText("Remover");
+        jPopupMenu1.add(jMenuRemover);
+
+        jMenuSair.setText("Sair");
+        jPopupMenu1.add(jMenuSair);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -48,30 +77,30 @@ public class ConsultarViagem extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Busca:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/busca.png"))); // NOI18N
-        jButton1.setText("Buscar");
+        btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/busca.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton1.setText("Passageiro");
+        jRadioPassageiro.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioPassageiro);
+        jRadioPassageiro.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioPassageiro.setText("Passageiro");
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton2.setText("Horario");
+        jRadioHorario.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioHorario);
+        jRadioHorario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioHorario.setText("Horario");
 
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton3.setText("Data");
+        jRadioData.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioData);
+        jRadioData.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioData.setText("Data");
 
-        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioButton4.setText("Preço");
+        jRadioPreco.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(jRadioPreco);
+        jRadioPreco.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jRadioPreco.setText("Preço");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -81,16 +110,16 @@ public class ConsultarViagem extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(jRadioPassageiro)
                         .addGap(27, 27, 27)
-                        .addComponent(jRadioButton2)
+                        .addComponent(jRadioHorario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton3)
+                        .addComponent(jRadioData)
                         .addGap(50, 50, 50)
-                        .addComponent(jRadioButton4))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jRadioPreco))
+                    .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -98,21 +127,21 @@ public class ConsultarViagem extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
+                    .addComponent(jRadioPassageiro)
+                    .addComponent(jRadioHorario)
+                    .addComponent(jRadioData)
+                    .addComponent(jRadioPreco))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Viagens:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableViagens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -146,7 +175,7 @@ public class ConsultarViagem extends javax.swing.JFrame {
                 "Código", "Passageiro", "Transporte", "Horário", "Preço"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableViagens);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -230,18 +259,77 @@ public class ConsultarViagem extends javax.swing.JFrame {
         });
     }
 
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public JTextField getBuscarTxt() {
+        return buscarTxt;
+    }
+
+    public JRadioButton getjRadioData() {
+        return jRadioData;
+    }
+
+    public JRadioButton getjRadioHorario() {
+        return jRadioHorario;
+    }
+
+    public JRadioButton getjRadioPassageiro() {
+        return jRadioPassageiro;
+    }
+
+    public JRadioButton getjRadioPreco() {
+        return jRadioPreco;
+    }
+
+    public JTable getjTableViagens() {
+        return jTableViagens;
+    }
+
+    public JMenuItem getjMenuAtualizar() {
+        return jMenuAtualizar;
+    }
+
+    public JMenuItem getjMenuCadastrar() {
+        return jMenuCadastrar;
+    }
+
+    public JMenuItem getjMenuEditar() {
+        return jMenuEditar;
+    }
+
+    public JMenuItem getjMenuRemover() {
+        return jMenuRemover;
+    }
+
+    public JMenuItem getjMenuSair() {
+        return jMenuSair;
+    }
+
+    public JPopupMenu getjPopupMenu1() {
+        return jPopupMenu1;
+    }
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JTextField buscarTxt;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem jMenuAtualizar;
+    private javax.swing.JMenuItem jMenuCadastrar;
+    private javax.swing.JMenuItem jMenuEditar;
+    private javax.swing.JMenuItem jMenuRemover;
+    private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JRadioButton jRadioData;
+    private javax.swing.JRadioButton jRadioHorario;
+    private javax.swing.JRadioButton jRadioPassageiro;
+    private javax.swing.JRadioButton jRadioPreco;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jTableViagens;
     // End of variables declaration//GEN-END:variables
 }

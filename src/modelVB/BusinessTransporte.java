@@ -46,12 +46,11 @@ public class BusinessTransporte {
         
         return dao.remover(id,placa);
     }
-    public static void main(String []args){
-        BusinessTransporte bt = new BusinessTransporte();
-        System.out.println("Nome: "+bt.getAll().get(0).getMotorista().getNome());
-        System.out.println("Nome: "+bt.getAll().get(0).getMotorista().getSobrenome());
-        System.out.println("Nome: "+bt.getAll().get(0).getMotorista().getCpf());
-        System.out.println("Nome: "+bt.getAll().get(0).getMotorista().getCnh());
+    public Transporte buscarChassi(String chassi){
+        return dao.buscarChassi(chassi);
+    }
+    public List<Transporte> buscarLike(String nome,String busca){
+        return dao.buscarLike(nome, busca);
     }
     
 }

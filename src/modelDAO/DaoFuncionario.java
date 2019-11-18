@@ -57,6 +57,7 @@ public class DaoFuncionario {
             statement = conexao.prepareStatement(SQLUtil.Funcionario.BUSCAR_CPF);
             statement.setString(1, cpf);
             result = statement.executeQuery();
+            conexao.close();
             if(result.next()){
                 return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8));
             }
@@ -72,7 +73,7 @@ public class DaoFuncionario {
             conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
             statement = conexao.prepareStatement(SQLUtil.Funcionario.BUSCAR_ALL);
             result = statement.executeQuery();
-            conexao.close();
+            
             while(result.next()){
                 funcionarios.add(new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8)));
             }
@@ -146,6 +147,7 @@ public class DaoFuncionario {
             statement = conexao.prepareStatement(SQLUtil.Funcionario.BUSCAR_ID);
             statement.setInt(1, id);
             result = statement.executeQuery();
+            conexao.close();
             if(result.next()){
                 return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8));
             }
@@ -178,6 +180,7 @@ public class DaoFuncionario {
             statement = conexao.prepareStatement(SQLUtil.Funcionario.VERIFICARCPF);
             statement.setString(1, cpf);
             result = statement.executeQuery();
+            conexao.close();
             if(result.next()){
                 if(result.getInt(1)==0){
                     return true;
@@ -199,6 +202,7 @@ public class DaoFuncionario {
             statement.setString(1, funcionario.getLogin());
             statement.setString(2, funcionario.getSenha());
             result = statement.executeQuery();
+            conexao.close();
             if(result.next()){
                 if(result.getInt(1)==1){
                     return true;

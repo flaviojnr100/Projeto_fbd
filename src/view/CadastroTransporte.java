@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JList;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -43,8 +44,8 @@ public class CadastroTransporte extends javax.swing.JFrame implements Observer{
         jPanel3 = new javax.swing.JPanel();
         comboRota = new javax.swing.JComboBox<>();
         btnAdicionarRota = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listaRota = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextLista = new javax.swing.JTextArea();
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
@@ -77,8 +78,9 @@ public class CadastroTransporte extends javax.swing.JFrame implements Observer{
         btnAdicionarRota.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAdicionarRota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/adicionar.png"))); // NOI18N
 
-        listaRota.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jScrollPane2.setViewportView(listaRota);
+        jTextLista.setColumns(20);
+        jTextLista.setRows(5);
+        jScrollPane1.setViewportView(jTextLista);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -86,8 +88,8 @@ public class CadastroTransporte extends javax.swing.JFrame implements Observer{
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboRota, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(comboRota, 0, 462, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAdicionarRota, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -99,8 +101,8 @@ public class CadastroTransporte extends javax.swing.JFrame implements Observer{
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(comboRota, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
         );
 
         btnCadastrar.setBackground(new java.awt.Color(255, 255, 255));
@@ -352,11 +354,13 @@ public class CadastroTransporte extends javax.swing.JFrame implements Observer{
         return comboRota;
     }
 
+    public JTextArea getjTextLista() {
+        return jTextLista;
+    }
+
    
 
-    public JList<String> getListaRota() {
-        return listaRota;
-    }
+   
 
    
     
@@ -381,8 +385,8 @@ public class CadastroTransporte extends javax.swing.JFrame implements Observer{
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> listaRota;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextLista;
     private javax.swing.JFormattedTextField placaText;
     // End of variables declaration//GEN-END:variables
 
@@ -413,6 +417,10 @@ public class CadastroTransporte extends javax.swing.JFrame implements Observer{
         }
         if(o instanceof ControllerCadastroMotorista){
             ((ControllerCadastroTipoTransporte)o).getcTransporte().montarComboMotorista();
+        }
+        if(o instanceof ControllerCadastroTransporte){
+            String obj = (String)arg;
+            jTextLista.setText(obj);
         }
     }
 }

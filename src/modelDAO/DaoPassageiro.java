@@ -50,6 +50,23 @@ public class DaoPassageiro {
             statement = conexao.prepareStatement(SQLUtil.Passageiro.BUSCAR_CPF);
             statement.setString(1, cpf);
             result = statement.executeQuery();
+            conexao.close();
+            if(result.next()){
+                return new Passageiro(result.getInt(1), result.getString(2), result.getString(3), result.getString(4));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPassageiro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public Passageiro buscarId(int id){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Passageiro.BUSCAR_ID);
+            statement.setInt(1, id);
+            result = statement.executeQuery();
+            conexao.close();
             if(result.next()){
                 return new Passageiro(result.getInt(1), result.getString(2), result.getString(3), result.getString(4));
             }
@@ -65,6 +82,7 @@ public class DaoPassageiro {
             statement = conexao.prepareStatement(SQLUtil.Passageiro.BUSCAR_ALL);
             List<Passageiro> passageiros = new ArrayList<>();
             result = statement.executeQuery();
+            conexao.close();
             while(result.next()){
                 passageiros.add(new Passageiro(result.getInt(1), result.getString(2), result.getString(3),result.getString(4)));
             }

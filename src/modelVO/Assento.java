@@ -10,17 +10,25 @@ package modelVO;
  * @author Flavio
  */
 public class Assento {
+    private int id;
     private int numero;
-    private String posicao;
     private String estado_ocupacao;
-
-    public Assento(Transporte transporte,int numero, String posicao) {
+    
+    public Assento(int numero) {
         this.numero = numero;
-        this.posicao = posicao;
         this.estado_ocupacao = "vazio";
-        transporte.getAssentos().add(this);
+        
         
     }
+
+    public Assento(int id, int numero, String estado_ocupacao) {
+        this.id = id;
+        this.numero = numero;
+        this.estado_ocupacao = estado_ocupacao;
+    }
+
+    
+    
 
     public int getNumero() {
         return numero;
@@ -30,20 +38,21 @@ public class Assento {
         this.numero = numero;
     }
 
-    public String getPosicao() {
-        return posicao;
-    }
-
-    public void setPosicao(String posicao) {
-        this.posicao = posicao;
-    }
-
+    
     public String getEstado_ocupacao() {
         return estado_ocupacao;
     }
 
     public void setEstado_ocupacao(String estado_ocupacao) {
         this.estado_ocupacao = estado_ocupacao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     

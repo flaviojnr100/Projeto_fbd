@@ -60,7 +60,7 @@ public class ControllerCadastroMotorista extends Observable {
             if(e.getSource() == tela.getBtnCadastrar()){
                 
                 if(!tela.getNomeTxt().getText().equals("") && !tela.getSobrenomeTxt().getText().equals("")){
-                    if(!fachada.salvar(new Motorista(tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getCnhTxt().getText()))){
+                    if(!fachada.salvar(new Motorista(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getCnhTxt().getText()))){
                         Mensagens.mensagem("Esse motorista já foi cadastrado!");
                         setChanged();
                         notifyObservers();

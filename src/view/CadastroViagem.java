@@ -5,13 +5,18 @@
  */
 package view;
 
+import Controller.ControllerCadastroViagem;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -24,6 +29,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
      */
     public CadastroViagem() {
         initComponents();
+        jPanel7.setLayout(new BoxLayout(jPanel7, BoxLayout.Y_AXIS));
     }
 
     /**
@@ -35,6 +41,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel9 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -47,8 +54,10 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         lblSobrenome = new javax.swing.JLabel();
         lblCpf = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        comboRota = new javax.swing.JComboBox<>();
-        btnAdicionarRota = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblNomeRota = new javax.swing.JLabel();
+        lblPreco = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         comboTransporte = new javax.swing.JComboBox<>();
         btnAdicionarTransporte = new javax.swing.JButton();
@@ -59,16 +68,16 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         btnConcluir = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel9 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jTextAreaAssentos = new javax.swing.JTextArea();
         jPanel10 = new javax.swing.JPanel();
-        comboHorario = new javax.swing.JComboBox<>();
+        lblHorario = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblPrecoFinal = new javax.swing.JLabel();
+        lblPrecoVariavel = new javax.swing.JLabel();
         btnFinalizar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+
+        jLabel9.setText("jLabel9");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -116,31 +125,43 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rota:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        comboRota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel4.setText("Nome:");
 
-        btnAdicionarRota.setBackground(new java.awt.Color(255, 255, 255));
-        btnAdicionarRota.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAdicionarRota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/adicionar.png"))); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel5.setText("Preço:");
+
+        lblNomeRota.setText("jLabel6");
+
+        lblPreco.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(comboRota, 0, 369, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAdicionarRota, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addGap(53, 53, 53)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPreco)
+                    .addComponent(lblNomeRota))
+                .addContainerGap(303, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(btnAdicionarRota, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(comboRota, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblNomeRota))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblPreco))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 166, 457, 80));
@@ -185,31 +206,24 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Disponibilidade:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 118, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
-        );
-
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jScrollPane1.setViewportView(jPanel7);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         btnConcluir.setBackground(new java.awt.Color(255, 255, 255));
@@ -221,33 +235,21 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-
-        jScrollPane3.setViewportView(jList1);
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-        );
-
-        jScrollPane2.setViewportView(jPanel9);
+        jTextAreaAssentos.setColumns(20);
+        jTextAreaAssentos.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaAssentos);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -257,7 +259,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(btnConcluir)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,13 +271,13 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
+                        .addGap(72, 72, 72)
                         .addComponent(btnConcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 457, 240));
@@ -283,23 +285,23 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Horário:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        comboHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        lblHorario.setText("jLabel6");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(comboHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(lblHorario)
+                .addContainerGap(386, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(comboHorario, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(19, 19, 19)
+                .addComponent(lblHorario)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 597, 457, -1));
@@ -307,10 +309,10 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor total:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jLabel7.setText("Preço final:");
+        lblPrecoFinal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblPrecoFinal.setText("Preço final:");
 
-        jLabel8.setText("preço");
+        lblPrecoVariavel.setText("preço");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -318,18 +320,18 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
+                .addComponent(lblPrecoFinal)
                 .addGap(38, 38, 38)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblPrecoVariavel)
+                .addContainerGap(304, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(lblPrecoFinal)
+                    .addComponent(lblPrecoVariavel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -349,7 +351,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
 
         jScrollPane4.setViewportView(jPanel1);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 505, 570));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 480));
 
         pack();
         setLocationRelativeTo(null);
@@ -394,10 +396,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         return btnAdicionarPassageiro;
     }
 
-    public JButton getBtnAdicionarRota() {
-        return btnAdicionarRota;
-    }
-
+   
     public JButton getBtnAdicionarTransporte() {
         return btnAdicionarTransporte;
     }
@@ -414,26 +413,18 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         return btnFinalizar;
     }
 
-    public JComboBox<String> getComboHorario() {
-        return comboHorario;
-    }
+    
 
     public JComboBox<String> getComboPassageiro() {
         return comboPassageiro;
     }
 
-    public JComboBox<String> getComboRota() {
-        return comboRota;
-    }
-
+   
     public JComboBox<String> getComboTransporte() {
         return comboTransporte;
     }
 
-    public JList<String> getjList1() {
-        return jList1;
-    }
-
+    
     public JLabel getLblCpf() {
         return lblCpf;
     }
@@ -446,23 +437,50 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         return lblSobrenome;
     }
 
+    public JPanel getjPanel7() {
+        return jPanel7;
+    }
+
+    public JTextArea getjTextAreaAssentos() {
+        return jTextAreaAssentos;
+    }
+
+    public JLabel getLblNomeRota() {
+        return lblNomeRota;
+    }
+
+    public JLabel getLblPreco() {
+        return lblPreco;
+    }
+
+    public JLabel getLblHorario() {
+        return lblHorario;
+    }
+
+    public JLabel getLblPrecoFinal() {
+        return lblPrecoFinal;
+    }
+
+    public JLabel getLblPrecoVariavel() {
+        return lblPrecoVariavel;
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarPassageiro;
-    private javax.swing.JButton btnAdicionarRota;
     private javax.swing.JButton btnAdicionarTransporte;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConcluir;
     private javax.swing.JButton btnFinalizar;
-    private javax.swing.JComboBox<String> comboHorario;
     private javax.swing.JComboBox<String> comboPassageiro;
-    private javax.swing.JComboBox<String> comboRota;
     private javax.swing.JComboBox<String> comboTransporte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -473,19 +491,23 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea jTextAreaAssentos;
     private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblHorario;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNomeRota;
+    private javax.swing.JLabel lblPreco;
+    private javax.swing.JLabel lblPrecoFinal;
+    private javax.swing.JLabel lblPrecoVariavel;
     private javax.swing.JLabel lblSobrenome;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object arg) {
-        btnAdicionarPassageiro.setBackground((Color)arg);
+    /*    btnAdicionarPassageiro.setBackground((Color)arg);
         btnAdicionarRota.setBackground((Color)arg);
         btnAdicionarTransporte.setBackground((Color)arg);
         btnCancelar.setBackground((Color)arg);
@@ -508,6 +530,23 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         comboTransporte.setBackground((Color)arg);
         jList1.setBackground((Color)arg);
         
-        
+        */
+    
+    if(o instanceof ControllerCadastroViagem){
+        String [] dados = (String [])arg;
+        if(dados[3].equals("passageiro")){
+            lblNome.setText(dados[0]);
+            lblSobrenome.setText(dados[1]);
+            lblCpf.setText(dados[2]);
+        }else if(dados[0].equals("vagas_livres")){
+            ((ControllerCadastroViagem)o).montarAssentos();
+            ((ControllerCadastroViagem)o).montarComboRota();
+            ((ControllerCadastroViagem)o).montarComboHorario();
+        }else if(dados[0].equals("concluir")){
+            jTextAreaAssentos.setText(((ControllerCadastroViagem)o).getVagasSelecionadas());
+            ((ControllerCadastroViagem)o).montarPreco();
+        }
+    }
+    
     }
 }

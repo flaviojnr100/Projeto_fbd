@@ -42,10 +42,10 @@ public class ControllerEditarPassageiro extends Observable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnEditar()){
-                if(fachada.editarPassageiro(editarPassageiro, new Passageiro(tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getCpfTxt().getText()))){
+                if(fachada.editarPassageiro(editarPassageiro, new Passageiro(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getCpfTxt().getText()))){
                     Mensagens.mensagem("Registro editado com sucesso!");
                     setChanged();
-                    String [] dados={tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getCpfTxt().getText(),editarPassageiro.getId()+"",linha+""};
+                    String [] dados={tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getCpfTxt().getText(),editarPassageiro.getId()+"",linha+""};
                     notifyObservers(dados);
                     tela.getBtnCancelar().doClick();
                 }else{

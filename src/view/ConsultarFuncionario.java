@@ -15,7 +15,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import sun.security.util.Length;
+
 
 /**
  *
@@ -350,10 +350,12 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
         }
         if(o instanceof ControllerEditarFuncionario){
             String [] fu = (String[]) arg;
-            jTableFuncionarios.getModel().setValueAt(Integer.parseInt(fu[7]), Integer.parseInt(fu[6]), 0);
+            jTableFuncionarios.getModel().setValueAt(Integer.parseInt(fu[fu.length-1]), Integer.parseInt(fu[fu.length-2]), 0);
             for(int i=0;i<fu.length-2;i++){
-                jTableFuncionarios.getModel().setValueAt(fu[i], Integer.parseInt(fu[6]), i);
+                jTableFuncionarios.getModel().setValueAt(fu[i], Integer.parseInt(fu[fu.length-2]), i+1);
             }
+           
+           
         }
         if(o instanceof ControllerConsultarFuncionario && ((ControllerConsultarFuncionario)o).getTela().getjMenuAtualizar().equals(arg)){
             ((ControllerConsultarFuncionario)o).Limpar();

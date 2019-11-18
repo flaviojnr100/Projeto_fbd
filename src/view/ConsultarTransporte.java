@@ -5,6 +5,9 @@
  */
 package view;
 
+import Controller.ControllerConsultarTransporte;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -16,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author Flavio
  */
-public class ConsultarTransporte extends javax.swing.JFrame {
+public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
 
     /**
      * Creates new form ConsultarTransporte
@@ -163,9 +166,9 @@ public class ConsultarTransporte extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jRadioPlaca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addGap(49, 49, 49)
                         .addComponent(jRadioChassi)
-                        .addGap(70, 70, 70)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jRadioMotorista)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBuscar)
@@ -327,4 +330,17 @@ public class ConsultarTransporte extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuExcluir;
     private javax.swing.JMenuItem menuSair;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof ControllerConsultarTransporte &&  arg.equals("like")){
+            ((ControllerConsultarTransporte)o).limpar();
+            ((ControllerConsultarTransporte)o).ColocarDados(((ControllerConsultarTransporte)o).getTransporteLike());
+        }
+        if(o instanceof ControllerConsultarTransporte &&  arg.equals("atualizar")){
+            ((ControllerConsultarTransporte)o).limpar();
+            ((ControllerConsultarTransporte)o).ColocarDados();
+        }
+        
+    }
 }

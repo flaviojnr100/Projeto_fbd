@@ -26,5 +26,8 @@ public class BusinessAcesso {
     public List<Acesso> getAll(){
         return dao.getAll();
     }
+     public List<Acesso> buscaLike(String nome,String sql){
+         return dao.buscaLike(nome, sql);
+     }
     
 }

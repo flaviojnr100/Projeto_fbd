@@ -8,19 +8,23 @@ package fachada;
 import java.util.List;
 import modelDAO.DaoTipo_transporte;
 import modelVB.BusinessAcesso;
+import modelVB.BusinessAssento;
 import modelVB.BusinessFuncionario;
 import modelVB.BusinessMotorista;
 import modelVB.BusinessPassageiro;
 import modelVB.BusinessRota;
 import modelVB.BusinessTipo_transporte;
 import modelVB.BusinessTransporte;
+import modelVB.BusinessViagem;
 import modelVO.Acesso;
+import modelVO.Assento;
 import modelVO.Destino;
 import modelVO.Funcionario;
 import modelVO.Motorista;
 import modelVO.Passageiro;
 import modelVO.Tipo_transporte;
 import modelVO.Transporte;
+import modelVO.Viagem;
 
 /**
  *
@@ -34,6 +38,8 @@ public class Fachada implements Ifachada {
     private BusinessTipo_transporte bTipo_transporte;
     private BusinessRota bDestino;
     private BusinessAcesso bAcesso;
+    private BusinessAssento bAssento;
+    private BusinessViagem bViagem;
     private static Fachada instance;
 
     private Fachada() {
@@ -44,6 +50,8 @@ public class Fachada implements Ifachada {
         this.bTipo_transporte = new BusinessTipo_transporte();
         this.bDestino = new BusinessRota();
         this.bAcesso = new BusinessAcesso();
+        this.bAssento = new BusinessAssento();
+        this.bViagem = new BusinessViagem();
     }
     public static Fachada getInstance(){
         if(instance == null){
@@ -94,6 +102,7 @@ public class Fachada implements Ifachada {
     public boolean salvar(Transporte transporte) {
        return bTransporte.salvar(transporte);
     }
+    
 
     @Override
     public boolean editar(Transporte transporte) {
@@ -108,6 +117,13 @@ public class Fachada implements Ifachada {
     @Override
     public boolean removerTransporte(int id,String placa) {
         return bTransporte.remover(id, placa);
+    }
+    
+    public List<Transporte> buscarLikeTransporte(String nome,String busca){
+        return bTransporte.buscarLike(nome, busca);
+    }
+    public Transporte buscarChassi(String chassi){
+        return bTransporte.buscarChassi(chassi);
     }
     //Funcionario
     public boolean salvar(Funcionario funcionario) {
@@ -179,6 +195,18 @@ public class Fachada implements Ifachada {
     public List<Destino> getAllDestino(){
         return bDestino.getAll();
     }
+    public Destino buscarIdDestino(int id){
+        return bDestino.buscarId(id);
+    }
+    public boolean editar(int id,Destino destino){
+        return bDestino.editar(id, destino);
+    }
+    public boolean removerId(int id){
+        return bDestino.removerId(id);
+    }
+     public List<Destino> buscaLikeDestino(String nome,String busca){
+         return bDestino.buscaLike(nome, busca);
+     }
     
     //acesso
     public boolean salvar(Funcionario funcionario,String horario,String data){
@@ -187,4 +215,44 @@ public class Fachada implements Ifachada {
     public List<Acesso> getAllAcesso(){
         return bAcesso.getAll();
     }
+     public List<Acesso> buscaLikeAcesso(String nome,String sql){
+         return bAcesso.buscaLike(nome, sql);
+     }
+     
+//assento
+     public boolean salvar(Assento assento){
+         return bAssento.salvar(assento);
+     }
+     public Assento buscarNumero(int numero){
+         return bAssento.buscarNumero(numero);
+     }
+     public List<Assento> getAllAssento(){
+         return bAssento.getAll();
+     }
+     public List<Assento> buscarLivre(Transporte transporte){
+         return bAssento.buscarLivre();
+     }
+     public List<Assento> buscarLivreVaga(int id){
+         return bAssento.buscarLivreVaga(id);
+     }
+      public int buscarNumeroId(int numero){
+          return bAssento.buscarNumeroId(numero);
+      }
+     public int buscarIdTransporteAssento(int id_transporte,int id_assento){
+         return bAssento.buscarIdTransporteAssento(id_transporte, id_assento);
+     }
+     
+     //viagem
+     public boolean salvar(Viagem viagem){
+         return bViagem.salvar(viagem);
+     }
+     public List<Viagem> getAllViagem(){
+         return bViagem.getAll();
+     }
+   /*  public static void main(String[] args) {
+       int id=Fachada.getInstance().buscarChassi("111").getId();
+       
+            System.out.println("Nº "+id);
+        
+    }*/
 }

@@ -48,7 +48,7 @@ public class ControllerCadastroFuncionario {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnCadastrar()){
                 if(tela.getSenhaTxt().getText().equals(tela.getConfirmarTxt().getText())){
-                    if(fachada.salvar(new Funcionario(tela.getNomeTxt().getText(), tela.getSobrenomeTxt().getText(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getLoginTxt().getText(), tela.getSenhaTxt().getText()))){
+                    if(fachada.salvar(new Funcionario(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getLoginTxt().getText(), tela.getSenhaTxt().getText()))){
                         Mensagens.mensagem("Funcionario cadastrado com sucesso!");
                         tela.getBtnLimpar().doClick();
                         tela.getBtnCancelar().doClick();
