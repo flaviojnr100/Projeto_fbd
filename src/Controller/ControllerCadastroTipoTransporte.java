@@ -9,6 +9,7 @@ import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+import modelVO.BaseDados;
 import modelVO.Tipo_transporte;
 import view.CadastroTipoTransporte;
 import view.Mensagens;
@@ -40,6 +41,7 @@ public class ControllerCadastroTipoTransporte extends Observable {
                     Mensagens.mensagem("Cadastro realizado com sucesso!");
                     setChanged();
                     notifyObservers();
+                    BaseDados.CarregarTipoTransporte();
                 }else{
                     Mensagens.mensagem("Erro ao realizar o cadastro!");
                 }

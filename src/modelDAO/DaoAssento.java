@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -138,5 +139,40 @@ public class DaoAssento {
     }
     public boolean editar(Assento assento,Assento assento_novo){return true;}
     public boolean remover(int numero){return true;}
-            
+    
+     public boolean adicionarPassageiroAssento(int id_transporte,int id_assento, int id_passageiro){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Assento.ADICIONAR_PASSAGEIRO_ASSENTO);
+            statement.setInt(1, id_passageiro);
+            statement.setInt(2, id_transporte);
+            statement.setInt(3, id_assento);
+            statement.execute();
+            conexao.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoAcesso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+    public boolean removerPassageiroAssento(int id_transporte,int id_assento){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Assento.ADICIONAR_PASSAGEIRO_ASSENTO);
+            statement.setNull(1, Types.INTEGER);
+            statement.setInt(2, id_transporte);
+            statement.setInt(3, id_assento);
+            statement.execute();
+            conexao.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoAcesso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+    
 }

@@ -11,11 +11,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Observable;
 import javax.swing.JCheckBox;
 import modelVO.Assento;
+import modelVO.BaseDados;
 import modelVO.Destino;
 import modelVO.Passageiro;
 import modelVO.Transporte;
@@ -70,7 +75,11 @@ public class ControllerCadastroViagem extends Observable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnFinalizar()){
-                if(fachada.salvar(new Viagem(fachada.getAllPassageiro().get(tela.getComboPassageiro().getSelectedIndex()), fachada.getAllTransporte().get(comboMarcado), fachada.getAllTransporte().get(comboMarcado).getDestino(), tela.getLblPreco().getText()+""))){
+                Transporte transporte = BaseDados.getTransportes().get(comboMarcado);
+                Passageiro passageiro = fachada.buscarCpfPassageiro(tela.getLblCpf().getText());
+                if(fachada.salvar(new Viagem(passageiro,transporte.getDestino(), transporte, tela.getLblPreco().getText()+"",getDataAtual(),getHorario()))){
+                    ocuparVagas(passageiro, transporte);
+                    BaseDados.CarregarViagem();
                     Mensagens.mensagem("Compra realizado com sucesso!");
                 }else{
                     Mensagens.mensagem("Erro ao realizar a compra!");
@@ -101,25 +110,28 @@ public class ControllerCadastroViagem extends Observable {
     
     public void montarComboPassageiro(){
         tela.getComboPassageiro().removeAllItems();
-        for(Passageiro p:fachada.getAllPassageiro()){
-            tela.getComboPassageiro().addItem(p.getNome()+" "+p.getSobrenome());
+        for(Passageiro p:BaseDados.getPassageiros()){
+            if(p.getStatus().equals("ATIVO")){
+                tela.getComboPassageiro().addItem(p.getNome()+" "+p.getSobrenome());
+            }
         }
     }
     public void montarComboRota(){
-        String nome = fachada.getAllTransporte().get(comboMarcado).getDestino().getNome();
-        String preco = fachada.getAllTransporte().get(comboMarcado).getDestino().getPreco();
+        Transporte transporte = BaseDados.getTransportes().get(comboMarcado);
+        String nome = transporte.getDestino().getNome();
+        String preco = transporte.getDestino().getPreco();
         tela.getLblNomeRota().setText(nome);
         tela.getLblPreco().setText(preco);
         
     }
     public void montarComboTransporte(){
         tela.getComboTransporte().removeAllItems();
-        for(Transporte t:fachada.getAllTransporte()){
+        for(Transporte t:BaseDados.getTransportes()){
             tela.getComboTransporte().addItem(t.getTipo().getNome()+" Cor: "+t.getCor()+" Placa: "+t.getPlaca());
         }
     }
     public void montarComboHorario(){
-        String horario = fachada.getAllTransporte().get(comboMarcado).getDestino().getHorario();
+        String horario = BaseDados.getTransportes().get(comboMarcado).getDestino().getHorario();
         tela.getLblHorario().setText(horario);
     }
     public void montarPreco(){
@@ -130,7 +142,7 @@ public class ControllerCadastroViagem extends Observable {
     
     public void montarAssentos(){
         tela.getjPanel7().removeAll();
-        int id=fachada.buscarChassi(fachada.getAllTransporte().get(comboMarcado).getChassi()).getId();
+        int id=BaseDados.getTransportes().get(comboMarcado).getId();
         
         assentoL = fachada.buscarLivreVaga(id);
         int quant = assentoL.size();
@@ -145,6 +157,11 @@ public class ControllerCadastroViagem extends Observable {
         }
         
     }
+    public void ocuparVagas(Passageiro passageiro,Transporte transporte){
+        for(int i:id_selecionado){
+            fachada.adicionarPassageiroAssento(transporte.getId(), i, passageiro.getId());
+        }
+    }
     public void pegarVagas(){
         id_selecionado = new ArrayList<>();
         vagasSelecionadas ="Foram selecionadas:\n";
@@ -152,7 +169,7 @@ public class ControllerCadastroViagem extends Observable {
             if(jc.isSelected()){
                 String [] as = jc.getText().split(" ");
                 int id_assento = fachada.buscarNumeroId(Integer.parseInt(as[1]));
-                int id_transporte = fachada.buscarChassi(fachada.getAllTransporte().get(comboMarcado).getChassi()).getId();
+                int id_transporte = BaseDados.getTransportes().get(comboMarcado).getId();
                 id_selecionado.add(fachada.buscarIdTransporteAssento(id_transporte, id_assento));
                 vagasSelecionadas+=as[1]+"\n";
             }
@@ -173,7 +190,8 @@ public class ControllerCadastroViagem extends Observable {
         public void itemStateChanged(ItemEvent e) {
             if(e.getSource() == tela.getComboPassageiro()){
                 setChanged();
-                String [] dados = {fachada.getAllPassageiro().get(tela.getComboPassageiro().getSelectedIndex()).getNome(),fachada.getAllPassageiro().get(tela.getComboPassageiro().getSelectedIndex()).getSobrenome(),fachada.getAllPassageiro().get(tela.getComboPassageiro().getSelectedIndex()).getCpf(),"passageiro"};
+                Passageiro passageiro = BaseDados.getPassageiros().get(tela.getComboPassageiro().getSelectedIndex());
+                String [] dados = {passageiro.getNome(),passageiro.getSobrenome(),passageiro.getCpf(),"passageiro"};
                 notifyObservers(dados);
             }
             if(e.getSource() == tela.getComboTransporte()){
@@ -187,6 +205,19 @@ public class ControllerCadastroViagem extends Observable {
                 
             }
         }
+    }
+    public String getDataAtual(){
+        Date data = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        
+        return formatador.format(data);
+        
+    }
+    public String getHorario(){
+        Date data = new Date();
+        Calendar c = new GregorianCalendar();
+        c.setTime(data);
+        return c.getTime().getHours()+":"+c.getTime().getMinutes()+":"+c.getTime().getSeconds();
     }
 
     public CadastroViagem getTela() {

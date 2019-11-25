@@ -34,6 +34,7 @@ public class DaoPassageiro {
             statement.setString(1, passageiro.getNome());
             statement.setString(2, passageiro.getSobrenome());
             statement.setString(3, passageiro.getCpf());
+            statement.setString(4, passageiro.getStatus());
             statement.execute();
             conexao.close();
             return true;
@@ -52,7 +53,7 @@ public class DaoPassageiro {
             result = statement.executeQuery();
             conexao.close();
             if(result.next()){
-                return new Passageiro(result.getInt(1), result.getString(2), result.getString(3), result.getString(4));
+                return new Passageiro(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoPassageiro.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,7 +69,7 @@ public class DaoPassageiro {
             result = statement.executeQuery();
             conexao.close();
             if(result.next()){
-                return new Passageiro(result.getInt(1), result.getString(2), result.getString(3), result.getString(4));
+                return new Passageiro(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoPassageiro.class.getName()).log(Level.SEVERE, null, ex);
@@ -84,7 +85,7 @@ public class DaoPassageiro {
             result = statement.executeQuery();
             conexao.close();
             while(result.next()){
-                passageiros.add(new Passageiro(result.getInt(1), result.getString(2), result.getString(3),result.getString(4)));
+                passageiros.add(new Passageiro(result.getInt(1), result.getString(2), result.getString(3),result.getString(4),result.getString(5)));
             }
             return passageiros;
             
@@ -114,19 +115,19 @@ public class DaoPassageiro {
         
         return false;
     }
-    public boolean removerCpf(String cpf){
+   
+    public void mudarStatus(int id,String status){
         
         try {
             conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
-            statement = conexao.prepareStatement(SQLUtil.Passageiro.REMOVER_CPF);
-            statement.setString(1, cpf);
+            statement = conexao.prepareStatement(status);
+            statement.setInt(1, id);
             statement.execute();
             conexao.close();
-            return true;
+            
         } catch (SQLException ex) {
             Logger.getLogger(DaoPassageiro.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
     }
     public List<Passageiro> buscarLike(String nome,String busca){
         List<Passageiro> passageiros = new ArrayList<>();
@@ -138,7 +139,7 @@ public class DaoPassageiro {
             result = statement.executeQuery();
             conexao.close();
             while(result.next()){
-                passageiros.add(new Passageiro(result.getInt(1), result.getString(2), result.getString(3), result.getString(4)));
+                passageiros.add(new Passageiro(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5)));
             }
             return passageiros;
         } catch (SQLException ex) {

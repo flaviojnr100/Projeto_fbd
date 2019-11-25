@@ -157,7 +157,7 @@ public class DaoTransporte {
             result = statement.executeQuery();
             conexao.close();
             while(result.next()){
-                transportes.add(new Transporte(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), tipoDao.buscarId(result.getInt(6)), motoristaDao.buscarId(result.getInt(5)), destinoDao.buscarId(7)));
+                transportes.add(new Transporte(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), motoristaDao.buscarId(result.getInt(5)), tipoDao.buscarId(result.getInt(6)), destinoDao.buscarId(result.getInt(7))));
             }
             return transportes;
         } catch (SQLException ex) {
@@ -191,7 +191,7 @@ public class DaoTransporte {
             conexao.close();
             
             while(result.next()){
-                transportes.add(new Transporte(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), tipoDao.buscarId(result.getInt(6)), motoristaDao.buscarId(result.getInt(5)), destinoDao.buscarId(7)));
+                transportes.add(new Transporte(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), motoristaDao.buscarId(result.getInt(5)), tipoDao.buscarId(result.getInt(6)), destinoDao.buscarId(result.getInt(7))));
             }
             
         } catch (SQLException ex) {

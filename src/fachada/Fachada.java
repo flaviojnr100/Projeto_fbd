@@ -106,7 +106,7 @@ public class Fachada implements Ifachada {
 
     @Override
     public boolean editar(Transporte transporte) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     @Override
@@ -163,9 +163,7 @@ public class Fachada implements Ifachada {
     public List<Passageiro> getAllPassageiro(){
         return bPassageiro.getAll();
     }
-    public boolean removerPassageiro(String cpf){
-        return bPassageiro.removerCpf(cpf);
-    }
+   
     public boolean editarPassageiro(Passageiro passageiro,Passageiro passageiro_novo){
         return bPassageiro.editar(passageiro, passageiro_novo);
     }
@@ -174,6 +172,9 @@ public class Fachada implements Ifachada {
     }
     public List<Passageiro> buscarLikePassageiro(String nome,String busca){
         return bPassageiro.buscaLike(nome, busca);
+    }
+    public void mudarStatus(int id,String status){
+        bPassageiro.mudarStatus(id, status);
     }
    
     //Tipo transporte
@@ -241,6 +242,12 @@ public class Fachada implements Ifachada {
      public int buscarIdTransporteAssento(int id_transporte,int id_assento){
          return bAssento.buscarIdTransporteAssento(id_transporte, id_assento);
      }
+     public boolean adicionarPassageiroAssento(int id_transporte,int id_assento, int id_passageiro){
+         return bAssento.adicionarPassageiroAssento(id_transporte, id_assento, id_passageiro);
+     }
+     public boolean removerPassageiroAssento(int id_transporte,int id_assento){
+         return bAssento.removerPassageiroAssento(id_transporte, id_assento);
+     }
      
      //viagem
      public boolean salvar(Viagem viagem){
@@ -249,10 +256,9 @@ public class Fachada implements Ifachada {
      public List<Viagem> getAllViagem(){
          return bViagem.getAll();
      }
-   /*  public static void main(String[] args) {
-       int id=Fachada.getInstance().buscarChassi("111").getId();
-       
-            System.out.println("Nº "+id);
-        
-    }*/
+     public Viagem buscarIdViagem(int id){
+         return bViagem.buscarId(id);
+     }
+  
+     
 }

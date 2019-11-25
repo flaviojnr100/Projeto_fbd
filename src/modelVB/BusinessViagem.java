@@ -26,5 +26,8 @@ public class BusinessViagem {
     public List<Viagem> getAll(){
         return dao.getAll();
     }
+    public Viagem buscarId(int id){
+        return dao.buscarId(id);
+    }
     
 }

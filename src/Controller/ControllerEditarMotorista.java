@@ -9,6 +9,7 @@ import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+import modelVO.BaseDados;
 import modelVO.Motorista;
 import view.EditarMotorista;
 import view.Mensagens;
@@ -40,7 +41,7 @@ public class ControllerEditarMotorista extends Observable {
             if(tela.getBtnEditar() == e.getSource()){
                 if(Mensagens.mensagemConfirmacao("Deseja fazer a alteração no registro?")){
                     if((tela.getCpfTxt().getText().equals(editarMotorista.getCpf()) || fachada.verificarExistenciaMotorista(tela.getCpfTxt().getText())) && fachada.editar(editarMotorista, new Motorista(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getCnhTxt().getText()))){
-                        
+                        BaseDados.CarregarMotorista();
                         String [] m={tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getCnhTxt().getText(),colunaSelecionada+""};
                         setChanged();
                         notifyObservers(m);

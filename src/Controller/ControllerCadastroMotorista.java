@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Observable;
 import javax.swing.JOptionPane;
+import modelVO.BaseDados;
 import modelVO.Motorista;
 import view.CadastroMotorista;
 import view.Mensagens;
@@ -68,7 +69,9 @@ public class ControllerCadastroMotorista extends Observable {
                         Mensagens.mensagem("Cadastro realizado com sucesso!");
                         tela.getBtnLimpar().doClick();
                         tela.getBtnCancelar().doClick();
+                        BaseDados.CarregarMotorista();
                         cMotorista.getTela().getjMenuAtualizar().doClick();
+                        BaseDados.CarregarMotorista();
                     }
               /*   }else{
                     if(tela.getCpfTxt().getText().equals("   .   .   -  ")){

@@ -43,6 +43,7 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuAtualizar = new javax.swing.JMenuItem();
+        jMenuInformacoes = new javax.swing.JMenuItem();
         jMenuCadastrar = new javax.swing.JMenuItem();
         jMenuEditar = new javax.swing.JMenuItem();
         jMenuRemover = new javax.swing.JMenuItem();
@@ -61,6 +62,9 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
 
         jMenuAtualizar.setText("Atualizar");
         jPopupMenu1.add(jMenuAtualizar);
+
+        jMenuInformacoes.setText("Ver informações");
+        jPopupMenu1.add(jMenuInformacoes);
 
         jMenuCadastrar.setText("Cadastrar");
         jPopupMenu1.add(jMenuCadastrar);
@@ -149,7 +153,6 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
         jTableFuncionarios.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTableFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -320,7 +323,11 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
     public JPopupMenu getjPopupMenu1() {
         return jPopupMenu1;
     }
- 
+
+    public JMenuItem getjMenuInformacoes() {
+        return jMenuInformacoes;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JTextField buscarTxt;
@@ -328,6 +335,7 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
     private javax.swing.JMenuItem jMenuAtualizar;
     private javax.swing.JMenuItem jMenuCadastrar;
     private javax.swing.JMenuItem jMenuEditar;
+    private javax.swing.JMenuItem jMenuInformacoes;
     private javax.swing.JMenuItem jMenuRemover;
     private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JPanel jPanel1;
@@ -345,7 +353,7 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
     @Override
     public void update(Observable o, Object arg) {
         if(o instanceof ControllerConsultarFuncionario && ((ControllerConsultarFuncionario)o).getTela().getjMenuRemover().equals(arg)){
-            ((ControllerConsultarFuncionario)o).Limpar();
+            ((ControllerConsultarFuncionario)o).LimparSimples();
             ((ControllerConsultarFuncionario)o).colocar();
         }
         if(o instanceof ControllerEditarFuncionario){
@@ -358,11 +366,11 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
            
         }
         if(o instanceof ControllerConsultarFuncionario && ((ControllerConsultarFuncionario)o).getTela().getjMenuAtualizar().equals(arg)){
-            ((ControllerConsultarFuncionario)o).Limpar();
+            ((ControllerConsultarFuncionario)o).LimparSimples();
             ((ControllerConsultarFuncionario)o).colocar();
         }
         if(o instanceof ControllerConsultarFuncionario && ((ControllerConsultarFuncionario)o).getTela().getBtnBuscar().equals(arg)){
-            ((ControllerConsultarFuncionario)o).Limpar();
+            ((ControllerConsultarFuncionario)o).LimparSimples();
             ((ControllerConsultarFuncionario)o).colocar(((ControllerConsultarFuncionario)o).getFuncionarioLike());
             
         }

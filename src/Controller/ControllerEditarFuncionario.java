@@ -9,6 +9,7 @@ import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+import modelVO.BaseDados;
 import modelVO.Funcionario;
 import view.EditarFuncionario;
 import view.Mensagens;
@@ -45,6 +46,7 @@ public class ControllerEditarFuncionario extends Observable {
                 if(fachada.editarFuncionario(editarFuncionario,new Funcionario(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getLoginTxt().getText(), tela.getSenhaTxt().getText()))){
                     Mensagens.mensagem("Registro editado com sucesso!");
                     String [] fu={tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getLoginTxt().getText(),linha+"",editarFuncionario.getId()+""};
+                    BaseDados.CarregarFuncionario();
                     setChanged();
                     notifyObservers(fu);
                     tela.getBtnCancelar().doClick();

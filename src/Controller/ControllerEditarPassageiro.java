@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Observable;
+import modelVO.BaseDados;
 import modelVO.Passageiro;
 import view.EditarPassageiro;
 import view.Mensagens;
@@ -44,6 +45,7 @@ public class ControllerEditarPassageiro extends Observable {
             if(e.getSource() == tela.getBtnEditar()){
                 if(fachada.editarPassageiro(editarPassageiro, new Passageiro(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getCpfTxt().getText()))){
                     Mensagens.mensagem("Registro editado com sucesso!");
+                    BaseDados.CarregarPassageiro();
                     setChanged();
                     String [] dados={tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getCpfTxt().getText(),editarPassageiro.getId()+"",linha+""};
                     notifyObservers(dados);

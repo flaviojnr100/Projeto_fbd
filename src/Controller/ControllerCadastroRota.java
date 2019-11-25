@@ -9,6 +9,7 @@ import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import modelVO.BaseDados;
 import modelVO.Destino;
 import modelVO.Endereco;
 import view.CadastroRota;
@@ -44,8 +45,10 @@ public class ControllerCadastroRota {
                 if(fachada.salvarDestino(dest)){
                     Mensagens.mensagem("Cadastro realizado com sucesso!");
                     ccRota.getjMenuAtualizar().doClick();
+                    BaseDados.CarregarRota();
                     tela.getBtnLimpar().doClick();
                     tela.getBtnCancelar().doClick();
+                    BaseDados.CarregarDestino();
                 }else{
                     Mensagens.mensagem("Erro ao realizar o cadastro!");
                 }

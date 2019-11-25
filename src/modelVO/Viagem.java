@@ -15,20 +15,30 @@ public class Viagem {
     private Transporte transporte;
     private Destino destino;
     private String preco;
+    private String data_viagem;
+    private String hora_viagem;
 
-    public Viagem(int id, Passageiro passageiro, Transporte transporte, Destino destino,String preco) {
+    public Viagem(int id, Passageiro passageiro, Destino destino,Transporte transporte ,String preco,String data_viagem,String hora_viagem) {
         this.id = id;
         this.passageiro = passageiro;
         this.transporte = transporte;
         this.destino = destino;
         this.preco = preco;
+        this.data_viagem = data_viagem;
+        this.hora_viagem = hora_viagem;
     }
-    public Viagem(Passageiro passageiro, Transporte transporte, Destino destino,String preco) {
+    public Viagem(Passageiro passageiro, Destino destino,Transporte transporte ,String preco,String data_viagem,String hora_viagem) {
         this.passageiro = passageiro;
         this.transporte = transporte;
         this.destino = destino;
         this.preco = preco;
+        this.data_viagem = data_viagem;
+        this.hora_viagem = hora_viagem;
     }
+
+    public Viagem() {
+    }
+    
 
     public int getId() {
         return id;
@@ -68,6 +78,22 @@ public class Viagem {
 
     public void setPreco(String preco) {
         this.preco = preco;
+    }
+
+    public String getData_viagem() {
+        return data_viagem;
+    }
+
+    public void setData_viagem(String data_viagem) {
+        this.data_viagem = data_viagem;
+    }
+
+    public String getHora_viagem() {
+        return hora_viagem;
+    }
+
+    public void setHora_viagem(String hora_viagem) {
+        this.hora_viagem = hora_viagem;
     }
     
     

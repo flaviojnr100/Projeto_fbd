@@ -30,6 +30,7 @@ import Controller.ControllerLogin;
 import Controller.ControllerTelaPersonalizar;
 import fachada.Fachada;
 import java.sql.SQLException;
+import java.sql.SQLType;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +38,7 @@ import modelDAO.DaoDestino;
 import modelDAO.DaoMotorista;
 import modelDAO.DaoTransporte;
 import modelVB.BusinessMotorista;
+import modelVO.BaseDados;
 import modelVO.Destino;
 import modelVO.Funcionario;
 import modelVO.Motorista;
@@ -65,6 +67,12 @@ import view.EditarPassageiro;
 import view.EditarRota;
 import view.EditarTransporte;
 import view.Financeiro;
+import view.InformacaoRota;
+import view.InformacoesFuncionario;
+import view.InformacoesMotorista;
+import view.InformacoesPassageiro;
+import view.InformacoesVeiculo;
+import view.InformacoesViagem;
 import view.TelaCarregamento;
 import view.TelaLogin;
 import view.TelaPersonalizar;
@@ -81,6 +89,14 @@ public class App {
      //   Motorista motorista1 = new Motorista("Roberta", "Paula", "546532127", "326598", "12/56/1236", "654312321");
        // Transporte transporte = new Transporte("Amarelo", "1235cvn", "3554fd");
         Fachada fachada1 =Fachada.getInstance();
+        BaseDados.CarregarTransporte();
+        BaseDados.CarregarDestino();
+        BaseDados.CarregarMotorista();
+        BaseDados.CarregarTipoTransporte();
+        BaseDados.CarregarPassageiro();
+        BaseDados.CarregarFuncionario();
+        BaseDados.CarregarRota();
+        BaseDados.CarregarViagem();
         //fachada1.salvar(new Funcionario("flavio", "cordeiro", "345346", "6546756", "12/12/1212", "fj", "234"));
         
         //System.out.println(""+fachada1.verificarExistenciaMotorista("555.555.555-55546456"));
@@ -105,42 +121,43 @@ public class App {
       CadastroFuncionario cFuncionario = new CadastroFuncionario();
       ConsultarFuncionario ccFuncionario = new ConsultarFuncionario();
       new ControllerCadastroFuncionario(cFuncionario,fachada1,ccFuncionario);
-      
+      InformacoesFuncionario iFuncionario = new InformacoesFuncionario();
       EditarFuncionario eFuncionario = new EditarFuncionario();
       ControllerEditarFuncionario ecFuncionario = new ControllerEditarFuncionario(eFuncionario, fachada1);
-      ControllerConsultarFuncionario cccFuncionario = new ControllerConsultarFuncionario(ccFuncionario, fachada1,ecFuncionario,cFuncionario);
+      ControllerConsultarFuncionario cccFuncionario = new ControllerConsultarFuncionario(ccFuncionario, fachada1,ecFuncionario,cFuncionario,iFuncionario);
       
       cccFuncionario.addObserver(ccFuncionario);
       ecFuncionario.addObserver(ccFuncionario);
       
       CadastroPassageiro cPassageiro = new CadastroPassageiro();
-      
+      InformacoesPassageiro iPassageiro = new InformacoesPassageiro();
       ConsultarPassageiro ccPassageiro = new ConsultarPassageiro();
       EditarPassageiro ePassageiro = new EditarPassageiro();
       ControllerEditarPassageiro ecPassageiro = new ControllerEditarPassageiro(ePassageiro, fachada1);
-      ControllerConsultarPassageiro cccPassageiro = new ControllerConsultarPassageiro(ccPassageiro, fachada1,ecPassageiro,cPassageiro);
+      ControllerConsultarPassageiro cccPassageiro = new ControllerConsultarPassageiro(ccPassageiro, fachada1,ecPassageiro,cPassageiro,iPassageiro);
       new ControllerCadastroPassageiro(cPassageiro,fachada1,cccPassageiro);
       cccPassageiro.addObserver(ccPassageiro);
       ecPassageiro.addObserver(ccPassageiro);
       
       
       CadastroMotorista cMotorista = new CadastroMotorista();
-      
+      InformacoesMotorista iMotorista = new InformacoesMotorista();
       ConsultarMotorista ccMotorista = new ConsultarMotorista();
       EditarMotorista eMotorista = new EditarMotorista();
       ControllerEditarMotorista ceMotorista = new ControllerEditarMotorista(eMotorista, fachada1);
-      ControllerConsultarMotorista cccMotorista = new ControllerConsultarMotorista(ccMotorista, fachada1,ceMotorista,cMotorista);
+      ControllerConsultarMotorista cccMotorista = new ControllerConsultarMotorista(ccMotorista, fachada1,ceMotorista,cMotorista,iMotorista);
       ControllerCadastroMotorista cadMotorista =  new ControllerCadastroMotorista(cMotorista,fachada1,cccMotorista);
       cccMotorista.addObserver(ccMotorista);
       ceMotorista.addObserver(ccMotorista);
       
       CadastroRota cRota = new CadastroRota();
       ConsultarRota ccRota = new ConsultarRota();
+      InformacaoRota iRota = new InformacaoRota();
       EditarRota eRota = new EditarRota();
       new ControllerCadastroRota(cRota,fachada1,ccRota);
      
       ControllerEditarRota ceRota = new ControllerEditarRota(eRota, fachada1);
-      ControllerConsultarRota cccRota = new ControllerConsultarRota(ccRota,fachada1,eRota,ceRota,cRota);
+      ControllerConsultarRota cccRota = new ControllerConsultarRota(ccRota,fachada1,eRota,ceRota,cRota,iRota);
       
       ceRota.setCccRota(cccRota);
       cccRota.addObserver(ccRota);
@@ -148,6 +165,7 @@ public class App {
       CadastroTipoTransporte cTipoTransporte = new CadastroTipoTransporte();
       
       CadastroTransporte cTransporte = new CadastroTransporte();
+      InformacoesVeiculo iVeiculo = new InformacoesVeiculo();
       ControllerCadastroTransporte cccTransporte = new ControllerCadastroTransporte(cTransporte, fachada1, cMotorista, cTipoTransporte, cRota);
       ConsultarTransporte ccTransporte = new ConsultarTransporte();
       EditarTransporte eTransporte = new EditarTransporte();
@@ -155,7 +173,7 @@ public class App {
       
       ControllerCadastroTipoTransporte ccTipo = new ControllerCadastroTipoTransporte(cTipoTransporte,fachada1,cccTransporte);
       
-      ControllerConsultarTransporte ccccTransporte = new ControllerConsultarTransporte(ccTransporte, fachada1);
+      ControllerConsultarTransporte ccccTransporte = new ControllerConsultarTransporte(ccTransporte, fachada1,iVeiculo);
       cccTransporte.addObserver(cTransporte);
       ccTipo.addObserver(cTransporte);
       cadMotorista.addObserver(cTransporte);
@@ -164,9 +182,10 @@ public class App {
       ccccTransporte.addObserver(ccTransporte);
       
       CadastroViagem cViagem = new CadastroViagem();
+      InformacoesViagem iViagem = new InformacoesViagem();
       ControllerCadastroViagem cccViagem = new ControllerCadastroViagem(cViagem, fachada1, cPassageiro, cRota,cTransporte);
       ConsultarViagem ccViagem = new ConsultarViagem();
-      ControllerConsultarViagem ccccViagem = new ControllerConsultarViagem(ccViagem, fachada1);
+      ControllerConsultarViagem ccccViagem = new ControllerConsultarViagem(ccViagem, fachada1,iViagem);
       
       cccViagem.addObserver(cViagem);
       Financeiro financeiro = new Financeiro();
@@ -191,8 +210,6 @@ public class App {
       
 
   
-      
-        
   
   
        

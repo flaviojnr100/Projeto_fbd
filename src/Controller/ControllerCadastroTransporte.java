@@ -13,6 +13,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import modelVO.BaseDados;
 import modelVO.Destino;
 import modelVO.Motorista;
 import modelVO.Tipo_transporte;
@@ -60,16 +61,16 @@ public class ControllerCadastroTransporte extends Observable {
     
     public void montarComboMotorista(){
         tela.getComboMotorista().removeAllItems();
-        List<Motorista> motoristas = fachada.getAllMotorista();
-        for(Motorista m:motoristas){
+        
+        for(Motorista m:BaseDados.getMotoristas()){
             tela.getComboMotorista().addItem(m.getNome()+" "+m.getSobrenome());
         }
         
     }
     public void montarComboTipo(){
         tela.getComboTipo().removeAllItems();
-        List<Tipo_transporte> tipo = fachada.getAllTipoTransporte();
-        for(Tipo_transporte ti:tipo){
+        
+        for(Tipo_transporte ti:BaseDados.getTipoTransportes()){
             tela.getComboTipo().addItem(ti.getNome()+", Nº de assentos: "+ti.getAssentos());
         }
         
@@ -77,8 +78,8 @@ public class ControllerCadastroTransporte extends Observable {
     public void montarComboRota(){
         tela.getComboRota().removeItemListener(new mudarCombo());
         tela.getComboRota().removeAllItems();
-        List<Destino> destinos = fachada.getAllDestino();
-        for(Destino d:destinos){
+        
+        for(Destino d:BaseDados.getDestinos()){
             tela.getComboRota().addItem(d.getNome()+", Horario: "+d.getHorario());
         }
         
@@ -90,7 +91,7 @@ public class ControllerCadastroTransporte extends Observable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnCadastrar()){
-                Transporte transporte = new Transporte(tela.getCorText().getText().toUpperCase(), tela.getPlacaText().getText().toUpperCase(), tela.getChassiText().getText().toUpperCase(), getTipos().get(tela.getComboTipo().getSelectedIndex()), getMotoristas().get(tela.getComboMotorista().getSelectedIndex()), fachada.buscarIdDestino(fachada.getAllDestino().get(tela.getComboRota().getSelectedIndex()).getId()));
+                Transporte transporte = new Transporte(tela.getCorText().getText().toUpperCase(), tela.getPlacaText().getText().toUpperCase(), tela.getChassiText().getText().toUpperCase(), getMotoristas().get(tela.getComboMotorista().getSelectedIndex()), getTipos().get(tela.getComboTipo().getSelectedIndex()), fachada.buscarIdDestino(fachada.getAllDestino().get(tela.getComboRota().getSelectedIndex()).getId()));
                               
                     if(fachada.salvar(transporte)){
                         Mensagens.mensagem("Cadastrado com sucesso!");
@@ -101,6 +102,7 @@ public class ControllerCadastroTransporte extends Observable {
                         montarComboRota();
                         montarComboTipo();
                         habilitarEvento();
+                        BaseDados.CarregarTransporte();
                 
                 }else{
                     if(tela.getComboMotorista().getSelectedItem().equals("Vazio")){
@@ -156,8 +158,8 @@ public class ControllerCadastroTransporte extends Observable {
         @Override
         public void itemStateChanged(ItemEvent e) {
             if(e.getSource() == tela.getComboRota()){
-                List<Destino> rotas = fachada.getAllDestino();
-                String texto = "Nome: "+rotas.get(tela.getComboRota().getSelectedIndex()).getNome()+"\nCidade de partida: "+rotas.get(tela.getComboRota().getSelectedIndex()).getPartida().getCidade()+"\nCidade de destino: "+rotas.get(tela.getComboRota().getSelectedIndex()).getDestino().getCidade()+"\nHorario: "+rotas.get(tela.getComboRota().getSelectedIndex()).getHorario()+"\nPreço: "+rotas.get(tela.getComboRota().getSelectedIndex()).getPreco();
+                Destino destino = BaseDados.getDestinos().get(tela.getComboRota().getSelectedIndex());
+                String texto = "Nome: "+destino.getNome()+"\nCidade de partida: "+destino.getPartida().getCidade()+"\nCidade de destino: "+destino.getDestino().getCidade()+"\nHorario: "+destino.getHorario()+"\nPreço: "+destino.getPreco();
                 setChanged();
                 notifyObservers(texto);
               

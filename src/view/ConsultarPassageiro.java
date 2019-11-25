@@ -43,9 +43,10 @@ public class ConsultarPassageiro extends javax.swing.JFrame implements Observer 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuAtualizar = new javax.swing.JMenuItem();
+        jMenuInformacoes = new javax.swing.JMenuItem();
         jMenuCadastrar = new javax.swing.JMenuItem();
         jMenuEditar = new javax.swing.JMenuItem();
-        jMenuRemover = new javax.swing.JMenuItem();
+        jMenuMstatus = new javax.swing.JMenuItem();
         jMenuSair = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -61,14 +62,17 @@ public class ConsultarPassageiro extends javax.swing.JFrame implements Observer 
         jMenuAtualizar.setText("Atualizar");
         jPopupMenu1.add(jMenuAtualizar);
 
+        jMenuInformacoes.setText("Ver informações");
+        jPopupMenu1.add(jMenuInformacoes);
+
         jMenuCadastrar.setText("Cadastrar");
         jPopupMenu1.add(jMenuCadastrar);
 
         jMenuEditar.setText("Editar");
         jPopupMenu1.add(jMenuEditar);
 
-        jMenuRemover.setText("Remover");
-        jPopupMenu1.add(jMenuRemover);
+        jMenuMstatus.setText("Mudar status");
+        jPopupMenu1.add(jMenuMstatus);
 
         jMenuSair.setText("Sair");
         jPopupMenu1.add(jMenuSair);
@@ -140,34 +144,34 @@ public class ConsultarPassageiro extends javax.swing.JFrame implements Observer 
 
         jTablePassageiro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Sobrenome", "CPF"
+                "Código", "Nome", "Sobrenome", "CPF", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTablePassageiro);
@@ -296,8 +300,8 @@ public class ConsultarPassageiro extends javax.swing.JFrame implements Observer 
         return jMenuEditar;
     }
 
-    public JMenuItem getjMenuRemover() {
-        return jMenuRemover;
+    public JMenuItem getjMenuMstatus() {
+        return jMenuMstatus;
     }
 
     public JMenuItem getjMenuSair() {
@@ -306,6 +310,10 @@ public class ConsultarPassageiro extends javax.swing.JFrame implements Observer 
 
     public JPopupMenu getjPopupMenu1() {
         return jPopupMenu1;
+    }
+
+    public JMenuItem getjMenuInformacoes() {
+        return jMenuInformacoes;
     }
     
 
@@ -316,7 +324,8 @@ public class ConsultarPassageiro extends javax.swing.JFrame implements Observer 
     private javax.swing.JMenuItem jMenuAtualizar;
     private javax.swing.JMenuItem jMenuCadastrar;
     private javax.swing.JMenuItem jMenuEditar;
-    private javax.swing.JMenuItem jMenuRemover;
+    private javax.swing.JMenuItem jMenuInformacoes;
+    private javax.swing.JMenuItem jMenuMstatus;
     private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -331,11 +340,11 @@ public class ConsultarPassageiro extends javax.swing.JFrame implements Observer 
 
     @Override
     public void update(Observable o, Object arg) {
-        if(o instanceof ControllerConsultarPassageiro && ((ControllerConsultarPassageiro)o).getTela().getjMenuRemover().equals(arg)){
-            ((ControllerConsultarPassageiro)o).limpar();
+        if(o instanceof ControllerConsultarPassageiro && ((ControllerConsultarPassageiro)o).getTela().getjMenuMstatus().equals(arg)){
+            ((ControllerConsultarPassageiro)o).limparSimples();
             ((ControllerConsultarPassageiro)o).colocarDados();
         }else if(o instanceof ControllerConsultarPassageiro && ((ControllerConsultarPassageiro)o).getTela().getjMenuAtualizar().equals(arg)){
-            ((ControllerConsultarPassageiro)o).limpar();
+            ((ControllerConsultarPassageiro)o).limparSimples();
             ((ControllerConsultarPassageiro)o).colocarDados();
         }else if(o instanceof ControllerEditarPassageiro){
             String [] dados = (String []) arg;
@@ -345,7 +354,7 @@ public class ConsultarPassageiro extends javax.swing.JFrame implements Observer 
             }
             
         }else if(o instanceof ControllerConsultarPassageiro && ((ControllerConsultarPassageiro)o).getTela().getBtnBuscar().equals(arg)){
-            ((ControllerConsultarPassageiro)o).limpar();
+            ((ControllerConsultarPassageiro)o).limparSimples();
             ((ControllerConsultarPassageiro)o).colocarDados(((ControllerConsultarPassageiro)o).getPassageiroLike());
         }
         

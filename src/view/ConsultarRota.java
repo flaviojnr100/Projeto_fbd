@@ -41,6 +41,7 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuAtualizar = new javax.swing.JMenuItem();
+        jMenuInformacoes = new javax.swing.JMenuItem();
         jMenuCadastrar = new javax.swing.JMenuItem();
         jMenuEditar = new javax.swing.JMenuItem();
         jMenuRemover = new javax.swing.JMenuItem();
@@ -57,6 +58,9 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
 
         jMenuAtualizar.setText("Atualizar");
         jPopupMenu1.add(jMenuAtualizar);
+
+        jMenuInformacoes.setText("Ver informações");
+        jPopupMenu1.add(jMenuInformacoes);
 
         jMenuCadastrar.setText("Cadastrar");
         jPopupMenu1.add(jMenuCadastrar);
@@ -132,7 +136,6 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
 
         jTableRotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -292,6 +295,10 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
     public JPopupMenu getjPopupMenu1() {
         return jPopupMenu1;
     }
+
+    public JMenuItem getjMenuInformacoes() {
+        return jMenuInformacoes;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -301,6 +308,7 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem jMenuAtualizar;
     private javax.swing.JMenuItem jMenuCadastrar;
     private javax.swing.JMenuItem jMenuEditar;
+    private javax.swing.JMenuItem jMenuInformacoes;
     private javax.swing.JMenuItem jMenuRemover;
     private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JPanel jPanel1;
@@ -316,11 +324,11 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if(o instanceof ControllerConsultarRota && arg.equals("atualizar")){
-            ((ControllerConsultarRota)o).LimparDados();
+            ((ControllerConsultarRota)o).LimparDadosSimples();
             ((ControllerConsultarRota)o).colocarDados();
         }
         if(o instanceof ControllerConsultarRota && arg.equals("like")){
-            ((ControllerConsultarRota)o).LimparDados();
+            ((ControllerConsultarRota)o).LimparDadosSimples();
             ((ControllerConsultarRota)o).colocarDados(((ControllerConsultarRota)o).getRotasLike());
         }
     }

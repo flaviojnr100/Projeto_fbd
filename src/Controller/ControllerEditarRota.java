@@ -8,6 +8,7 @@ package Controller;
 import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelVO.BaseDados;
 import modelVO.Destino;
 import modelVO.Endereco;
 import view.EditarRota;
@@ -41,6 +42,7 @@ public class ControllerEditarRota {
             if(e.getSource() == tela.getBtnEditar()){
                 if(fachada.editar(codigo,new Destino(tela.getNomeTxt().getText().toUpperCase(), new Endereco(tela.getEstadoTxt().getText().toUpperCase(), tela.getRuaTxt().getText().toUpperCase(), tela.getBairroTxt().getText().toUpperCase(), tela.getCidadeTxt().getText().toUpperCase(), tela.getComplementoTxt().getText().toUpperCase()), new Endereco(tela.getEstadoTxt2().getText().toUpperCase(), tela.getRuaTxt2().getText().toUpperCase(), tela.getBairroTxt2().getText().toUpperCase(), tela.getCidadeTxt2().getText().toUpperCase(), tela.getComplementoTxt2().getText().toUpperCase()), tela.getHorarioTxt().getText(), tela.getPrecoTxt().getText()))){
                     Mensagens.mensagem("Registro editado com sucesso!");
+                    BaseDados.CarregarRota();
                     cccRota.getTela().getjMenuAtualizar().doClick();
                     tela.getBtnCancelar().doClick();
                 }else{

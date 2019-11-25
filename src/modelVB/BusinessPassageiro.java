@@ -42,12 +42,12 @@ public class BusinessPassageiro {
         }
         return false;
     }
-    public boolean removerCpf(String cpf){
-        return dao.removerCpf(cpf);
-    }
+    
     public List<Passageiro> buscaLike(String nome,String busca){
         return dao.buscarLike(nome, busca);
     }
-   
+   public void mudarStatus(int id,String status){
+       dao.mudarStatus(id, status);
+   }
     
 }

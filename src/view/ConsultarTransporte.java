@@ -40,6 +40,7 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         menuAtualizar = new javax.swing.JMenuItem();
+        jMenuInformacoes = new javax.swing.JMenuItem();
         menuCadastrar = new javax.swing.JMenuItem();
         menuExcluir = new javax.swing.JMenuItem();
         menuEditar = new javax.swing.JMenuItem();
@@ -58,6 +59,9 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
 
         menuAtualizar.setText("Atualizar");
         jPopupMenu1.add(menuAtualizar);
+
+        jMenuInformacoes.setText("Ver informações");
+        jPopupMenu1.add(jMenuInformacoes);
 
         menuCadastrar.setText("Cadastrar");
         jPopupMenu1.add(menuCadastrar);
@@ -83,35 +87,41 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
         jTableTransporte.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTableTransporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Cor", "Placa", "Chassi", "Motorista", "Tipo"
+                "Código", "Cor", "Placa", "Chassi", "Motorista", "Tipo", "Rota"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -309,12 +319,17 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
     public JMenuItem getMenuAtualizar() {
         return menuAtualizar;
     }
+
+    public JMenuItem getjMenuInformacoes() {
+        return jMenuInformacoes;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JTextField buscarTxt;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JMenuItem jMenuInformacoes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -334,11 +349,11 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         if(o instanceof ControllerConsultarTransporte &&  arg.equals("like")){
-            ((ControllerConsultarTransporte)o).limpar();
+            ((ControllerConsultarTransporte)o).limparSimples();
             ((ControllerConsultarTransporte)o).ColocarDados(((ControllerConsultarTransporte)o).getTransporteLike());
         }
         if(o instanceof ControllerConsultarTransporte &&  arg.equals("atualizar")){
-            ((ControllerConsultarTransporte)o).limpar();
+            ((ControllerConsultarTransporte)o).limparSimples();
             ((ControllerConsultarTransporte)o).ColocarDados();
         }
         

@@ -245,8 +245,10 @@ public class ControllerDashBoard {
             }
             
             if(e.getSource() == principal.getjMenuLogoff()){
-                principal.setVisible(false);
-                tLogin.setVisible(true);
+                if(Mensagens.mensagemConfirmacao("Você deseja sair do sistema?")){
+                    principal.setVisible(false);
+                    tLogin.setVisible(true);
+                }
             }
             
             if(e.getSource() == principal.getjMenuEncerrarSistema()){

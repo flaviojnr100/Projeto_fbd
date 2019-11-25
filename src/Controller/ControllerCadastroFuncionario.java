@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import modelVO.BaseDados;
 import modelVO.Funcionario;
 import view.CadastroFuncionario;
 import view.ConsultarFuncionario;
@@ -50,6 +51,7 @@ public class ControllerCadastroFuncionario {
                 if(tela.getSenhaTxt().getText().equals(tela.getConfirmarTxt().getText())){
                     if(fachada.salvar(new Funcionario(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getRgTxt().getText(), tela.getCpfTxt().getText(), tela.getDataTxt().getText(), tela.getLoginTxt().getText(), tela.getSenhaTxt().getText()))){
                         Mensagens.mensagem("Funcionario cadastrado com sucesso!");
+                        BaseDados.CarregarFuncionario();
                         tela.getBtnLimpar().doClick();
                         tela.getBtnCancelar().doClick();
                         cFuncionario.getjMenuAtualizar().doClick();

@@ -12,6 +12,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Observable;
+import modelVO.BaseDados;
 import modelVO.Passageiro;
 import view.CadastroPassageiro;
 import view.Mensagens;
@@ -46,9 +47,11 @@ public class ControllerCadastroPassageiro{
             if(e.getSource() == tela.getBtnCadastrar()){
                 if(fachada.salvar(new Passageiro(tela.getNomeTxt().getText().toUpperCase(), tela.getSobrenomeTxt().getText().toUpperCase(), tela.getCpfTxt().getText()))){
                     Mensagens.mensagem("Cadastro realizado com sucesso!");
+                    BaseDados.CarregarPassageiro();
                     tela.getBtnLimpar().doClick();
                     tela.getBtnCancelar().doClick();
                     cccPassageiro.getTela().getjMenuAtualizar().doClick();
+                    
                     
                 }
             }

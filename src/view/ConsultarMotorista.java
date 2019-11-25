@@ -42,6 +42,7 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuAtualizar = new javax.swing.JMenuItem();
+        jMenuInformacoes = new javax.swing.JMenuItem();
         jMenuSalvar = new javax.swing.JMenuItem();
         jMenuEditar = new javax.swing.JMenuItem();
         jMenuRemover = new javax.swing.JMenuItem();
@@ -61,6 +62,9 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
 
         jMenuAtualizar.setText("Atualizar");
         jPopupMenu1.add(jMenuAtualizar);
+
+        jMenuInformacoes.setText("Ver informações");
+        jPopupMenu1.add(jMenuInformacoes);
 
         jMenuSalvar.setText("Cadastrar");
         jPopupMenu1.add(jMenuSalvar);
@@ -84,7 +88,6 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
 
         jTableMotorista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -332,6 +335,10 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
     public JRadioButton getjRadioRg() {
         return jRadioRg;
     }
+
+    public JMenuItem getjMenuInformacoes() {
+        return jMenuInformacoes;
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -340,6 +347,7 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem jMenuAtualizar;
     private javax.swing.JMenuItem jMenuEditar;
+    private javax.swing.JMenuItem jMenuInformacoes;
     private javax.swing.JMenuItem jMenuRemover;
     private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JMenuItem jMenuSalvar;
@@ -359,10 +367,10 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if(o instanceof ControllerConsultarMotorista){
-            ((ControllerConsultarMotorista) o).LimparDados();
+            ((ControllerConsultarMotorista) o).LimparDadosSimples();
             ((ControllerConsultarMotorista) o).ColocarDados();
         }else if(o instanceof ControllerConsultarMotorista && ((ControllerConsultarMotorista) o).getTela().getjMenuAtualizar().equals(arg)){
-            ((ControllerConsultarMotorista) o).LimparDados();
+            ((ControllerConsultarMotorista) o).LimparDadosSimples();
             ((ControllerConsultarMotorista) o).ColocarDados();
         }
         if(o instanceof ControllerEditarMotorista){
