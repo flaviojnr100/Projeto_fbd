@@ -7,12 +7,14 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelVO.BaseDados;
 import view.CadastroFuncionario;
 import view.CadastroMotorista;
 import view.CadastroPassageiro;
 import view.CadastroRota;
 import view.CadastroTransporte;
 import view.CadastroViagem;
+import view.ConsultarFinança;
 import view.ConsultarFuncionario;
 import view.ConsultarMotorista;
 import view.ConsultarPassageiro;
@@ -20,7 +22,6 @@ import view.ConsultarRota;
 import view.ConsultarTransporte;
 import view.ConsultarViagem;
 import view.DashBoard;
-import view.Financeiro;
 import view.Mensagens;
 import view.TelaLogin;
 import view.TelaPersonalizar;
@@ -43,7 +44,7 @@ public class ControllerDashBoard {
     private ConsultarViagem ccViagem;
     private CadastroRota cRota;
     private ConsultarRota ccRota;
-    private Financeiro financeiro;
+    
     private TelaPersonalizar telaPersonalizar;
     private TelaLogin tLogin;
     private ControllerConsultarMotorista cccMotorista;
@@ -55,7 +56,9 @@ public class ControllerDashBoard {
     private ControllerConsultarRota cccRota;
     private ControllerCadastroViagem cccViagem;
     private ControllerConsultarViagem ccccViagem;
-    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota, Financeiro financeiro,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo,ControllerControleAcesso ccAcesso,TelaLogin tLogin,ControllerConsultarRota cccRota,ControllerCadastroViagem cccViagem,ControllerConsultarViagem ccccViagem) {
+    private ConsultarFinança ccFinanca;
+    private ControllerConsultaFinanca cccFinanca;
+    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo,ControllerControleAcesso ccAcesso,TelaLogin tLogin,ControllerConsultarRota cccRota,ControllerCadastroViagem cccViagem,ControllerConsultarViagem ccccViagem,ConsultarFinança ccFinanca,ControllerConsultaFinanca cccFinanca) {
         this.principal = principal;
         this.cFuncionario = cFuncionario;
         this.ccFuncionario = ccFuncionario;
@@ -67,7 +70,7 @@ public class ControllerDashBoard {
         this.ccPassageiro = ccPassageiro;
         this.cRota = cRota;
         this.ccRota = ccRota;
-        this.financeiro = financeiro;
+        
         this.cViagem = cViagem;
         this.ccViagem = ccViagem;
         this.telaPersonalizar = telaPersonalizar;
@@ -81,6 +84,8 @@ public class ControllerDashBoard {
         this.cccRota = cccRota;
         this.cccViagem = cccViagem;
         this.ccccViagem = ccccViagem;
+        this.ccFinanca = ccFinanca;
+        this.cccFinanca = cccFinanca;
         Control();
     }
     
@@ -143,6 +148,7 @@ public class ControllerDashBoard {
                 cViagem.setVisible(true);
             }
             if(e.getSource() == principal.getBtnConsultarViagem()){
+                
                 if(ccccViagem.limpar()){
                     ccccViagem.colocarDados();
                     ccViagem.setVisible(true);
@@ -228,7 +234,12 @@ public class ControllerDashBoard {
                 }
             }
             if(e.getSource() == principal.getjMenuFinanceiroConsulta()){
-                financeiro.setVisible(true);
+                if(cccFinanca.Limpar()){
+                    cccFinanca.ColocarDados();
+                    ccFinanca.setVisible(true);
+                }else{
+                    Mensagens.mensagem("Não há nenhum dado financeiro registrado no sistema!");
+                }
             }
             if(e.getSource() == principal.getjMenuSobre()){
                 

@@ -180,6 +180,8 @@ public class ControllerConsultarPassageiro extends Observable {
                     passageiroLike = fachada.buscarLikePassageiro(tela.getBuscarTxt().getText().toUpperCase(), SQLUtil.Passageiro.BUSCARLIKENOME);
                 }else if(tela.getjRadioCpf().isSelected()){
                     passageiroLike = fachada.buscarLikePassageiro(tela.getBuscarTxt().getText().toUpperCase(), SQLUtil.Passageiro.BUSCARLIKECPF);
+                }else if(tela.getjRadioCodBilhete().isSelected()){
+                    passageiroLike = fachada.buscarLikeBilhete(Integer.parseInt(tela.getBuscarTxt().getText()), SQLUtil.Passageiro.BUSCARLIKEBILHETE);
                 }
                 setChanged();
                 notifyObservers(tela.getBtnBuscar());
@@ -220,7 +222,7 @@ public class ControllerConsultarPassageiro extends Observable {
     public boolean limpar(){
         
         for(int i=0;i<tela.getjTablePassageiro().getRowCount();i++){
-            for(int j=0;j<4;j++){
+            for(int j=0;j<5;j++){
                 tela.getjTablePassageiro().getModel().setValueAt("", i, j);
             }
         }
@@ -235,7 +237,7 @@ public class ControllerConsultarPassageiro extends Observable {
     public boolean limparSimples(){
         
         for(int i=0;i<BaseDados.getPassageiros().size()+1;i++){
-            for(int j=0;j<4;j++){
+            for(int j=0;j<5;j++){
                 tela.getjTablePassageiro().getModel().setValueAt("", i, j);
             }
         }

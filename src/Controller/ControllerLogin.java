@@ -60,6 +60,13 @@ public class ControllerLogin {
                 if(tela.getUsuarioTxt().getText().equals("adm") && tela.getSenhaTxt().getText().equals("adm") || fachada.autenticar(new Funcionario(tela.getUsuarioTxt().getText(), tela.getSenhaTxt().getText()))){
                     if(!(tela.getUsuarioTxt().getText().equals("adm") && tela.getSenhaTxt().getText().equals("adm"))){
                         fachada.salvar(fachada.buscarLogin(tela.getUsuarioTxt().getText(), tela.getSenhaTxt().getText()), getHorario(), getDataAtual());
+                        principal.getjMenu1().setVisible(false);
+                        principal.getjMenu6().setVisible(false);
+                        principal.getjMenuControleAcesso().setVisible(false);
+                    }else{
+                        principal.getjMenu1().setVisible(true);
+                        principal.getjMenu6().setVisible(true);
+                        principal.getjMenuControleAcesso().setVisible(true);
                     }
                     tela.getUsuarioTxt().setText("");
                     tela.getSenhaTxt().setText("");

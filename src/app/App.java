@@ -13,6 +13,7 @@ import Controller.ControllerCadastroTipoTransporte;
 import Controller.ControllerCadastroTransporte;
 import Controller.ControllerCadastroViagem;
 import Controller.ControllerCarregamento;
+import Controller.ControllerConsultaFinanca;
 import Controller.ControllerConsultarFuncionario;
 import Controller.ControllerConsultarMotorista;
 import Controller.ControllerConsultarPassageiro;
@@ -25,7 +26,6 @@ import Controller.ControllerEditarFuncionario;
 import Controller.ControllerEditarMotorista;
 import Controller.ControllerEditarPassageiro;
 import Controller.ControllerEditarRota;
-import Controller.ControllerFinanceiro;
 import Controller.ControllerLogin;
 import Controller.ControllerTelaPersonalizar;
 import fachada.Fachada;
@@ -53,6 +53,7 @@ import view.CadastroRota;
 import view.CadastroTipoTransporte;
 import view.CadastroTransporte;
 import view.CadastroViagem;
+import view.ConsultarFinança;
 import view.ConsultarFuncionario;
 import view.ConsultarMotorista;
 import view.ConsultarPassageiro;
@@ -66,7 +67,6 @@ import view.EditarMotorista;
 import view.EditarPassageiro;
 import view.EditarRota;
 import view.EditarTransporte;
-import view.Financeiro;
 import view.InformacaoRota;
 import view.InformacoesFuncionario;
 import view.InformacoesMotorista;
@@ -183,21 +183,24 @@ public class App {
       
       CadastroViagem cViagem = new CadastroViagem();
       InformacoesViagem iViagem = new InformacoesViagem();
-      ControllerCadastroViagem cccViagem = new ControllerCadastroViagem(cViagem, fachada1, cPassageiro, cRota,cTransporte);
       ConsultarViagem ccViagem = new ConsultarViagem();
-      ControllerConsultarViagem ccccViagem = new ControllerConsultarViagem(ccViagem, fachada1,iViagem);
-      
+      ControllerCadastroViagem cccViagem = new ControllerCadastroViagem(cViagem, fachada1, cPassageiro, cRota,cTransporte,ccViagem);
+      ControllerConsultarViagem ccccViagem = new ControllerConsultarViagem(ccViagem, fachada1,iViagem,cccViagem);
+       
       cccViagem.addObserver(cViagem);
-      Financeiro financeiro = new Financeiro();
-      new ControllerFinanceiro(financeiro);
+     ccccViagem.addObserver(ccViagem);
       
       ControleAcesso cAcesso = new ControleAcesso();
       ControllerControleAcesso ccAcesso = new ControllerControleAcesso(cAcesso, fachada1);
       
+      ConsultarFinança ccFinanca = new ConsultarFinança();
+      ControllerConsultaFinanca cccFinanca = new ControllerConsultaFinanca(ccFinanca, fachada1);
+      cccFinanca.addObserver(ccFinanca);
+      
       TelaLogin telaLogin = new TelaLogin();
       DashBoard dash = new DashBoard();
       TelaPersonalizar personalizar = new TelaPersonalizar();
-      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, financeiro, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso,telaLogin,cccRota,cccViagem,ccccViagem);
+      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso,telaLogin,cccRota,cccViagem,ccccViagem,ccFinanca,cccFinanca);
       ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
       c.addObserver(dash);
      

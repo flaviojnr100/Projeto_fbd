@@ -49,5 +49,8 @@ public class BusinessPassageiro {
    public void mudarStatus(int id,String status){
        dao.mudarStatus(id, status);
    }
+   public List<Passageiro> buscarLikeBilhete(int nome,String busca){
+       return dao.buscarLikeBilhete(nome, busca);
+   }
     
 }

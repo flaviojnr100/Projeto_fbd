@@ -147,6 +147,24 @@ public class DaoPassageiro {
         }
         return null;
     }
+    public List<Passageiro> buscarLikeBilhete(int nome,String busca){
+        List<Passageiro> passageiros = new ArrayList<>();
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(busca);
+            statement.setInt(1, nome);
+            result = statement.executeQuery();
+            conexao.close();
+            while(result.next()){
+                passageiros.add(new Passageiro(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5)));
+            }
+            return passageiros;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPassageiro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public boolean verificarCpf(String cpf){
         
         try {

@@ -5,6 +5,9 @@
  */
 package view;
 
+import Controller.ControllerConsultarViagem;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -16,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author Flavio
  */
-public class ConsultarViagem extends javax.swing.JFrame {
+public class ConsultarViagem extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form ConsultarViagem
@@ -40,8 +43,7 @@ public class ConsultarViagem extends javax.swing.JFrame {
         jMenuAtualizar = new javax.swing.JMenuItem();
         jMenuInformacoes = new javax.swing.JMenuItem();
         jMenuCadastrar = new javax.swing.JMenuItem();
-        jMenuEditar = new javax.swing.JMenuItem();
-        jMenuRemover = new javax.swing.JMenuItem();
+        jMenuCancelar = new javax.swing.JMenuItem();
         jMenuSair = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -50,7 +52,6 @@ public class ConsultarViagem extends javax.swing.JFrame {
         jRadioPassageiro = new javax.swing.JRadioButton();
         jRadioHorario = new javax.swing.JRadioButton();
         jRadioData = new javax.swing.JRadioButton();
-        jRadioPreco = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableViagens = new javax.swing.JTable();
@@ -64,11 +65,8 @@ public class ConsultarViagem extends javax.swing.JFrame {
         jMenuCadastrar.setText("Cadastrar");
         jPopupMenu1.add(jMenuCadastrar);
 
-        jMenuEditar.setText("Editar");
-        jPopupMenu1.add(jMenuEditar);
-
-        jMenuRemover.setText("Remover");
-        jPopupMenu1.add(jMenuRemover);
+        jMenuCancelar.setText("Cancelar");
+        jPopupMenu1.add(jMenuCancelar);
 
         jMenuSair.setText("Sair");
         jPopupMenu1.add(jMenuSair);
@@ -101,30 +99,23 @@ public class ConsultarViagem extends javax.swing.JFrame {
         jRadioData.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jRadioData.setText("Data");
 
-        jRadioPreco.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(jRadioPreco);
-        jRadioPreco.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jRadioPreco.setText("Preço");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jRadioPassageiro)
-                        .addGap(27, 27, 27)
+                        .addGap(78, 78, 78)
                         .addComponent(jRadioHorario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioData)
-                        .addGap(50, 50, 50)
-                        .addComponent(jRadioPreco))
+                        .addGap(93, 93, 93)
+                        .addComponent(jRadioData))
                     .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,8 +124,7 @@ public class ConsultarViagem extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioPassageiro)
                     .addComponent(jRadioHorario)
-                    .addComponent(jRadioData)
-                    .addComponent(jRadioPreco))
+                    .addComponent(jRadioData))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,34 +137,34 @@ public class ConsultarViagem extends javax.swing.JFrame {
 
         jTableViagens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Passageiro", "Transporte", "Rota", "Horário", "Preço"
+                "Código", "Passageiro", "Transporte", "Rota", "Horário", "Preço", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTableViagens);
@@ -281,10 +271,7 @@ public class ConsultarViagem extends javax.swing.JFrame {
         return jRadioPassageiro;
     }
 
-    public JRadioButton getjRadioPreco() {
-        return jRadioPreco;
-    }
-
+    
     public JTable getjTableViagens() {
         return jTableViagens;
     }
@@ -297,12 +284,10 @@ public class ConsultarViagem extends javax.swing.JFrame {
         return jMenuCadastrar;
     }
 
-    public JMenuItem getjMenuEditar() {
-        return jMenuEditar;
-    }
+    
 
-    public JMenuItem getjMenuRemover() {
-        return jMenuRemover;
+    public JMenuItem getjMenuCancelar() {
+        return jMenuCancelar;
     }
 
     public JMenuItem getjMenuSair() {
@@ -324,9 +309,8 @@ public class ConsultarViagem extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem jMenuAtualizar;
     private javax.swing.JMenuItem jMenuCadastrar;
-    private javax.swing.JMenuItem jMenuEditar;
+    private javax.swing.JMenuItem jMenuCancelar;
     private javax.swing.JMenuItem jMenuInformacoes;
-    private javax.swing.JMenuItem jMenuRemover;
     private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -335,8 +319,21 @@ public class ConsultarViagem extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioData;
     private javax.swing.JRadioButton jRadioHorario;
     private javax.swing.JRadioButton jRadioPassageiro;
-    private javax.swing.JRadioButton jRadioPreco;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableViagens;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof ControllerConsultarViagem && arg.equals("like")){
+            ((ControllerConsultarViagem)o).limparSimples();
+            ((ControllerConsultarViagem)o).colocarDados(((ControllerConsultarViagem)o).getViagensLike());
+        }else if(o instanceof ControllerConsultarViagem && arg.equals("atualizar")){
+            ((ControllerConsultarViagem)o).limparSimples();
+            ((ControllerConsultarViagem)o).colocarDados();
+            
+        }else if(o instanceof ControllerConsultarViagem && arg.equals("status")){
+            jTableViagens.getModel().setValueAt(((ControllerConsultarViagem)o).getMudarStatus().getStatus(), ((ControllerConsultarViagem)o).getLinha(), 6);
+        }
+    }
 }

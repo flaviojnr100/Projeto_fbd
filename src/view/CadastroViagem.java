@@ -69,13 +69,13 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextAreaAssentos = new javax.swing.JTextArea();
-        jPanel10 = new javax.swing.JPanel();
-        lblHorario = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         lblPrecoFinal = new javax.swing.JLabel();
         lblPrecoVariavel = new javax.swing.JLabel();
         btnFinalizar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        lblHorario = new javax.swing.JLabel();
 
         jLabel9.setText("jLabel9");
 
@@ -148,7 +148,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPreco)
                     .addComponent(lblNomeRota))
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(471, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +164,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 166, 457, 80));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 457, 80));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Transporte:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
@@ -182,9 +182,9 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(comboTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAdicionarTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 56, Short.MAX_VALUE)
-                .addGap(2, 2, 2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdicionarTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 67, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +197,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 254, 457, 90));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 460, 90));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Assento:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
@@ -280,7 +280,33 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 457, 240));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 457, 240));
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor total:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblPrecoFinal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        lblPrecoFinal.setText("Preço final:");
+        jPanel11.add(lblPrecoFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+
+        lblPrecoVariavel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblPrecoVariavel.setText("R$ 0,00");
+        jPanel11.add(lblPrecoVariavel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
+
+        jPanel1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 694, 457, 70));
+
+        btnFinalizar.setBackground(new java.awt.Color(255, 255, 255));
+        btnFinalizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/finalizarhall.png"))); // NOI18N
+        btnFinalizar.setText("Finalizar");
+        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 790, 160, 60));
+
+        btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/cancelar.png"))); // NOI18N
+        btnCancelar.setText("Cancelar");
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 790, 160, 60));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Horário:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
@@ -304,54 +330,11 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 597, 457, -1));
-
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor total:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
-
-        lblPrecoFinal.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        lblPrecoFinal.setText("Preço final:");
-
-        lblPrecoVariavel.setText("preço");
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblPrecoFinal)
-                .addGap(38, 38, 38)
-                .addComponent(lblPrecoVariavel)
-                .addContainerGap(304, Short.MAX_VALUE))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrecoFinal)
-                    .addComponent(lblPrecoVariavel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 694, 457, -1));
-
-        btnFinalizar.setBackground(new java.awt.Color(255, 255, 255));
-        btnFinalizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnFinalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/finalizarhall.png"))); // NOI18N
-        btnFinalizar.setText("Finalizar");
-        jPanel1.add(btnFinalizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 790, 160, 60));
-
-        btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/cancelar.png"))); // NOI18N
-        btnCancelar.setText("Cancelar");
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 790, 160, 60));
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 457, -1));
 
         jScrollPane4.setViewportView(jPanel1);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 480));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 440));
 
         pack();
         setLocationRelativeTo(null);
@@ -542,6 +525,8 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
             ((ControllerCadastroViagem)o).montarAssentos();
             ((ControllerCadastroViagem)o).montarComboRota();
             ((ControllerCadastroViagem)o).montarComboHorario();
+            jTextAreaAssentos.setText("Foram selecionadas:\n");
+            
         }else if(dados[0].equals("concluir")){
             jTextAreaAssentos.setText(((ControllerCadastroViagem)o).getVagasSelecionadas());
             ((ControllerCadastroViagem)o).montarPreco();

@@ -29,5 +29,11 @@ public class BusinessViagem {
     public Viagem buscarId(int id){
         return dao.buscarId(id);
     }
+    public List<Viagem> buscarLike(String texto,String busca){
+        return dao.buscarLike(texto, busca);
+    }
+     public boolean alterarStatus(Viagem viagem){
+         return dao.alterarStatus(viagem);
+     }
     
 }

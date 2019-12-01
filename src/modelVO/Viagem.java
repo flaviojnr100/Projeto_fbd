@@ -17,8 +17,9 @@ public class Viagem {
     private String preco;
     private String data_viagem;
     private String hora_viagem;
+    private String status;
 
-    public Viagem(int id, Passageiro passageiro, Destino destino,Transporte transporte ,String preco,String data_viagem,String hora_viagem) {
+    public Viagem(int id, Passageiro passageiro, Destino destino,Transporte transporte ,String preco,String data_viagem,String hora_viagem,String status) {
         this.id = id;
         this.passageiro = passageiro;
         this.transporte = transporte;
@@ -26,6 +27,7 @@ public class Viagem {
         this.preco = preco;
         this.data_viagem = data_viagem;
         this.hora_viagem = hora_viagem;
+        this.status = status;
     }
     public Viagem(Passageiro passageiro, Destino destino,Transporte transporte ,String preco,String data_viagem,String hora_viagem) {
         this.passageiro = passageiro;
@@ -94,6 +96,14 @@ public class Viagem {
 
     public void setHora_viagem(String hora_viagem) {
         this.hora_viagem = hora_viagem;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
     

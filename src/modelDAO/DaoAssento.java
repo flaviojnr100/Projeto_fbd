@@ -140,14 +140,13 @@ public class DaoAssento {
     public boolean editar(Assento assento,Assento assento_novo){return true;}
     public boolean remover(int numero){return true;}
     
-     public boolean adicionarPassageiroAssento(int id_transporte,int id_assento, int id_passageiro){
+     public boolean adicionarPassageiroAssento(int id_assento, int id_passageiro){
         
         try {
             conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
             statement = conexao.prepareStatement(SQLUtil.Assento.ADICIONAR_PASSAGEIRO_ASSENTO);
             statement.setInt(1, id_passageiro);
-            statement.setInt(2, id_transporte);
-            statement.setInt(3, id_assento);
+            statement.setInt(2, id_assento);
             statement.execute();
             conexao.close();
             return true;

@@ -9,6 +9,7 @@ import java.util.List;
 import modelDAO.DaoTipo_transporte;
 import modelVB.BusinessAcesso;
 import modelVB.BusinessAssento;
+import modelVB.BusinessFinanca;
 import modelVB.BusinessFuncionario;
 import modelVB.BusinessMotorista;
 import modelVB.BusinessPassageiro;
@@ -19,6 +20,7 @@ import modelVB.BusinessViagem;
 import modelVO.Acesso;
 import modelVO.Assento;
 import modelVO.Destino;
+import modelVO.Financa;
 import modelVO.Funcionario;
 import modelVO.Motorista;
 import modelVO.Passageiro;
@@ -40,6 +42,7 @@ public class Fachada implements Ifachada {
     private BusinessAcesso bAcesso;
     private BusinessAssento bAssento;
     private BusinessViagem bViagem;
+    private BusinessFinanca bFinanca;
     private static Fachada instance;
 
     private Fachada() {
@@ -52,6 +55,7 @@ public class Fachada implements Ifachada {
         this.bAcesso = new BusinessAcesso();
         this.bAssento = new BusinessAssento();
         this.bViagem = new BusinessViagem();
+        this.bFinanca = new BusinessFinanca();
     }
     public static Fachada getInstance(){
         if(instance == null){
@@ -96,6 +100,7 @@ public class Fachada implements Ifachada {
     public List<Motorista> buscarLikeNome(String nome,String busca){
         return bMotorista.buscarLikeNome(nome,busca);
     }
+    
    
     //Transporte
     @Override
@@ -176,7 +181,9 @@ public class Fachada implements Ifachada {
     public void mudarStatus(int id,String status){
         bPassageiro.mudarStatus(id, status);
     }
-   
+    public List<Passageiro> buscarLikeBilhete(int nome,String busca){
+        return bPassageiro.buscarLikeBilhete(nome, busca);
+    }
     //Tipo transporte
      
     public boolean salvarTipo_transporte(Tipo_transporte tipo){
@@ -220,7 +227,7 @@ public class Fachada implements Ifachada {
          return bAcesso.buscaLike(nome, sql);
      }
      
-//assento
+    //assento
      public boolean salvar(Assento assento){
          return bAssento.salvar(assento);
      }
@@ -242,8 +249,8 @@ public class Fachada implements Ifachada {
      public int buscarIdTransporteAssento(int id_transporte,int id_assento){
          return bAssento.buscarIdTransporteAssento(id_transporte, id_assento);
      }
-     public boolean adicionarPassageiroAssento(int id_transporte,int id_assento, int id_passageiro){
-         return bAssento.adicionarPassageiroAssento(id_transporte, id_assento, id_passageiro);
+     public boolean adicionarPassageiroAssento(int id_assento, int id_passageiro){
+         return bAssento.adicionarPassageiroAssento(id_assento, id_passageiro);
      }
      public boolean removerPassageiroAssento(int id_transporte,int id_assento){
          return bAssento.removerPassageiroAssento(id_transporte, id_assento);
@@ -259,6 +266,28 @@ public class Fachada implements Ifachada {
      public Viagem buscarIdViagem(int id){
          return bViagem.buscarId(id);
      }
+     public List<Viagem> buscarLikeViagem(String texto,String busca){
+         return bViagem.buscarLike(texto, busca);
+     }
+      public boolean alterarStatus(Viagem viagem){
+          return bViagem.alterarStatus(viagem);
+      }
   
+     //Financa
+     public boolean salvar(Financa financa){
+         return bFinanca.salvar(financa);
+     }
+     public List<Financa> getAllFinanca(){
+         return bFinanca.getAll();
+     }
+     public Financa buscar_data(String data){
+         return bFinanca.buscar_data(data);
+     }
+     public boolean alterar_financa(Financa financa,double valor,String status){
+         return bFinanca.alterar_financa(financa, valor, status);
+     }
+     public List<Financa> buscaLikeFinanca(String texto){
+         return bFinanca.buscaLike(texto);
+     }
      
 }

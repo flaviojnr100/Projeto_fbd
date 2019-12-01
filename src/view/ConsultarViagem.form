@@ -25,14 +25,9 @@
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="jMenuEditar">
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuCancelar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Editar"/>
-          </Properties>
-        </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="jMenuRemover">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Remover"/>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="jMenuSair">
@@ -134,21 +129,19 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jRadioPassageiro" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                               <Component id="jRadioHorario" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                               <Component id="jRadioData" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="jRadioPreco" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="buscarTxt" min="-2" pref="403" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="21" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -160,7 +153,6 @@
                           <Component id="jRadioPassageiro" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jRadioHorario" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jRadioData" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioPreco" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -231,20 +223,6 @@
                 <Property name="text" type="java.lang.String" value="Data"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="jRadioPreco">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup1"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Century Gothic" size="12" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Pre&#xe7;o"/>
-              </Properties>
-            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel3">
@@ -284,13 +262,14 @@
                 <Component class="javax.swing.JTable" name="jTableViagens">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="25">
+                      <Table columnCount="7" rowCount="25">
                         <Column editable="true" title="C&#xf3;digo" type="java.lang.Object"/>
                         <Column editable="true" title="Passageiro" type="java.lang.Object"/>
                         <Column editable="true" title="Transporte" type="java.lang.Object"/>
                         <Column editable="true" title="Rota" type="java.lang.Object"/>
                         <Column editable="true" title="Hor&#xe1;rio" type="java.lang.Object"/>
                         <Column editable="true" title="Pre&#xe7;o" type="java.lang.Object"/>
+                        <Column editable="true" title="Status" type="java.lang.Object"/>
                       </Table>
                     </Property>
                   </Properties>

@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,6 +23,7 @@ import javax.swing.JCheckBox;
 import modelVO.Assento;
 import modelVO.BaseDados;
 import modelVO.Destino;
+import modelVO.Financa;
 import modelVO.Passageiro;
 import modelVO.Transporte;
 import modelVO.Viagem;
@@ -29,6 +31,7 @@ import view.CadastroPassageiro;
 import view.CadastroRota;
 import view.CadastroTransporte;
 import view.CadastroViagem;
+import view.ConsultarViagem;
 import view.Mensagens;
 
 /**
@@ -44,15 +47,18 @@ public class ControllerCadastroViagem extends Observable {
     private List<Assento> assentoL;
     private mudarCombo mudarE = new mudarCombo();
     private int comboMarcado =0;
-    List<JCheckBox> vagas;
+    private List<JCheckBox> vagas;
     List<Integer> id_selecionado;
-    String vagasSelecionadas ="Foram selecionadas:\n";
-    public ControllerCadastroViagem(CadastroViagem tela,Fachada fachada,CadastroPassageiro cPassageiro,CadastroRota cRota,CadastroTransporte cTransporte) {
+    private String vagasSelecionadas ="Foram selecionadas:\n";
+    private double preco = 0;
+    private ConsultarViagem ccViagem;
+    public ControllerCadastroViagem(CadastroViagem tela,Fachada fachada,CadastroPassageiro cPassageiro,CadastroRota cRota,CadastroTransporte cTransporte,ConsultarViagem ccViagem) {
         this.tela = tela;
         this.fachada = fachada;
         this.cPassageiro = cPassageiro;
         this.cRota = cRota;
         this.cTransporte = cTransporte;
+        this.ccViagem = ccViagem;
         
         Control();
     }
@@ -77,10 +83,13 @@ public class ControllerCadastroViagem extends Observable {
             if(e.getSource() == tela.getBtnFinalizar()){
                 Transporte transporte = BaseDados.getTransportes().get(comboMarcado);
                 Passageiro passageiro = fachada.buscarCpfPassageiro(tela.getLblCpf().getText());
-                if(fachada.salvar(new Viagem(passageiro,transporte.getDestino(), transporte, tela.getLblPreco().getText()+"",getDataAtual(),getHorario()))){
+                if(fachada.salvar(new Viagem(passageiro,transporte.getDestino(), transporte, preco+"",getDataAtual(),getHorario()))){
                     ocuparVagas(passageiro, transporte);
+                    fachada.salvar(new Financa(getDataAtual(), preco));
                     BaseDados.CarregarViagem();
                     Mensagens.mensagem("Compra realizado com sucesso!");
+                    tela.getBtnCancelar().doClick();
+                    ccViagem.getjMenuAtualizar().doClick();
                 }else{
                     Mensagens.mensagem("Erro ao realizar a compra!");
                 }
@@ -135,13 +144,16 @@ public class ControllerCadastroViagem extends Observable {
         tela.getLblHorario().setText(horario);
     }
     public void montarPreco(){
-        double preco = Double.parseDouble(tela.getLblPreco().getText());
-        double total = preco * id_selecionado.size();
-        tela.getLblPrecoVariavel().setText(total+"");
+        double preco1 = Double.parseDouble(tela.getLblPreco().getText());
+        double total = preco1 * id_selecionado.size();
+        preco = total;
+        DecimalFormat df = new DecimalFormat("R$ #,##0.00");
+        tela.getLblPrecoVariavel().setText(df.format(total));
     }
     
     public void montarAssentos(){
         tela.getjPanel7().removeAll();
+        
         int id=BaseDados.getTransportes().get(comboMarcado).getId();
         
         assentoL = fachada.buscarLivreVaga(id);
@@ -159,7 +171,7 @@ public class ControllerCadastroViagem extends Observable {
     }
     public void ocuparVagas(Passageiro passageiro,Transporte transporte){
         for(int i:id_selecionado){
-            fachada.adicionarPassageiroAssento(transporte.getId(), i, passageiro.getId());
+            fachada.adicionarPassageiroAssento(i, passageiro.getId());
         }
     }
     public void pegarVagas(){
@@ -171,7 +183,7 @@ public class ControllerCadastroViagem extends Observable {
                 int id_assento = fachada.buscarNumeroId(Integer.parseInt(as[1]));
                 int id_transporte = BaseDados.getTransportes().get(comboMarcado).getId();
                 id_selecionado.add(fachada.buscarIdTransporteAssento(id_transporte, id_assento));
-                vagasSelecionadas+=as[1]+"\n";
+                vagasSelecionadas+="Cadeira nº"+as[1]+"\n";
             }
         }
     }
@@ -238,6 +250,10 @@ public class ControllerCadastroViagem extends Observable {
 
     public String getVagasSelecionadas() {
         return vagasSelecionadas;
+    }
+
+    public void setVagasSelecionadas(String vagasSelecionadas) {
+        this.vagasSelecionadas = vagasSelecionadas;
     }
     
 }

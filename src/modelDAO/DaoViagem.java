@@ -57,7 +57,7 @@ public class DaoViagem {
             result = statement.executeQuery();
             conexao.close();
             while(result.next()){
-                viagens.add(new Viagem(result.getInt(1),passageiroDao.buscarId(result.getInt(2)),destinoDao.buscarId(result.getInt(3)),transporteDao.buscarId(result.getInt(4)),result.getString(5),result.getString(6),result.getString(7)));
+                viagens.add(new Viagem(result.getInt(1), passageiroDao.buscarId(result.getInt(2)), destinoDao.buscarId(result.getInt(3)), transporteDao.buscarId(result.getInt(4)), result.getString(5), result.getString(6), result.getString(7),result.getString(8)));
             }
             return viagens;
         } catch (SQLException ex) {
@@ -76,12 +76,47 @@ public class DaoViagem {
             statement.setInt(1, id);
             result = statement.executeQuery();
             if(result.next()){
-                return new Viagem(result.getInt(1), passageiroDao.buscarId(result.getInt(2)), destinoDao.buscarId(result.getInt(3)), transporteDao.buscarId(result.getInt(4)), result.getString(5), result.getString(6), result.getString(7));
+                return new Viagem(result.getInt(1), passageiroDao.buscarId(result.getInt(2)), destinoDao.buscarId(result.getInt(3)), transporteDao.buscarId(result.getInt(4)), result.getString(5), result.getString(6), result.getString(7),result.getString(8));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoViagem.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public List<Viagem> buscarLike(String texto,String busca){
+         List<Viagem> viagens = new ArrayList<>();
+       
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(busca);
+            statement.setString(1, texto+"%");
+            result = statement.executeQuery();
+            conexao.close();
+            while(result.next()){
+                viagens.add(new Viagem(result.getInt(1), passageiroDao.buscarId(result.getInt(2)), destinoDao.buscarId(result.getInt(3)), transporteDao.buscarId(result.getInt(4)), result.getString(5), result.getString(6), result.getString(7),result.getString(8)));
+            }
+            return viagens;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoViagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return viagens;
+    }
+    public boolean alterarStatus(Viagem viagem){
+        
+        try {
+            conexao =SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Viagem.ALTERAR_STATUS);
+            statement.setString(1, viagem.getStatus());
+            statement.setInt(2, viagem.getId());
+            statement.execute();
+            conexao.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoViagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
    

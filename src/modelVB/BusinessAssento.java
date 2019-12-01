@@ -44,8 +44,8 @@ public class BusinessAssento {
     }
     public boolean editar(Assento assento,Assento assento_novo){return true;}
     public boolean remover(int numero){return true;}
-     public boolean adicionarPassageiroAssento(int id_transporte,int id_assento, int id_passageiro){
-         return dao.adicionarPassageiroAssento(id_transporte, id_assento, id_passageiro);
+     public boolean adicionarPassageiroAssento(int id_assento, int id_passageiro){
+         return dao.adicionarPassageiroAssento(id_assento, id_passageiro);
      }
      public boolean removerPassageiroAssento(int id_transporte,int id_assento){
          return dao.removerPassageiroAssento(id_transporte, id_assento);

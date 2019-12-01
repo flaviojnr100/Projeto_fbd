@@ -449,6 +449,15 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     public JMenuItem getjMenuLogoff() {
         return jMenuLogoff;
     }
+
+    public JMenu getjMenu1() {
+        return jMenu1;
+    }
+
+    public JMenu getjMenu6() {
+        return jMenu6;
+    }
+    
     
     
 
