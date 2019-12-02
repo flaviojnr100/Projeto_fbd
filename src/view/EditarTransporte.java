@@ -5,16 +5,26 @@
  */
 package view;
 
+import Controller.ControllerCadastroMotorista;
+import Controller.ControllerCadastroTipoTransporte;
+import Controller.ControllerCadastroTransporte;
+import Controller.ControllerEditarTransporte;
+import java.awt.Color;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Flavio
  */
-public class EditarTransporte extends javax.swing.JFrame {
+public class EditarTransporte extends javax.swing.JFrame implements Observer{
 
     /**
      * Creates new form CadastroTransporte
@@ -32,26 +42,20 @@ public class EditarTransporte extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listaHorario = new javax.swing.JList<>();
-        jPanel3 = new javax.swing.JPanel();
-        comboRota = new javax.swing.JComboBox<>();
-        btnAdicionarRota = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listaRota = new javax.swing.JList<>();
-        btnEditar = new javax.swing.JButton();
-        btnLimpar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        comboTipo = new javax.swing.JComboBox<>();
-        btnAdicionarTransporte = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        lblAssentos = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        comboMotorista = new javax.swing.JComboBox<>();
-        btnAdicionarMotorista = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblNomeMotorista = new javax.swing.JLabel();
+        lblSobrenomeMotorista = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         placaText = new javax.swing.JFormattedTextField();
         corText = new javax.swing.JTextField();
@@ -60,6 +64,8 @@ public class EditarTransporte extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        jLabel5.setText("jLabel5");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
@@ -67,123 +73,117 @@ public class EditarTransporte extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 3));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Horários:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jComboBox1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, 150, 40));
-
-        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/adicionar.png"))); // NOI18N
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 62, 50));
-
-        listaHorario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jScrollPane1.setViewportView(listaHorario);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 67, 200, 100));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 163, 230, 174));
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rotas:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        comboRota.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jPanel3.add(comboRota, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 220, 40));
-
-        btnAdicionarRota.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAdicionarRota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/adicionar.png"))); // NOI18N
-        jPanel3.add(btnAdicionarRota, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 60, 50));
-
-        listaRota.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jScrollPane2.setViewportView(listaRota);
-
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 290, 90));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 163, 311, 174));
-
-        btnEditar.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salvar.png"))); // NOI18N
-        btnEditar.setText("Editar");
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 133, 60));
-
-        btnLimpar.setBackground(new java.awt.Color(255, 255, 255));
-        btnLimpar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/limpar.png"))); // NOI18N
-        btnLimpar.setText("Limpar");
-        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, 60));
+        btnSalvar.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salvar.png"))); // NOI18N
+        btnSalvar.setText("Salvar");
+        jPanel1.add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, 58));
 
         btnSair.setBackground(new java.awt.Color(255, 255, 255));
         btnSair.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/cancelar.png"))); // NOI18N
         btnSair.setText("Cancelar");
-        jPanel1.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, -1, 60));
+        jPanel1.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 150, -1));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de transporte:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        comboTipo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jPanel4.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 220, 39));
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel4.setText("Nome:");
 
-        btnAdicionarTransporte.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAdicionarTransporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/adicionar.png"))); // NOI18N
-        jPanel4.add(btnAdicionarTransporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 60, 50));
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel6.setText("Numero de assentos:");
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 14, 311, 68));
+        lblNome.setText("jLabel7");
+
+        lblAssentos.setText("jLabel8");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblNome))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblAssentos)))
+                .addContainerGap(123, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblNome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblAssentos))
+                .addGap(0, 12, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 320, 80));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Motorista:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        comboMotorista.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jPanel5.add(comboMotorista, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 18, 220, 40));
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel7.setText("Nome:");
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
-        btnAdicionarMotorista.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAdicionarMotorista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/adicionar.png"))); // NOI18N
-        jPanel5.add(btnAdicionarMotorista, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 60, 50));
+        jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jLabel8.setText("Sobrenome:");
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 88, 311, 69));
+        lblNomeMotorista.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblNomeMotorista.setText("jLabel9");
+        jPanel5.add(lblNomeMotorista, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
+
+        lblSobrenomeMotorista.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblSobrenomeMotorista.setText("jLabel10");
+        jPanel5.add(lblSobrenomeMotorista, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 320, 90));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informações:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 0, 12))); // NOI18N
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         try {
-            placaText.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-####")));
+            placaText.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAA-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel6.add(placaText, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 100, -1));
-        jPanel6.add(corText, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 140, -1));
+        jPanel6.add(placaText, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 100, -1));
+        jPanel6.add(corText, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 100, -1));
 
         try {
             chassiText.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#################")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel6.add(chassiText, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 140, -1));
+        jPanel6.add(chassiText, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 100, -1));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel1.setText("Chassi:");
-        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setText("Cor:");
-        jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel3.setText("Placa:");
-        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 14, 230, 143));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 14, 190, 180));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,16 +193,12 @@ public class EditarTransporte extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,14 +236,11 @@ public class EditarTransporte extends javax.swing.JFrame {
         });
     }
 
-    public JButton getBtnCadastrar() {
-        return btnEditar;
+    public JButton getBtnSalvar() {
+        return btnSalvar;
     }
 
-    public JButton getBtnLimpar() {
-        return btnLimpar;
-    }
-
+   
     public JButton getBtnSair() {
         return btnSair;
     }
@@ -256,14 +249,8 @@ public class EditarTransporte extends javax.swing.JFrame {
         return chassiText;
     }
 
-    public JComboBox<String> getComboMotorista() {
-        return comboMotorista;
-    }
-
-    public JComboBox<String> getComboTipo() {
-        return comboTipo;
-    }
-
+   
+    
     public JTextField getCorText() {
         return corText;
     }
@@ -271,35 +258,80 @@ public class EditarTransporte extends javax.swing.JFrame {
     public JFormattedTextField getPlacaText() {
         return placaText;
     }
+
+        
+
+
+    public JLabel getLblAssentos() {
+        return lblAssentos;
+    }
+
+    public JLabel getLblNome() {
+        return lblNome;
+    }
+
+    public JLabel getLblNomeMotorista() {
+        return lblNomeMotorista;
+    }
+
+    public JLabel getLblSobrenomeMotorista() {
+        return lblSobrenomeMotorista;
+    }
+
+   
+
+   
+
+   
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdicionarMotorista;
-    private javax.swing.JButton btnAdicionarRota;
-    private javax.swing.JButton btnAdicionarTransporte;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSair;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JFormattedTextField chassiText;
-    private javax.swing.JComboBox<String> comboMotorista;
-    private javax.swing.JComboBox<String> comboRota;
-    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JTextField corText;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> listaHorario;
-    private javax.swing.JList<String> listaRota;
+    private javax.swing.JLabel lblAssentos;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNomeMotorista;
+    private javax.swing.JLabel lblSobrenomeMotorista;
     private javax.swing.JFormattedTextField placaText;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+    /*    btnAdicionarHorario.setBackground((Color)arg);
+        btnAdicionarMotorista.setBackground((Color)arg);
+        btnAdicionarRota.setBackground((Color)arg);
+        btnAdicionarTransporte.setBackground((Color)arg);
+        btnCadastrar.setBackground((Color)arg);
+        btnLimpar.setBackground((Color)arg);
+        btnSair.setBackground((Color)arg);
+        jPanel1.setBackground((Color)arg);
+        jPanel2.setBackground((Color)arg);
+        jPanel3.setBackground((Color)arg);
+        jPanel4.setBackground((Color)arg);
+        jPanel5.setBackground((Color)arg);
+        jPanel6.setBackground((Color)arg);
+        comboHorario.setBackground((Color)arg);
+        comboMotorista.setBackground((Color)arg);
+        comboRota.setBackground((Color)arg);
+        comboTipo.setBackground((Color)arg);
+        listaHorario.setBackground((Color)arg);
+        listaRota.setBackground((Color)arg);
+        */
+        
+       
+    }
 }

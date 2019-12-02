@@ -36,8 +36,8 @@ public class BusinessAssento {
     public List<Assento> getAll(){
         return dao.getAll();
     }
-    public List<Assento> buscarLivre(){
-        return dao.buscarLivre();
+    public int buscarLivre(String placa){
+        return dao.buscarLivre(placa);
     }
     public List<Assento> buscarLivreVaga(int id){
         return dao.buscarLivreVaga(id);

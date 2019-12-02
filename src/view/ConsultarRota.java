@@ -44,7 +44,7 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
         jMenuInformacoes = new javax.swing.JMenuItem();
         jMenuCadastrar = new javax.swing.JMenuItem();
         jMenuEditar = new javax.swing.JMenuItem();
-        jMenuRemover = new javax.swing.JMenuItem();
+        jMenuStatus = new javax.swing.JMenuItem();
         jMenuSair = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -68,8 +68,8 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
         jMenuEditar.setText("Editar");
         jPopupMenu1.add(jMenuEditar);
 
-        jMenuRemover.setText("Remover");
-        jPopupMenu1.add(jMenuRemover);
+        jMenuStatus.setText("Mudar status");
+        jPopupMenu1.add(jMenuStatus);
 
         jMenuSair.setText("Sair");
         jPopupMenu1.add(jMenuSair);
@@ -136,34 +136,34 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
 
         jTableRotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Preço"
+                "Código", "Nome", "Preço", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTableRotas);
@@ -284,8 +284,8 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
         return jMenuEditar;
     }
 
-    public JMenuItem getjMenuRemover() {
-        return jMenuRemover;
+    public JMenuItem getjMenuStatus() {
+        return jMenuStatus;
     }
 
     public JMenuItem getjMenuSair() {
@@ -309,8 +309,8 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem jMenuCadastrar;
     private javax.swing.JMenuItem jMenuEditar;
     private javax.swing.JMenuItem jMenuInformacoes;
-    private javax.swing.JMenuItem jMenuRemover;
     private javax.swing.JMenuItem jMenuSair;
+    private javax.swing.JMenuItem jMenuStatus;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

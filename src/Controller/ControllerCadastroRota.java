@@ -8,6 +8,7 @@ package Controller;
 import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 import javax.swing.JOptionPane;
 import modelVO.BaseDados;
 import modelVO.Destino;
@@ -20,7 +21,7 @@ import view.Mensagens;
  *
  * @author Flavio
  */
-public class ControllerCadastroRota {
+public class ControllerCadastroRota extends Observable {
     private CadastroRota tela;
     private Fachada fachada;
     private ConsultarRota ccRota;
@@ -48,7 +49,9 @@ public class ControllerCadastroRota {
                     BaseDados.CarregarRota();
                     tela.getBtnLimpar().doClick();
                     tela.getBtnCancelar().doClick();
-                    BaseDados.CarregarDestino();
+                    BaseDados.CarregarRota();
+                    setChanged();
+                    notifyObservers();
                 }else{
                     Mensagens.mensagem("Erro ao realizar o cadastro!");
                 }

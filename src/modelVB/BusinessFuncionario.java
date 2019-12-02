@@ -56,6 +56,8 @@ public class BusinessFuncionario {
          return dao.autenticar(funcionario);
      }
      
-    
+   public boolean alterarStatus(String cpf,String status){
+       return dao.alterarStatus(cpf, status);
+   }
    
 }

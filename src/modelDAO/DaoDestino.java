@@ -76,7 +76,7 @@ public class DaoDestino {
             result = statement.executeQuery();
              conexao.close();
             if(result.next()){
-                return new Destino(result.getInt(1), result.getString(2), enderecoDao.buscarId(result.getInt(3)), enderecoDao.buscarId(result.getInt(5)), result.getString(4),result.getString(6));
+                return new Destino(result.getInt(1), result.getString(2), enderecoDao.buscarId(result.getInt(3)), enderecoDao.buscarId(result.getInt(5)), result.getString(4),result.getString(6),result.getString(7));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoDestino.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,7 +95,7 @@ public class DaoDestino {
             
             while(result.next()){
                 
-                destinos.add(new Destino(result.getInt(1), result.getString(2), enderecoDao.buscarId(result.getInt(3)), enderecoDao.buscarId(result.getInt(5)), result.getString(4), result.getString(6)));
+                destinos.add(new Destino(result.getInt(1), result.getString(2), enderecoDao.buscarId(result.getInt(3)), enderecoDao.buscarId(result.getInt(5)), result.getString(4), result.getString(6),result.getString(7)));
             }
             conexao.close();
             return destinos;
@@ -116,7 +116,7 @@ public class DaoDestino {
             
             while(result.next()){
                 
-                destinos.add(new Destino(result.getInt(1), result.getString(2), enderecoDao.buscarId(result.getInt(3)), enderecoDao.buscarId(result.getInt(5)), result.getString(4), result.getString(6)));
+                destinos.add(new Destino(result.getInt(1), result.getString(2), enderecoDao.buscarId(result.getInt(3)), enderecoDao.buscarId(result.getInt(5)), result.getString(4), result.getString(6),result.getString(7)));
             }
             conexao.close();
             return destinos;
@@ -165,6 +165,21 @@ public class DaoDestino {
             conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
             statement = conexao.prepareStatement(SQLUtil.Destino.REMOVE_ID);
             statement.setInt(1, id);
+            statement.execute();
+            conexao.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoDestino.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return false;
+   }
+   public boolean alterarStatus(int id,String status){
+       
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Destino.ALTERAR_STATUS);
+            statement.setString(1, status);
+            statement.setInt(2, id);
             statement.execute();
             conexao.close();
             return true;

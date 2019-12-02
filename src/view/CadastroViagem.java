@@ -60,7 +60,6 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         lblPreco = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         comboTransporte = new javax.swing.JComboBox<>();
-        btnAdicionarTransporte = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -171,30 +170,21 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
 
         comboTransporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnAdicionarTransporte.setBackground(new java.awt.Color(255, 255, 255));
-        btnAdicionarTransporte.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAdicionarTransporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/adicionar.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(comboTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdicionarTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 67, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
+                .addComponent(comboTransporte, 0, 432, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(btnAdicionarTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(comboTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 460, 90));
@@ -379,11 +369,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         return btnAdicionarPassageiro;
     }
 
-   
-    public JButton getBtnAdicionarTransporte() {
-        return btnAdicionarTransporte;
-    }
-
+     
     public JButton getBtnCancelar() {
         return btnCancelar;
     }
@@ -452,7 +438,6 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarPassageiro;
-    private javax.swing.JButton btnAdicionarTransporte;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConcluir;
     private javax.swing.JButton btnFinalizar;

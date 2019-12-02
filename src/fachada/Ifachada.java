@@ -22,7 +22,7 @@ public interface Ifachada {
     public boolean verificarExistenciaMotorista(String cpf);
     
      public boolean salvar(Transporte transporte);
-    public boolean editar(Transporte transporte);
+    public boolean editar(Transporte transporte,int id);
     public List<Transporte> getAllTransporte();
     public boolean removerTransporte(int id,String placa);
         

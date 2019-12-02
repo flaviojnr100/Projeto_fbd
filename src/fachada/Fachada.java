@@ -100,6 +100,9 @@ public class Fachada implements Ifachada {
     public List<Motorista> buscarLikeNome(String nome,String busca){
         return bMotorista.buscarLikeNome(nome,busca);
     }
+    public boolean alterarStatusMotorista(String cpf,String status){
+        return bMotorista.alterarStatus(cpf, status);
+    }
     
    
     //Transporte
@@ -110,8 +113,8 @@ public class Fachada implements Ifachada {
     
 
     @Override
-    public boolean editar(Transporte transporte) {
-        return true;
+    public boolean editar(Transporte transporte,int id) {
+        return bTransporte.editar(transporte,id);
     }
 
     @Override
@@ -129,6 +132,12 @@ public class Fachada implements Ifachada {
     }
     public Transporte buscarChassi(String chassi){
         return bTransporte.buscarChassi(chassi);
+    }
+    public Transporte buscarIdTransporte(int id){
+        return bTransporte.buscarId(id);
+    }
+    public boolean alterarStatusTransporte(int id,String status){
+        return bTransporte.alterarStatus(id, status);
     }
     //Funcionario
     public boolean salvar(Funcionario funcionario) {
@@ -158,6 +167,10 @@ public class Fachada implements Ifachada {
     }
      public boolean autenticar(Funcionario funcionario){
          return bFuncionario.autenticar(funcionario);
+     }
+     
+     public boolean alterarStatusFuncionario(String cpf,String status){
+         return bFuncionario.alterarStatus(cpf, status);
      }
     
     //passageiro
@@ -215,6 +228,9 @@ public class Fachada implements Ifachada {
      public List<Destino> buscaLikeDestino(String nome,String busca){
          return bDestino.buscaLike(nome, busca);
      }
+     public boolean alterarStatusDestino(int id,String status){
+         return bDestino.alterarStatus(id, status);
+     }
     
     //acesso
     public boolean salvar(Funcionario funcionario,String horario,String data){
@@ -237,8 +253,8 @@ public class Fachada implements Ifachada {
      public List<Assento> getAllAssento(){
          return bAssento.getAll();
      }
-     public List<Assento> buscarLivre(Transporte transporte){
-         return bAssento.buscarLivre();
+    public int buscarLivre(String placa){
+         return bAssento.buscarLivre(placa);
      }
      public List<Assento> buscarLivreVaga(int id){
          return bAssento.buscarLivreVaga(id);

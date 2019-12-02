@@ -31,12 +31,13 @@ import view.Mensagens;
 public class ControllerCadastroTransporte extends Observable {
     private CadastroTransporte tela;
     private Fachada fachada;
-    private String listaHorario;
-    private String listaRotas;
+    
     private CadastroMotorista cMotorista;
     private CadastroTipoTransporte cTipoTransporte;
     private CadastroRota cRota;
     private mudarCombo mudarE = new mudarCombo();
+    private Motorista [] motoristas;
+    private Destino [] rotas;
 
     public ControllerCadastroTransporte(CadastroTransporte tela, Fachada fachada, CadastroMotorista cMotorista, CadastroTipoTransporte cTipoTransporte, CadastroRota cRota) {
         this.tela = tela;
@@ -61,9 +62,15 @@ public class ControllerCadastroTransporte extends Observable {
     
     public void montarComboMotorista(){
         tela.getComboMotorista().removeAllItems();
-        
+        motoristas = new Motorista[BaseDados.motoristaCountActive()];
+        int i=0;
         for(Motorista m:BaseDados.getMotoristas()){
-            tela.getComboMotorista().addItem(m.getNome()+" "+m.getSobrenome());
+            if(m.getStatus().equals("ATIVO")){
+                tela.getComboMotorista().addItem(m.getNome()+" "+m.getSobrenome());
+                motoristas[i] = m;
+                i++;
+            }
+            
         }
         
     }
@@ -78,9 +85,15 @@ public class ControllerCadastroTransporte extends Observable {
     public void montarComboRota(){
         tela.getComboRota().removeItemListener(new mudarCombo());
         tela.getComboRota().removeAllItems();
-        
-        for(Destino d:BaseDados.getDestinos()){
-            tela.getComboRota().addItem(d.getNome()+", Horario: "+d.getHorario());
+        BaseDados.CarregarRota();
+        rotas = new Destino[BaseDados.rotaCountActive()];
+        int i=0;
+        for(Destino d:BaseDados.getRotas()){
+            if(d.getStatus().equals("ATIVO")){
+                tela.getComboRota().addItem(d.getNome()+", Horario: "+d.getHorario());
+                rotas[i] = d;
+                i++;
+            }
         }
         
         
@@ -91,7 +104,7 @@ public class ControllerCadastroTransporte extends Observable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnCadastrar()){
-                Transporte transporte = new Transporte(tela.getCorText().getText().toUpperCase(), tela.getPlacaText().getText().toUpperCase(), tela.getChassiText().getText().toUpperCase(), getMotoristas().get(tela.getComboMotorista().getSelectedIndex()), getTipos().get(tela.getComboTipo().getSelectedIndex()), fachada.buscarIdDestino(fachada.getAllDestino().get(tela.getComboRota().getSelectedIndex()).getId()));
+                Transporte transporte = new Transporte(tela.getCorText().getText().toUpperCase(), tela.getPlacaText().getText().toUpperCase(), tela.getChassiText().getText().toUpperCase(), motoristas[tela.getComboMotorista().getSelectedIndex()], getTipos().get(tela.getComboTipo().getSelectedIndex()), fachada.buscarIdDestino(rotas[tela.getComboRota().getSelectedIndex()].getId()));
                               
                     if(fachada.salvar(transporte)){
                         Mensagens.mensagem("Cadastrado com sucesso!");
@@ -103,6 +116,7 @@ public class ControllerCadastroTransporte extends Observable {
                         montarComboTipo();
                         habilitarEvento();
                         BaseDados.CarregarTransporte();
+                        
                 
                 }else{
                     if(tela.getComboMotorista().getSelectedItem().equals("Vazio")){
@@ -152,16 +166,19 @@ public class ControllerCadastroTransporte extends Observable {
     public List<Tipo_transporte> getTipos() {
         return fachada.getAllTipoTransporte();
     }
+    public void mudarLista(){
+        Destino destino = BaseDados.getRotas().get(tela.getComboRota().getSelectedIndex());
+        String texto = "Nome: "+destino.getNome()+"\nCidade de partida: "+destino.getPartida().getCidade()+"\nCidade de destino: "+destino.getDestino().getCidade()+"\nHorario: "+destino.getHorario()+"\nPreço: "+destino.getPreco();
+        setChanged();
+        notifyObservers(texto);
+    }
     
     private class mudarCombo implements ItemListener{
 
         @Override
         public void itemStateChanged(ItemEvent e) {
             if(e.getSource() == tela.getComboRota()){
-                Destino destino = BaseDados.getDestinos().get(tela.getComboRota().getSelectedIndex());
-                String texto = "Nome: "+destino.getNome()+"\nCidade de partida: "+destino.getPartida().getCidade()+"\nCidade de destino: "+destino.getDestino().getCidade()+"\nHorario: "+destino.getHorario()+"\nPreço: "+destino.getPreco();
-                setChanged();
-                notifyObservers(texto);
+                mudarLista();
               
                 
                     

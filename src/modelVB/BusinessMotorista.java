@@ -69,4 +69,7 @@ public class BusinessMotorista {
     public List<Motorista> buscarLikeNome(String nome,String busca){
         return dao.buscarLike(nome,busca);
     }
+    public boolean alterarStatus(String cpf,String status){
+        return dao.alterarStatus(cpf, status);
+    }
 }

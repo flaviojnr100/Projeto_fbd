@@ -40,7 +40,6 @@ public class EditarPassageiro extends javax.swing.JFrame {
         sobrenomeTxt = new javax.swing.JTextField();
         cpfTxt = new javax.swing.JFormattedTextField();
         btnEditar = new javax.swing.JButton();
-        btnLimpar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -109,19 +108,13 @@ public class EditarPassageiro extends javax.swing.JFrame {
         btnEditar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salvar.png"))); // NOI18N
         btnEditar.setText("Editar");
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 130, 60));
-
-        btnLimpar.setBackground(new java.awt.Color(255, 255, 255));
-        btnLimpar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/limpar.png"))); // NOI18N
-        btnLimpar.setText("Limpar");
-        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 130, 60));
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 130, 60));
 
         btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 150, 60));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 150, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,10 +177,7 @@ public class EditarPassageiro extends javax.swing.JFrame {
         return btnEditar;
     }
 
-    public JButton getBtnLimpar() {
-        return btnLimpar;
-    }
-
+    
     public JFormattedTextField getCpfTxt() {
         return cpfTxt;
     }
@@ -204,7 +194,6 @@ public class EditarPassageiro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnLimpar;
     private javax.swing.JFormattedTextField cpfTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

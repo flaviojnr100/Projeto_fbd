@@ -56,7 +56,7 @@ public class ControllerConsultarMotorista extends Observable {
         tela.getjMenuAtualizar().addActionListener(new CaixaMenu());
         tela.getjMenuInformacoes().addActionListener(new CaixaMenu());
         tela.getjMenuSalvar().addActionListener(new CaixaMenu());
-        tela.getjMenuRemover().addActionListener(new CaixaMenu());
+        tela.getjMenuStatus().addActionListener(new CaixaMenu());
         tela.getjMenuSair().addActionListener(new CaixaMenu());
         tela.getjMenuEditar().addActionListener(new CaixaMenu());
         tela.getBuscaTxt().addKeyListener(new LerDados());
@@ -134,13 +134,13 @@ public class ControllerConsultarMotorista extends Observable {
                 if(!tela.getjTableMotorista().getModel().getValueAt(tela.getjTableMotorista().getSelectedRow(), 0).equals("")){
                     tela.getjMenuEditar().setVisible(true);
                     tela.getjMenuInformacoes().setVisible(true);
-                    tela.getjMenuRemover().setVisible(true);
+                    tela.getjMenuStatus().setVisible(true);
                     
                     tela.getjPopupMenu1().show(tela.getjTableMotorista(), e.getX(), e.getY());
                 }else{
                     tela.getjMenuEditar().setVisible(false);
                     tela.getjMenuInformacoes().setVisible(false);
-                    tela.getjMenuRemover().setVisible(false);
+                    tela.getjMenuStatus().setVisible(false);
                     tela.getjPopupMenu1().show(tela.getjTableMotorista(), e.getX(), e.getY());
                 }
                 }catch(Exception e1){
@@ -180,16 +180,24 @@ public class ControllerConsultarMotorista extends Observable {
                 edMotorista.getTela().getCnhTxt().setText(edMotorista.getEditarMotorista().getCnh());
                 edMotorista.getTela().setVisible(true);
             }
-            if(e.getSource() == tela.getjMenuRemover()){
-                if(Mensagens.mensagemConfirmacao("Deseja remover esse registro?")){
-                fachada.removerMotorista(tela.getjTableMotorista().getModel().getValueAt(tela.getjTableMotorista().getSelectedRow(), 4).toString());
+            if(e.getSource() == tela.getjMenuStatus()){
+                if(Mensagens.mensagemConfirmacao("Deseja mudar o status desse registro?")){
+                    String st = "ATIVO";
+                    if(tela.getjTableMotorista().getModel().getValueAt(tela.getjTableMotorista().getSelectedRow(), 7).equals("ATIVO")){
+                        st="CANCELADO";
+                    }else{
+                        st="ATIVO";
+                    }
+                if(!fachada.alterarStatusMotorista((String)tela.getjTableMotorista().getModel().getValueAt(tela.getjTableMotorista().getSelectedRow(), 4), st)){
+                    Mensagens.mensagem("Erro ao mudar status!");
+                }else{
                 LimparDadosSimples();
                 ColocarDados();
                 BaseDados.CarregarMotorista();
                 setChanged();
                 notifyObservers();
                 }
-                
+                }
                
             }
             if(e.getSource() == tela.getjMenuSair()){
@@ -210,6 +218,7 @@ public class ControllerConsultarMotorista extends Observable {
                         tela.getjTableMotorista().getModel().setValueAt(BaseDados.getMotoristas().get(i).getCpf(), i, 4);
                         tela.getjTableMotorista().getModel().setValueAt(BaseDados.getMotoristas().get(i).getData_nascimento(), i, 5);
                         tela.getjTableMotorista().getModel().setValueAt(BaseDados.getMotoristas().get(i).getCnh(), i, 6);
+                        tela.getjTableMotorista().getModel().setValueAt(BaseDados.getMotoristas().get(i).getStatus(), i, 7);
                                            
                 
                 }
@@ -229,7 +238,7 @@ public class ControllerConsultarMotorista extends Observable {
                         tela.getjTableMotorista().getModel().setValueAt(motoristas.get(i).getCpf(), i, 4);
                         tela.getjTableMotorista().getModel().setValueAt(motoristas.get(i).getData_nascimento(), i, 5);
                         tela.getjTableMotorista().getModel().setValueAt(motoristas.get(i).getCnh(), i, 6);
-                                           
+                        tela.getjTableMotorista().getModel().setValueAt(motoristas.get(i).getStatus(), i, 7);                   
                 
                 }
            
@@ -239,7 +248,7 @@ public class ControllerConsultarMotorista extends Observable {
          
          
          for(int i=0;i<BaseDados.getMotoristas().size()+1;i++){
-             for(int j=0;j<7;j++){
+             for(int j=0;j<8;j++){
                  tela.getjTableMotorista().getModel().setValueAt("", i, j);
              }
                          
@@ -256,7 +265,7 @@ public class ControllerConsultarMotorista extends Observable {
          
          
          for(int i=0;i<tela.getjTableMotorista().getRowCount();i++){
-             for(int j=0;j<7;j++){
+             for(int j=0;j<8;j++){
                  tela.getjTableMotorista().getModel().setValueAt("", i, j);
              }
                          

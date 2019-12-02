@@ -31,7 +31,6 @@ public class ControllerEditarMotorista extends Observable {
     }
     private void Control(){
         tela.getBtnEditar().addActionListener(new Botoes());
-        tela.getBtnLimpar().addActionListener(new Botoes());
         tela.getBtnCancelar().addActionListener(new Botoes());
     }
     private class Botoes implements ActionListener{
@@ -54,15 +53,7 @@ public class ControllerEditarMotorista extends Observable {
             if(tela.getBtnCancelar() == e.getSource()){
                 tela.setVisible(false);
             }
-            if(tela.getBtnLimpar() == e.getSource()){
-                tela.getNomeTxt().setText("");
-                tela.getSobrenomeTxt().setText("");
-                tela.getRgTxt().setText("");
-                tela.getCpfTxt().setText("");
-                tela.getDataTxt().setText("");
-                tela.getCnhTxt().setText("");
-                tela.getNomeTxt().requestFocus();
-            }
+            
         }
     
     }

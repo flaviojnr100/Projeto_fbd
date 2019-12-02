@@ -54,7 +54,7 @@ public class ControllerConsultarRota extends Observable {
         tela.getjMenuInformacoes().addActionListener(new Caixa());
         tela.getjMenuCadastrar().addActionListener(new Caixa());
         tela.getjMenuEditar().addActionListener(new Caixa());
-        tela.getjMenuRemover().addActionListener(new Caixa());
+        tela.getjMenuStatus().addActionListener(new Caixa());
         tela.getjMenuSair().addActionListener(new Caixa());
         
         tela.getBtnBuscar().addActionListener(new Caixa());
@@ -96,6 +96,7 @@ public class ControllerConsultarRota extends Observable {
             tela.getjTableRotas().getModel().setValueAt(BaseDados.getRotas().get(i).getId(), i, 0);
             tela.getjTableRotas().getModel().setValueAt(BaseDados.getRotas().get(i).getNome(), i, 1);
             tela.getjTableRotas().getModel().setValueAt(BaseDados.getRotas().get(i).getPreco(), i, 2);
+            tela.getjTableRotas().getModel().setValueAt(BaseDados.getRotas().get(i).getStatus(), i, 3);
             
         }
     }
@@ -105,6 +106,7 @@ public class ControllerConsultarRota extends Observable {
             tela.getjTableRotas().getModel().setValueAt(rotas.get(i).getId(), i, 0);
             tela.getjTableRotas().getModel().setValueAt(rotas.get(i).getNome(), i, 1);
             tela.getjTableRotas().getModel().setValueAt(rotas.get(i).getPreco(), i, 2);
+            tela.getjTableRotas().getModel().setValueAt(rotas.get(i).getStatus(), i, 3);
             
         }
     }
@@ -113,7 +115,7 @@ public class ControllerConsultarRota extends Observable {
         
         
         for(int i=0;i<tela.getjTableRotas().getRowCount();i++){
-            for(int j=0;j<3;j++){
+            for(int j=0;j<4;j++){
                 tela.getjTableRotas().getModel().setValueAt("", i, j);
             }
         }
@@ -127,7 +129,7 @@ public class ControllerConsultarRota extends Observable {
         
         
         for(int i=0;i<BaseDados.getRotas().size()+1;i++){
-            for(int j=0;j<3;j++){
+            for(int j=0;j<4;j++){
                 tela.getjTableRotas().getModel().setValueAt("", i, j);
             }
         }
@@ -146,12 +148,12 @@ public class ControllerConsultarRota extends Observable {
                 try{
                 if(!tela.getjTableRotas().getModel().getValueAt(tela.getjTableRotas().getSelectedRow(), 0).equals("")){
                     tela.getjMenuEditar().setVisible(true);
-                    tela.getjMenuRemover().setVisible(true);
+                    tela.getjMenuStatus().setVisible(true);
                     tela.getjMenuInformacoes().setVisible(true);
                     tela.getjPopupMenu1().show(tela.getjTableRotas(), e.getX(), e.getY());
                 }else{
                     tela.getjMenuEditar().setVisible(false);
-                    tela.getjMenuRemover().setVisible(false);
+                    tela.getjMenuStatus().setVisible(false);
                     tela.getjMenuInformacoes().setVisible(false);
                     tela.getjPopupMenu1().show(tela.getjTableRotas(), e.getX(), e.getY());
                 }
@@ -210,15 +212,18 @@ public class ControllerConsultarRota extends Observable {
                 
                 eRota.setVisible(true);
             }
-            if(e.getSource() == tela.getjMenuRemover()){
-                if(Mensagens.mensagemConfirmacao("Deseja remover o registro?")){
-                    if(fachada.removerId((int)tela.getjTableRotas().getModel().getValueAt(tela.getjTableRotas().getSelectedRow(), 0))){
-                        Mensagens.mensagem("Registro removido com sucesso!");
-                        BaseDados.CarregarRota();
-                        tela.getjMenuAtualizar().doClick();
-                    }else{
-                        Mensagens.mensagem("Erro ao remover o registro!");
-                    }
+            if(e.getSource() == tela.getjMenuStatus()){
+                if(Mensagens.mensagemConfirmacao("Deseja mudar o status desee registro?")){
+                  String st="ATIVO";
+                  if(tela.getjTableRotas().getModel().getValueAt(tela.getjTableRotas().getSelectedRow(), 3).equals("ATIVO")){
+                      st="DESATIVADO";
+                      fachada.alterarStatusDestino((int)tela.getjTableRotas().getModel().getValueAt(tela.getjTableRotas().getSelectedRow(), 0), st);
+                  }else{
+                      fachada.alterarStatusDestino((int)tela.getjTableRotas().getModel().getValueAt(tela.getjTableRotas().getSelectedRow(), 0), st);
+                  }
+                  BaseDados.CarregarRota();
+                  setChanged();
+                  notifyObservers("atualizar");
                 }
             }
             if(e.getSource() == tela.getjMenuSair()){

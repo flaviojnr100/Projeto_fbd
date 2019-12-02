@@ -136,26 +136,16 @@ public class ControllerConsultarPassageiro extends Observable {
                 ePassageiro.getTela().setVisible(true);
             }
             if(e.getSource() == tela.getjMenuMstatus()){
-                /*if(Mensagens.mensagemConfirmacao("Deseja remover esse registro?")){
-                    if(fachada.removerPassageiro((String) tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 3))){
-                        Mensagens.mensagem("Removido com sucesso!");
-                        BaseDados.CarregarPassageiro();
-                        setChanged();
-                        notifyObservers(tela.getjMenuMstatus());
-                    }else{
-                        Mensagens.mensagem("Erro ao tentar remover um registro!");
+                if(Mensagens.mensagemConfirmacao("Deseja alterar o status desse registro?")){
+                    if(tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 4).equals("ATIVO")){
+                        fachada.mudarStatus((int)tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 0), SQLUtil.Passageiro.DESATIVAR_PASSAGEIRO);
+                    }else if(tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 4).equals("DESATIVADO")){
+                        fachada.mudarStatus((int)tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 0), SQLUtil.Passageiro.ATIVAR_PASSAGEIRO);
                     }
-                }*/
-                if(tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 4).equals("ATIVO")){
-                    fachada.mudarStatus((int)tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 0), SQLUtil.Passageiro.DESATIVAR_PASSAGEIRO);
-                }else if(tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 4).equals("DESATIVADO")){
-                    fachada.mudarStatus((int)tela.getjTablePassageiro().getModel().getValueAt(tela.getjTablePassageiro().getSelectedRow(), 0), SQLUtil.Passageiro.ATIVAR_PASSAGEIRO);
-                }
-                Mensagens.mensagem("Alterado com sucesso com sucesso!");
                         BaseDados.CarregarPassageiro();
                         setChanged();
                         notifyObservers(tela.getjMenuMstatus());
-                
+                }
             }
             if(e.getSource() == tela.getjMenuSair()){
                 tela.setVisible(false);

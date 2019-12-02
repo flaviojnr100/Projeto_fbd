@@ -72,7 +72,7 @@ public class CadastroTipoTransporte extends javax.swing.JFrame implements Observ
         btnSair.setText("Cancelar");
         jPanel1.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 160));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 150));
 
         pack();
         setLocationRelativeTo(null);

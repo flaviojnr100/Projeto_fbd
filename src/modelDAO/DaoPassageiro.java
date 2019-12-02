@@ -34,7 +34,6 @@ public class DaoPassageiro {
             statement.setString(1, passageiro.getNome());
             statement.setString(2, passageiro.getSobrenome());
             statement.setString(3, passageiro.getCpf());
-            statement.setString(4, passageiro.getStatus());
             statement.execute();
             conexao.close();
             return true;

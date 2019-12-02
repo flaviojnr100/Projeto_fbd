@@ -16,13 +16,15 @@ public class Destino{
     private Endereco destino;
     private String horario;
     private String preco;
-    public Destino(int id, String nome, Endereco partida, Endereco destino,String horario,String preco) {
+    private String status;
+    public Destino(int id, String nome, Endereco partida, Endereco destino,String horario,String preco,String status) {
         this.id = id;
         this.nome = nome;
         this.partida = partida;
         this.destino = destino;
         this.horario = horario;
         this.preco = preco;
+        this.status = status;
     }
 
     public Destino(String nome, Endereco partida, Endereco destino,String horario,String preco) {
@@ -93,6 +95,14 @@ public class Destino{
 
     public void setPreco(String preco) {
         this.preco = preco;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
     

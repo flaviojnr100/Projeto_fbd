@@ -215,6 +215,7 @@ public class ControllerConsultarViagem extends Observable{
                     mudarStatus = viagem;
                     linha = tela.getjTableViagens().getSelectedRow();
                     BaseDados.CarregarViagem();
+                    BaseDados.CarregarFinanca();
                     setChanged();
                     notifyObservers("status");
                 }

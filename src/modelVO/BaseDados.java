@@ -15,12 +15,12 @@ import java.util.List;
 public class BaseDados {
     private static List<Transporte> transportes;
     private static List<Tipo_transporte> tipoTransportes;
-    private static List<Destino> destinos;
     private static List<Motorista> motoristas;
     private static List<Passageiro> passageiros;
     private static List<Funcionario> funcionarios;
     private static List<Destino> rotas;
     private static List<Viagem> viagens;
+    private static List<Financa> financas;
     
     public static void CarregarTransporte(){
         transportes = Fachada.getInstance().getAllTransporte();
@@ -32,9 +32,7 @@ public class BaseDados {
     public static List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
-    public static void CarregarDestino(){
-        destinos = Fachada.getInstance().getAllDestino();
-    }
+    
     public static void CarregarViagem(){
         viagens = Fachada.getInstance().getAllViagem();
     }
@@ -48,6 +46,12 @@ public class BaseDados {
     public static void CarregarPassageiro(){
         passageiros = Fachada.getInstance().getAllPassageiro();
     }
+    public static void CarregarFinanca(){
+        financas = Fachada.getInstance().getAllFinanca();
+    }
+    public static void CarregarRota(){
+        rotas = Fachada.getInstance().getAllDestino();
+    }
     public static List<Transporte> getTransportes() {
         return transportes;
     }
@@ -56,10 +60,7 @@ public class BaseDados {
         return tipoTransportes;
     }
 
-    public static List<Destino> getDestinos() {
-        return destinos;
-    }
-
+   
     public static List<Motorista> getMotoristas() {
         return motoristas;
     }
@@ -71,12 +72,42 @@ public class BaseDados {
     public static List<Destino> getRotas() {
         return rotas;
     }
-    public static void CarregarRota(){
-        rotas = Fachada.getInstance().getAllDestino();
-    }
+   
 
     public static List<Viagem> getViagens() {
         return viagens;
+    }
+
+    public static List<Financa> getFinancas() {
+        return financas;
+    }
+    
+    public static int passageiroCountActive(){
+        int count=0;
+        for(Passageiro p:passageiros){
+            if(p.getStatus().equals("ATIVO")){
+                count++;
+            }
+        }
+        return count;
+    }
+    public static int motoristaCountActive(){
+        int count=0;
+        for(Motorista m:motoristas){
+            if(m.getStatus().equals("ATIVO")){
+                count++;
+            }
+        }
+        return count;
+    }
+    public static int rotaCountActive(){
+        int count=0;
+        for(Destino d:rotas){
+            if(d.getStatus().equals("ATIVO")){
+                count++;
+            }
+        }
+        return count;
     }
     
 }

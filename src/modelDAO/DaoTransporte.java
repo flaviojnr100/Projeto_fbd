@@ -5,6 +5,7 @@
  */
 package modelDAO;
 
+import fachada.Fachada;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,7 +91,7 @@ public class DaoTransporte {
         return -1;
     }
     
-    public boolean editar(Transporte transporte){return true;}
+    
     public Transporte buscarPlaca(String placa){
         Transporte transporte = null;
         return transporte;
@@ -157,7 +158,7 @@ public class DaoTransporte {
             result = statement.executeQuery();
             conexao.close();
             while(result.next()){
-                transportes.add(new Transporte(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), motoristaDao.buscarId(result.getInt(5)), tipoDao.buscarId(result.getInt(6)), destinoDao.buscarId(result.getInt(7))));
+                transportes.add(new Transporte(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), motoristaDao.buscarId(result.getInt(5)), tipoDao.buscarId(result.getInt(6)), destinoDao.buscarId(result.getInt(7)),result.getString(8)));
             }
             return transportes;
         } catch (SQLException ex) {
@@ -191,7 +192,7 @@ public class DaoTransporte {
             conexao.close();
             
             while(result.next()){
-                transportes.add(new Transporte(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), motoristaDao.buscarId(result.getInt(5)), tipoDao.buscarId(result.getInt(6)), destinoDao.buscarId(result.getInt(7))));
+                transportes.add(new Transporte(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), motoristaDao.buscarId(result.getInt(5)), tipoDao.buscarId(result.getInt(6)), destinoDao.buscarId(result.getInt(7)),result.getString(8)));
             }
             
         } catch (SQLException ex) {
@@ -225,6 +226,39 @@ public class DaoTransporte {
         for(Integer id:assentos){
             adicionarVeiculo_assento(transporte, id);
         }
+    }
+    public boolean editar(Transporte transporte,int id){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Transporte.EDITAR);
+            statement.setString(1, transporte.getCor());
+            statement.setString(3, transporte.getChassi());
+            statement.setString(2, transporte.getPlaca());
+            
+            statement.setInt(4, id);
+            statement.execute();
+            conexao.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public boolean alterarStatus(int id,String status){
+        conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+        try {
+            statement = conexao.prepareStatement(SQLUtil.Transporte.ALTERAR_STATUS);
+            statement.setString(1, status);
+            statement.setInt(2, id);
+            statement.execute();
+            conexao.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
     

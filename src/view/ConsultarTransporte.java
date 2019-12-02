@@ -42,8 +42,8 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
         menuAtualizar = new javax.swing.JMenuItem();
         jMenuInformacoes = new javax.swing.JMenuItem();
         menuCadastrar = new javax.swing.JMenuItem();
-        menuExcluir = new javax.swing.JMenuItem();
         menuEditar = new javax.swing.JMenuItem();
+        menuStatus = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenuItem();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
@@ -66,11 +66,11 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
         menuCadastrar.setText("Cadastrar");
         jPopupMenu1.add(menuCadastrar);
 
-        menuExcluir.setText("Excluir");
-        jPopupMenu1.add(menuExcluir);
-
         menuEditar.setText("Editar");
         jPopupMenu1.add(menuEditar);
+
+        menuStatus.setText("Mudar status");
+        jPopupMenu1.add(menuStatus);
 
         menuSair.setText("Sair");
         jPopupMenu1.add(menuSair);
@@ -87,46 +87,36 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
         jTableTransporte.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTableTransporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Cor", "Placa", "Chassi", "Motorista", "Tipo", "Rota"
+                "Código", "Cor", "Placa", "Chassi", "Motorista", "Tipo", "Rota", "Status"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jTableTransporte.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(jTableTransporte);
 
@@ -304,8 +294,8 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
         return menuCadastrar;
     }
 
-    public JMenuItem getMenuExcluir() {
-        return menuExcluir;
+    public JMenuItem getMenuStatus() {
+        return menuStatus;
     }
 
     public JMenuItem getMenuSair() {
@@ -342,8 +332,8 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
     private javax.swing.JMenuItem menuAtualizar;
     private javax.swing.JMenuItem menuCadastrar;
     private javax.swing.JMenuItem menuEditar;
-    private javax.swing.JMenuItem menuExcluir;
     private javax.swing.JMenuItem menuSair;
+    private javax.swing.JMenuItem menuStatus;
     // End of variables declaration//GEN-END:variables
 
     @Override

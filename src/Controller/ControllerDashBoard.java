@@ -5,9 +5,19 @@
  */
 package Controller;
 
+import fachada.Fachada;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import modelVO.BaseDados;
+import modelVO.Transporte;
 import view.CadastroFuncionario;
 import view.CadastroMotorista;
 import view.CadastroPassageiro;
@@ -22,15 +32,17 @@ import view.ConsultarRota;
 import view.ConsultarTransporte;
 import view.ConsultarViagem;
 import view.DashBoard;
+import view.InformacaoAtualVeiculo;
 import view.Mensagens;
 import view.TelaLogin;
 import view.TelaPersonalizar;
+import view.Veiculo;
 
 /**
  *
  * @author Flavio
  */
-public class ControllerDashBoard {
+public class ControllerDashBoard extends Observable {
     private DashBoard principal;
     private CadastroFuncionario cFuncionario;
     private ConsultarFuncionario ccFuncionario;
@@ -58,7 +70,10 @@ public class ControllerDashBoard {
     private ControllerConsultarViagem ccccViagem;
     private ConsultarFinança ccFinanca;
     private ControllerConsultaFinanca cccFinanca;
-    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo,ControllerControleAcesso ccAcesso,TelaLogin tLogin,ControllerConsultarRota cccRota,ControllerCadastroViagem cccViagem,ControllerConsultarViagem ccccViagem,ConsultarFinança ccFinanca,ControllerConsultaFinanca cccFinanca) {
+    private List<Veiculo> veiculos;
+    private InformacaoAtualVeiculo iaVeiculo;
+    
+    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo,ControllerControleAcesso ccAcesso,TelaLogin tLogin,ControllerConsultarRota cccRota,ControllerCadastroViagem cccViagem,ControllerConsultarViagem ccccViagem,ConsultarFinança ccFinanca,ControllerConsultaFinanca cccFinanca,InformacaoAtualVeiculo iaVeiculo) {
         this.principal = principal;
         this.cFuncionario = cFuncionario;
         this.ccFuncionario = ccFuncionario;
@@ -86,6 +101,8 @@ public class ControllerDashBoard {
         this.ccccViagem = ccccViagem;
         this.ccFinanca = ccFinanca;
         this.cccFinanca = cccFinanca;
+        this.iaVeiculo = iaVeiculo;
+        montarFundoPrincipal();
         Control();
     }
     
@@ -124,6 +141,31 @@ public class ControllerDashBoard {
         principal.getBtnConsultarPassageiros().addActionListener(new Botoes());
         
         
+        iaVeiculo.getBtnOk().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                iaVeiculo.setVisible(false);
+            }
+        });
+        
+        principal.getFundoPrincipal().addMouseListener(new Caixa());
+        
+        principal.getjMenuAtualizar().addActionListener(new Caixa());
+        principal.getjMenuCadastrarPassageiro().addActionListener(new Caixa());
+        principal.getjMenuConsultarPassageiro().addActionListener(new Caixa());
+        principal.getjMenuCadastroFuncionario().addActionListener(new Caixa());
+        principal.getjMenuConsultarFuincionario().addActionListener(new Caixa());
+        principal.getjMenuCadastroMotorista().addActionListener(new Caixa());
+        principal.getjMenuConsultarMotorista().addActionListener(new Caixa());
+        principal.getjMenuCadastroVeiculo().addActionListener(new Caixa());
+        principal.getjMenuConsultaVeiculo().addActionListener(new Caixa());
+        principal.getjMenuCadastroRota().addActionListener(new Caixa());
+        principal.getjMenuConsultaRota().addActionListener(new Caixa());
+        principal.getjMenuCadastroViagem().addActionListener(new Caixa());
+        principal.getjMenuConsultaViagem().addActionListener(new Caixa());
+        principal.getjMenuFinanceiro().addActionListener(new Caixa());
+        principal.getjMenuSair().addActionListener(new Caixa());
+        principal.getjMenuLoggof1().addActionListener(new Caixa());
         
         
         
@@ -139,9 +181,11 @@ public class ControllerDashBoard {
                 cccViagem.montarComboRota();
                 cccViagem.montarComboTransporte();
                 cccViagem.getTela().getComboPassageiro().setSelectedIndex(0);
-                cccViagem.getTela().getLblNome().setText(cccViagem.getFachada().getAllPassageiro().get(0).getNome());
-                cccViagem.getTela().getLblSobrenome().setText(cccViagem.getFachada().getAllPassageiro().get(0).getSobrenome());
-                cccViagem.getTela().getLblCpf().setText(cccViagem.getFachada().getAllPassageiro().get(0).getCpf());
+                if(BaseDados.passageiroCountActive()>0){
+                    cccViagem.getTela().getLblNome().setText(cccViagem.getPassageiros()[0].getNome());
+                    cccViagem.getTela().getLblSobrenome().setText(cccViagem.getPassageiros()[0].getSobrenome());
+                    cccViagem.getTela().getLblCpf().setText(cccViagem.getPassageiros()[0].getCpf());
+                }
                 cccViagem.setComboMarcado(0);
                 cccViagem.montarAssentos();
                 cccViagem.habilitarEvento();
@@ -168,6 +212,146 @@ public class ControllerDashBoard {
         }
         
     
+    }
+    public void montarFundoPrincipal(){
+        principal.getFundoPrincipal().setVisible(false);
+        principal.getFundoPrincipal().removeAll();
+        veiculos = new ArrayList<>();
+        int pX=10,pY=10,x=0;
+        
+        for(int i=0;i<BaseDados.getTransportes().size();i++){
+            Veiculo v = new Veiculo();
+            v.getInformacao().setText(BaseDados.getTransportes().get(i).getPlaca());
+            if(BaseDados.getTransportes().get(i).getStatus().equals("DESATIVADO")){
+                v.getStatus().setIcon(new ImageIcon(getClass().getClassLoader().getResource("resource/off.png")));
+            }else{
+                v.getStatus().setIcon(new ImageIcon(getClass().getClassLoader().getResource("resource/on.png")));
+            }
+            v.getInformacao().addActionListener(new FundoPrincipal());
+            v.setLocation(pX, pY);
+            veiculos.add(v);
+            principal.getFundoPrincipal().add(veiculos.get(i));
+            pX+=5+v.getWidth();
+            if(x==5){
+                pX=10;
+                pY+=v.getHeight()+5;
+                x=0;
+            }else{
+                x++;
+            }
+        }
+        principal.getFundoPrincipal().setVisible(true);
+        
+    }
+    private class FundoPrincipal implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int i=0;
+            for(Veiculo v:veiculos){
+                if(e.getSource() == v.getInformacao()){
+                    Transporte t = BaseDados.getTransportes().get(i);
+                    iaVeiculo.getLblPlaca().setText(t.getPlaca());
+                    iaVeiculo.getLblTipo().setText(t.getTipo().getNome());
+                    iaVeiculo.getLblCor().setText(t.getCor());
+                    iaVeiculo.getLblChassi().setText(t.getChassi());
+                    iaVeiculo.getLblAssentosTotal().setText(t.getTipo().getAssentos()+"");
+                    iaVeiculo.getLblNomeMotorista().setText(t.getMotorista().getNome());
+                    iaVeiculo.getLblSobrenomeMotorista().setText(t.getMotorista().getSobrenome());
+                    iaVeiculo.getLblCnh().setText(t.getMotorista().getCnh());
+                    iaVeiculo.getLblNomeViagem().setText(t.getDestino().getNome());
+                    iaVeiculo.getLblHorario().setText(t.getDestino().getHorario());
+                    iaVeiculo.getLblPreco().setText(t.getDestino().getPreco());
+                    
+                    int vagas = Fachada.getInstance().buscarLivre(t.getPlaca());
+                    iaVeiculo.getLblAssentosVazio().setText(vagas+"");
+                    iaVeiculo.setVisible(true);
+                    break;
+                            
+                }
+                i++;
+            }
+            
+        }
+
+        
+    }
+    private class Caixa implements MouseListener,ActionListener{
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(SwingUtilities.isRightMouseButton(e)){
+                principal.getjPopupMenu1().show(principal.getFundoPrincipal(), e.getX(), e.getY());
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == principal.getjMenuAtualizar()){
+                montarFundoPrincipal();
+            }
+            if(e.getSource() == principal.getjMenuCadastrarPassageiro()){
+                principal.getjMenuPassageiroCadastro().doClick();
+            }
+            if(e.getSource() == principal.getjMenuCadastroFuncionario()){
+                principal.getjMenuFuncionarioCadastro().doClick();
+            }
+            if(e.getSource() == principal.getjMenuCadastroMotorista()){
+                principal.getjMenuMotoristaCadastro().doClick();
+            }
+            if(e.getSource() == principal.getjMenuCadastroRota()){
+                principal.getjMenuRotaCadastro().doClick();
+            }
+            if(e.getSource() == principal.getjMenuCadastroVeiculo()){
+                principal.getjMenuVeiculoCadastro().doClick();
+            }
+            if(e.getSource() == principal.getjMenuCadastroViagem()){
+                principal.getBtnEfetuarViagem().doClick();
+            }
+            if(e.getSource() == principal.getjMenuConsultaRota()){
+                principal.getjMenuRotaConsulta().doClick();
+            }
+            if(e.getSource() == principal.getjMenuConsultaVeiculo()){
+                principal.getjMenuVeiculoConsulta().doClick();
+            }
+            if(e.getSource() == principal.getjMenuConsultaViagem()){
+                principal.getBtnConsultarViagem().doClick();
+            }
+            if(e.getSource() == principal.getjMenuConsultarFuincionario()){
+                principal.getjMenuFuncionarioConsulta().doClick();
+            }
+            if(e.getSource() == principal.getjMenuConsultarMotorista()){
+                principal.getjMenuMotoristaConsulta().doClick();
+            }
+            if(e.getSource() == principal.getjMenuConsultarPassageiro()){
+                principal.getjMenuPassageiroConsulta().doClick();
+            }
+            if(e.getSource() == principal.getjMenuFinanceiro()){
+                principal.getjMenuFinanceiroConsulta().doClick();
+            }
+            if(e.getSource() == principal.getjMenuLoggof1()){
+                principal.getjMenuLogoff().doClick();
+            }
+            if(e.getSource() == principal.getjMenuSair()){
+                principal.getjMenuEncerrarSistema().doClick();
+            }
+        }
     }
     private class Menu implements ActionListener{
 
@@ -201,10 +385,10 @@ public class ControllerDashBoard {
                 ccVeiculo.montarComboMotorista();
                 ccVeiculo.montarComboTipo();
                 ccVeiculo.montarComboRota();
-                
                 ccVeiculo.getTela().getComboMotorista().setSelectedIndex(0);
                 ccVeiculo.getTela().getComboRota().setSelectedIndex(0);
                 ccVeiculo.getTela().getComboTipo().setSelectedIndex(0);
+                ccVeiculo.mudarLista();
                 ccVeiculo.habilitarEvento();
                 cTransporte.setVisible(true);
             }

@@ -46,7 +46,7 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
         jMenuInformacoes = new javax.swing.JMenuItem();
         jMenuCadastrar = new javax.swing.JMenuItem();
         jMenuEditar = new javax.swing.JMenuItem();
-        jMenuRemover = new javax.swing.JMenuItem();
+        jMenuStatus = new javax.swing.JMenuItem();
         jMenuSair = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -72,8 +72,8 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
         jMenuEditar.setText("Editar");
         jPopupMenu1.add(jMenuEditar);
 
-        jMenuRemover.setText("Remover");
-        jPopupMenu1.add(jMenuRemover);
+        jMenuStatus.setText("Mudar status");
+        jPopupMenu1.add(jMenuStatus);
 
         jMenuSair.setText("Sair");
         jPopupMenu1.add(jMenuSair);
@@ -153,34 +153,34 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
         jTableFuncionarios.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTableFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Sobrenome", "RG", "CPF", "Data nascimento", "Login"
+                "Código", "Nome", "Sobrenome", "RG", "CPF", "Data nascimento", "Login", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTableFuncionarios);
@@ -312,8 +312,8 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
         return jMenuEditar;
     }
 
-    public JMenuItem getjMenuRemover() {
-        return jMenuRemover;
+    public JMenuItem getjMenuStatus() {
+        return jMenuStatus;
     }
 
     public JMenuItem getjMenuSair() {
@@ -336,8 +336,8 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
     private javax.swing.JMenuItem jMenuCadastrar;
     private javax.swing.JMenuItem jMenuEditar;
     private javax.swing.JMenuItem jMenuInformacoes;
-    private javax.swing.JMenuItem jMenuRemover;
     private javax.swing.JMenuItem jMenuSair;
+    private javax.swing.JMenuItem jMenuStatus;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -352,7 +352,7 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
 
     @Override
     public void update(Observable o, Object arg) {
-        if(o instanceof ControllerConsultarFuncionario && ((ControllerConsultarFuncionario)o).getTela().getjMenuRemover().equals(arg)){
+        if(o instanceof ControllerConsultarFuncionario && ((ControllerConsultarFuncionario)o).getTela().getjMenuStatus().equals(arg)){
             ((ControllerConsultarFuncionario)o).LimparSimples();
             ((ControllerConsultarFuncionario)o).colocar();
         }

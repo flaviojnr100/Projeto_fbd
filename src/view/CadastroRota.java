@@ -254,10 +254,11 @@ public class CadastroRota extends javax.swing.JFrame implements Observer {
         jLabel12.setText("Preço da viagem:");
 
         try {
-            precoTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##,##")));
+            precoTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        precoTxt.setText("  .  ");
         precoTxt.setToolTipText("");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);

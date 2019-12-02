@@ -52,6 +52,7 @@ public class ControllerCadastroViagem extends Observable {
     private String vagasSelecionadas ="Foram selecionadas:\n";
     private double preco = 0;
     private ConsultarViagem ccViagem;
+    private Passageiro [] passageiros;
     public ControllerCadastroViagem(CadastroViagem tela,Fachada fachada,CadastroPassageiro cPassageiro,CadastroRota cRota,CadastroTransporte cTransporte,ConsultarViagem ccViagem) {
         this.tela = tela;
         this.fachada = fachada;
@@ -69,7 +70,7 @@ public class ControllerCadastroViagem extends Observable {
         
         tela.getBtnAdicionarPassageiro().addActionListener(b);
         
-        tela.getBtnAdicionarTransporte().addActionListener(b);
+       
         tela.getBtnConcluir().addActionListener(b);
         
         tela.getComboPassageiro().addItemListener(mudarE);
@@ -81,19 +82,23 @@ public class ControllerCadastroViagem extends Observable {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnFinalizar()){
+                if(!tela.getComboPassageiro().getSelectedItem().equals("Vazio")){
                 Transporte transporte = BaseDados.getTransportes().get(comboMarcado);
                 Passageiro passageiro = fachada.buscarCpfPassageiro(tela.getLblCpf().getText());
                 if(fachada.salvar(new Viagem(passageiro,transporte.getDestino(), transporte, preco+"",getDataAtual(),getHorario()))){
                     ocuparVagas(passageiro, transporte);
                     fachada.salvar(new Financa(getDataAtual(), preco));
                     BaseDados.CarregarViagem();
+                    BaseDados.CarregarFinanca();
                     Mensagens.mensagem("Compra realizado com sucesso!");
                     tela.getBtnCancelar().doClick();
                     ccViagem.getjMenuAtualizar().doClick();
                 }else{
                     Mensagens.mensagem("Erro ao realizar a compra!");
                 }
-            
+                }else{
+                    Mensagens.mensagem("Erro, não é possivel cadastrar uma viagem sem passageiro!");
+                }
             }
             if(e.getSource() == tela.getBtnCancelar()){
                 tela.setVisible(false);
@@ -102,10 +107,7 @@ public class ControllerCadastroViagem extends Observable {
             if(e.getSource() == tela.getBtnAdicionarPassageiro()){
                 cPassageiro.setVisible(true);
             }
-            
-            if(e.getSource() == tela.getBtnAdicionarTransporte()){
-                cTransporte.setVisible(true);
-            }
+                        
             if(e.getSource() == tela.getBtnConcluir()){
                 pegarVagas();
                 
@@ -119,10 +121,18 @@ public class ControllerCadastroViagem extends Observable {
     
     public void montarComboPassageiro(){
         tela.getComboPassageiro().removeAllItems();
+        passageiros = new Passageiro[BaseDados.passageiroCountActive()];
+        int i=0;
+        if(BaseDados.passageiroCountActive()>0){
         for(Passageiro p:BaseDados.getPassageiros()){
             if(p.getStatus().equals("ATIVO")){
                 tela.getComboPassageiro().addItem(p.getNome()+" "+p.getSobrenome());
+                passageiros[i] = p;
+                i++;
             }
+        }
+        }else{
+            tela.getComboPassageiro().addItem("Vazio");
         }
     }
     public void montarComboRota(){
@@ -202,7 +212,7 @@ public class ControllerCadastroViagem extends Observable {
         public void itemStateChanged(ItemEvent e) {
             if(e.getSource() == tela.getComboPassageiro()){
                 setChanged();
-                Passageiro passageiro = BaseDados.getPassageiros().get(tela.getComboPassageiro().getSelectedIndex());
+                Passageiro passageiro = passageiros[tela.getComboPassageiro().getSelectedIndex()];
                 String [] dados = {passageiro.getNome(),passageiro.getSobrenome(),passageiro.getCpf(),"passageiro"};
                 notifyObservers(dados);
             }
@@ -254,6 +264,10 @@ public class ControllerCadastroViagem extends Observable {
 
     public void setVagasSelecionadas(String vagasSelecionadas) {
         this.vagasSelecionadas = vagasSelecionadas;
+    }
+
+    public Passageiro[] getPassageiros() {
+        return passageiros;
     }
     
 }

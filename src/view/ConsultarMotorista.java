@@ -45,7 +45,7 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
         jMenuInformacoes = new javax.swing.JMenuItem();
         jMenuSalvar = new javax.swing.JMenuItem();
         jMenuEditar = new javax.swing.JMenuItem();
-        jMenuRemover = new javax.swing.JMenuItem();
+        jMenuStatus = new javax.swing.JMenuItem();
         jMenuSair = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -72,8 +72,8 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
         jMenuEditar.setText("Editar");
         jPopupMenu1.add(jMenuEditar);
 
-        jMenuRemover.setText("Remover");
-        jPopupMenu1.add(jMenuRemover);
+        jMenuStatus.setText("Mudar status");
+        jPopupMenu1.add(jMenuStatus);
 
         jMenuSair.setText("Sair");
         jPopupMenu1.add(jMenuSair);
@@ -88,34 +88,34 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
 
         jTableMotorista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Sobrenome", "RG", "CPF", "Data de nascimento", "CNH"
+                "Código", "Nome", "Sobrenome", "RG", "CPF", "Data de nascimento", "CNH", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTableMotorista);
@@ -308,8 +308,8 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
         return jMenuEditar;
     }
 
-    public JMenuItem getjMenuRemover() {
-        return jMenuRemover;
+    public JMenuItem getjMenuStatus() {
+        return jMenuStatus;
     }
 
     public JMenuItem getjMenuAtualizar() {
@@ -348,9 +348,9 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem jMenuAtualizar;
     private javax.swing.JMenuItem jMenuEditar;
     private javax.swing.JMenuItem jMenuInformacoes;
-    private javax.swing.JMenuItem jMenuRemover;
     private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JMenuItem jMenuSalvar;
+    private javax.swing.JMenuItem jMenuStatus;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

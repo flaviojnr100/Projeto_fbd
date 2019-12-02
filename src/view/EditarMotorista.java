@@ -46,7 +46,6 @@ public class EditarMotorista extends javax.swing.JFrame {
         dataTxt = new javax.swing.JFormattedTextField();
         cnhTxt = new javax.swing.JFormattedTextField();
         btnEditar = new javax.swing.JButton();
-        btnLimpar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -166,19 +165,13 @@ public class EditarMotorista extends javax.swing.JFrame {
         btnEditar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/salvar.png"))); // NOI18N
         btnEditar.setText("Editar");
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 120, 60));
-
-        btnLimpar.setBackground(new java.awt.Color(255, 255, 255));
-        btnLimpar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/limpar.png"))); // NOI18N
-        btnLimpar.setText("Limpar");
-        jPanel1.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 130, 60));
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 120, 60));
 
         btnCancelar.setBackground(new java.awt.Color(255, 255, 255));
         btnCancelar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, 60));
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,10 +232,7 @@ public class EditarMotorista extends javax.swing.JFrame {
         return btnEditar;
     }
 
-    public JButton getBtnLimpar() {
-        return btnLimpar;
-    }
-
+   
     public JFormattedTextField getCnhTxt() {
         return cnhTxt;
     }
@@ -271,7 +261,6 @@ public class EditarMotorista extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnLimpar;
     private javax.swing.JFormattedTextField cnhTxt;
     private javax.swing.JFormattedTextField cpfTxt;
     private javax.swing.JFormattedTextField dataTxt;

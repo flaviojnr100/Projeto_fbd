@@ -30,12 +30,6 @@ public class BusinessTransporte {
      
         
     }
-    public boolean editar(Transporte transporte){
-       
-            return dao.editar(transporte);
-        
-        
-    }
     public List<Transporte> getAll(){
         
         return dao.getAll();
@@ -52,5 +46,13 @@ public class BusinessTransporte {
     public List<Transporte> buscarLike(String nome,String busca){
         return dao.buscarLike(nome, busca);
     }
-    
+    public Transporte buscarId(int id){
+        return dao.buscarId(id);
+    }
+    public boolean editar(Transporte transporte,int id){
+        return dao.editar(transporte, id);
+    }
+    public boolean alterarStatus(int id,String status){
+        return dao.alterarStatus(id, status);
+    }
 }

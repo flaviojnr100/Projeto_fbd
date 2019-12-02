@@ -67,6 +67,7 @@ public class DaoMotorista {
             motorista.setCpf(result.getString(5));
             motorista.setData_nascimento(result.getString(6));
             motorista.setCnh(result.getString(7));
+            motorista.setStatus(result.getString(8));
             }
             conexao.close();
             return motorista;
@@ -95,6 +96,7 @@ public class DaoMotorista {
             motorista.setCpf(result.getString(5));
             motorista.setData_nascimento(result.getString(6));
             motorista.setCnh(result.getString(7));
+            motorista.setStatus(result.getString(8));
             }
             conexao.close();
             return motorista;
@@ -144,6 +146,7 @@ public class DaoMotorista {
                 motorista.setCpf(result.getString(5));
                 motorista.setData_nascimento(result.getString(6));
                 motorista.setCnh(result.getString(7));
+                motorista.setStatus(result.getString(8));
                 motoristas.add(motorista);
                 
                 motorista = null;
@@ -205,13 +208,29 @@ public class DaoMotorista {
             result = statement.executeQuery();
             conexao.close();
             while(result.next()){
-                motorista.add(new Motorista(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5) ,result.getString(6),result.getString(7)));
+                motorista.add(new Motorista(result.getInt(1), result.getString(2), result.getString(3), result.getString(4),result.getString(5) ,result.getString(6),result.getString(7),result.getString(8)));
             }
             return motorista;
         } catch (SQLException ex) {
             Logger.getLogger(DaoMotorista.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+        
+    }
+    public boolean alterarStatus(String cpf,String status){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Motorista.ALTERAR_STATUS);
+            statement.setString(1, status);
+            statement.setString(2, cpf);
+            statement.execute();
+            conexao.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoMotorista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
         
     }
     

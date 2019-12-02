@@ -52,7 +52,7 @@ public class ControllerConsultarFuncionario extends java.util.Observable {
         tela.getjMenuInformacoes().addActionListener(new CaixaPopup());
         tela.getjMenuCadastrar().addActionListener(new CaixaPopup());
         tela.getjMenuEditar().addActionListener(new CaixaPopup());
-        tela.getjMenuRemover().addActionListener(new CaixaPopup());
+        tela.getjMenuStatus().addActionListener(new CaixaPopup());
         tela.getjMenuSair().addActionListener(new CaixaPopup());
         
         
@@ -130,12 +130,12 @@ public class ControllerConsultarFuncionario extends java.util.Observable {
                 try{
                 if(!tela.getjTableFuncionarios().getModel().getValueAt(tela.getjTableFuncionarios().getSelectedRow(), 0).equals("")){
                     tela.getjMenuEditar().setVisible(true);
-                    tela.getjMenuRemover().setVisible(true);
+                    tela.getjMenuStatus().setVisible(true);
                     tela.getjMenuInformacoes().setVisible(true);
                     tela.getjPopupMenu1().show(tela.getjTableFuncionarios(), e.getX(), e.getY());
                 }else{
                     tela.getjMenuEditar().setVisible(false);
-                    tela.getjMenuRemover().setVisible(false);
+                    tela.getjMenuStatus().setVisible(false);
                     tela.getjMenuInformacoes().setVisible(false);
                     tela.getjPopupMenu1().show(tela.getjTableFuncionarios(), e.getX(), e.getY());
                 }
@@ -179,19 +179,21 @@ public class ControllerConsultarFuncionario extends java.util.Observable {
                 eFuncionario.setLinha(tela.getjTableFuncionarios().getSelectedRow());
                 eFuncionario.getTela().setVisible(true);
             }
-            if(e.getSource() == tela.getjMenuRemover()){
-                if(Mensagens.mensagemConfirmacao("Deseja remover esse registro?")){
-                    String cpf = (String) tela.getjTableFuncionarios().getModel().getValueAt(tela.getjTableFuncionarios().getSelectedRow(), 4);
-                    if(fachada.removerFuncionario(cpf)){
-                        Mensagens.mensagem("Removido com sucesso");
-                        BaseDados.CarregarFuncionario();
-                        setChanged();
-                        notifyObservers(tela.getjMenuRemover());
+            if(e.getSource() == tela.getjMenuStatus()){
+                if(Mensagens.mensagemConfirmacao("Deseja mudar o status desse registro?")){
+                    String st="ATIVO";    
+                    if(tela.getjTableFuncionarios().getModel().getValueAt(tela.getjTableFuncionarios().getSelectedRow(), 7).equals("ATIVO")){
+                        st="DESATIVADO";
                     }else{
-                    Mensagens.mensagem("Falha ao remover o registro!");
+                        st="ATIVO";
+                    }
+                    fachada.alterarStatusFuncionario((String)tela.getjTableFuncionarios().getModel().getValueAt(tela.getjTableFuncionarios().getSelectedRow(), 4), st);
+                    BaseDados.CarregarFuncionario();
+                    setChanged();
+                    notifyObservers(tela.getjMenuStatus());
                     }
                 }
-            }
+            
             if(e.getSource() == tela.getjMenuSair()){
                 tela.setVisible(false);
             }
@@ -211,6 +213,7 @@ public class ControllerConsultarFuncionario extends java.util.Observable {
             tela.getjTableFuncionarios().getModel().setValueAt(BaseDados.getFuncionarios().get(i).getCpf(), i, 4);
             tela.getjTableFuncionarios().getModel().setValueAt(BaseDados.getFuncionarios().get(i).getData_nascimento(), i, 5);
             tela.getjTableFuncionarios().getModel().setValueAt(BaseDados.getFuncionarios().get(i).getLogin(), i, 6);
+            tela.getjTableFuncionarios().getModel().setValueAt(BaseDados.getFuncionarios().get(i).getStatus(), i, 7);
         }
     }
      public void colocar(List<Funcionario> funcionarios){
@@ -224,6 +227,7 @@ public class ControllerConsultarFuncionario extends java.util.Observable {
             tela.getjTableFuncionarios().getModel().setValueAt(funcionarios.get(i).getCpf(), i, 4);
             tela.getjTableFuncionarios().getModel().setValueAt(funcionarios.get(i).getData_nascimento(), i, 5);
             tela.getjTableFuncionarios().getModel().setValueAt(funcionarios.get(i).getLogin(), i, 6);
+            tela.getjTableFuncionarios().getModel().setValueAt(funcionarios.get(i).getStatus(), i, 7);
         }
     }
     public boolean Limpar(){
@@ -236,6 +240,7 @@ public class ControllerConsultarFuncionario extends java.util.Observable {
             tela.getjTableFuncionarios().getModel().setValueAt("", i, 4);
             tela.getjTableFuncionarios().getModel().setValueAt("", i, 5);
             tela.getjTableFuncionarios().getModel().setValueAt("", i, 6);
+            tela.getjTableFuncionarios().getModel().setValueAt("", i, 7);
         }
         if(BaseDados.getFuncionarios().size()>0){
             return true;
@@ -253,6 +258,7 @@ public class ControllerConsultarFuncionario extends java.util.Observable {
             tela.getjTableFuncionarios().getModel().setValueAt("", i, 4);
             tela.getjTableFuncionarios().getModel().setValueAt("", i, 5);
             tela.getjTableFuncionarios().getModel().setValueAt("", i, 6);
+            tela.getjTableFuncionarios().getModel().setValueAt("", i, 7);
         }
         if(BaseDados.getFuncionarios().size()>0){
             return true;

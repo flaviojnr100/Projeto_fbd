@@ -37,4 +37,7 @@ public class BusinessRota {
      public List<Destino> buscaLike(String nome,String busca){
          return dao.buscaLike(nome, busca);
      }
+     public boolean alterarStatus(int id,String status){
+         return dao.alterarStatus(id, status);
+     }
 }

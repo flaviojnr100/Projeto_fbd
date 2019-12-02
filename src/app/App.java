@@ -26,6 +26,8 @@ import Controller.ControllerEditarFuncionario;
 import Controller.ControllerEditarMotorista;
 import Controller.ControllerEditarPassageiro;
 import Controller.ControllerEditarRota;
+import Controller.ControllerEditarTransporte;
+import Controller.ControllerInformacoesFinancas;
 import Controller.ControllerLogin;
 import Controller.ControllerTelaPersonalizar;
 import fachada.Fachada;
@@ -67,7 +69,9 @@ import view.EditarMotorista;
 import view.EditarPassageiro;
 import view.EditarRota;
 import view.EditarTransporte;
+import view.InformacaoAtualVeiculo;
 import view.InformacaoRota;
+import view.InformacoesFinanca;
 import view.InformacoesFuncionario;
 import view.InformacoesMotorista;
 import view.InformacoesPassageiro;
@@ -90,13 +94,13 @@ public class App {
        // Transporte transporte = new Transporte("Amarelo", "1235cvn", "3554fd");
         Fachada fachada1 =Fachada.getInstance();
         BaseDados.CarregarTransporte();
-        BaseDados.CarregarDestino();
+        BaseDados.CarregarRota();
         BaseDados.CarregarMotorista();
         BaseDados.CarregarTipoTransporte();
         BaseDados.CarregarPassageiro();
         BaseDados.CarregarFuncionario();
-        BaseDados.CarregarRota();
         BaseDados.CarregarViagem();
+        BaseDados.CarregarFinanca();
         //fachada1.salvar(new Funcionario("flavio", "cordeiro", "345346", "6546756", "12/12/1212", "fj", "234"));
         
         //System.out.println(""+fachada1.verificarExistenciaMotorista("555.555.555-55546456"));
@@ -117,7 +121,9 @@ public class App {
         */
        // System.out.println("  .   .   -  ".length());
        //Arrumar o problema de validar cadastro(Colorir os campos invalidos)
-  
+       DashBoard dash = new DashBoard();
+       
+       
       CadastroFuncionario cFuncionario = new CadastroFuncionario();
       ConsultarFuncionario ccFuncionario = new ConsultarFuncionario();
       new ControllerCadastroFuncionario(cFuncionario,fachada1,ccFuncionario);
@@ -154,7 +160,7 @@ public class App {
       ConsultarRota ccRota = new ConsultarRota();
       InformacaoRota iRota = new InformacaoRota();
       EditarRota eRota = new EditarRota();
-      new ControllerCadastroRota(cRota,fachada1,ccRota);
+     ControllerCadastroRota caRota =  new ControllerCadastroRota(cRota,fachada1,ccRota);
      
       ControllerEditarRota ceRota = new ControllerEditarRota(eRota, fachada1);
       ControllerConsultarRota cccRota = new ControllerConsultarRota(ccRota,fachada1,eRota,ceRota,cRota,iRota);
@@ -163,24 +169,27 @@ public class App {
       cccRota.addObserver(ccRota);
       
       CadastroTipoTransporte cTipoTransporte = new CadastroTipoTransporte();
-      
+      EditarTransporte eTransporte = new EditarTransporte();
       CadastroTransporte cTransporte = new CadastroTransporte();
       InformacoesVeiculo iVeiculo = new InformacoesVeiculo();
       ControllerCadastroTransporte cccTransporte = new ControllerCadastroTransporte(cTransporte, fachada1, cMotorista, cTipoTransporte, cRota);
       ConsultarTransporte ccTransporte = new ConsultarTransporte();
-      EditarTransporte eTransporte = new EditarTransporte();
+      
       
       
       ControllerCadastroTipoTransporte ccTipo = new ControllerCadastroTipoTransporte(cTipoTransporte,fachada1,cccTransporte);
+      ControllerEditarTransporte ceTransporte = new ControllerEditarTransporte(eTransporte, fachada1);
+      ControllerConsultarTransporte ccccTransporte = new ControllerConsultarTransporte(ccTransporte, fachada1,iVeiculo,ceTransporte,cccTransporte);
       
-      ControllerConsultarTransporte ccccTransporte = new ControllerConsultarTransporte(ccTransporte, fachada1,iVeiculo);
+      ceTransporte.setCcTransporte(ccccTransporte);
       cccTransporte.addObserver(cTransporte);
       ccTipo.addObserver(cTransporte);
       cadMotorista.addObserver(cTransporte);
       cccTransporte.addObserver(cTransporte);
+      caRota.addObserver(cTransporte);
       
       ccccTransporte.addObserver(ccTransporte);
-      
+      ceTransporte.addObserver(eTransporte);
       CadastroViagem cViagem = new CadastroViagem();
       InformacoesViagem iViagem = new InformacoesViagem();
       ConsultarViagem ccViagem = new ConsultarViagem();
@@ -188,22 +197,25 @@ public class App {
       ControllerConsultarViagem ccccViagem = new ControllerConsultarViagem(ccViagem, fachada1,iViagem,cccViagem);
        
       cccViagem.addObserver(cViagem);
-     ccccViagem.addObserver(ccViagem);
+      ccccViagem.addObserver(ccViagem);
       
       ControleAcesso cAcesso = new ControleAcesso();
       ControllerControleAcesso ccAcesso = new ControllerControleAcesso(cAcesso, fachada1);
       
+      InformacoesFinanca iFinanca = new InformacoesFinanca();
+      ControllerInformacoesFinancas cciFinanca = new ControllerInformacoesFinancas(iFinanca, fachada1);
       ConsultarFinança ccFinanca = new ConsultarFinança();
-      ControllerConsultaFinanca cccFinanca = new ControllerConsultaFinanca(ccFinanca, fachada1);
+      ControllerConsultaFinanca cccFinanca = new ControllerConsultaFinanca(ccFinanca, fachada1,cciFinanca);
       cccFinanca.addObserver(ccFinanca);
       
       TelaLogin telaLogin = new TelaLogin();
-      DashBoard dash = new DashBoard();
+      
       TelaPersonalizar personalizar = new TelaPersonalizar();
-      new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso,telaLogin,cccRota,cccViagem,ccccViagem,ccFinanca,cccFinanca);
+      InformacaoAtualVeiculo iaVeiculo = new InformacaoAtualVeiculo();
+      ControllerDashBoard ccDash =new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso,telaLogin,cccRota,cccViagem,ccccViagem,ccFinanca,cccFinanca,iaVeiculo);
       ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
       c.addObserver(dash);
-     
+      //ccDash.addObserver(dash);
       ControllerLogin cLogin = new ControllerLogin(telaLogin, dash,fachada1);
      // telaLogin.setVisible(true);
       TelaCarregamento tCarregamento = new TelaCarregamento();
@@ -213,6 +225,7 @@ public class App {
       
 
   
+ 
   
   
        

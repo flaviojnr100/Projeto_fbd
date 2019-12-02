@@ -10,6 +10,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -241,6 +242,10 @@ public class ConsultarFinança extends javax.swing.JFrame implements Observer {
         return jTableFinancas;
     }
 
+    public JPopupMenu getjPopupMenu1() {
+        return jPopupMenu1;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JTextField buscarTxt;
@@ -260,8 +265,12 @@ public class ConsultarFinança extends javax.swing.JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if(o instanceof ControllerConsultaFinanca && arg.equals("busca")){
-            ((ControllerConsultaFinanca)o).Limpar();
+            ((ControllerConsultaFinanca)o).LimparSimples();
             ((ControllerConsultaFinanca)o).ColocarDados(((ControllerConsultaFinanca)o).getFinancaLike());
+        }
+        if(o instanceof ControllerConsultaFinanca && arg.equals("atualizar")){
+            ((ControllerConsultaFinanca)o).LimparSimples();
+            ((ControllerConsultaFinanca)o).ColocarDados();
         }
     }
 }

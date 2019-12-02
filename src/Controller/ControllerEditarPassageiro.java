@@ -32,7 +32,6 @@ public class ControllerEditarPassageiro extends Observable {
     }
     private void Control(){
         tela.getBtnEditar().addActionListener(new Botoes());
-        tela.getBtnLimpar().addActionListener(new Botoes());
         tela.getBtnCancelar().addActionListener(new Botoes());
         tela.getNomeTxt().addKeyListener(new Botoes());
         tela.getSobrenomeTxt().addKeyListener(new Botoes());
@@ -54,11 +53,7 @@ public class ControllerEditarPassageiro extends Observable {
                     Mensagens.mensagem("Erro ao editar o registro!");
                 }
             }
-            if(e.getSource() == tela.getBtnLimpar()){
-                tela.getNomeTxt().setText("");
-                tela.getSobrenomeTxt().setText("");
-                tela.getCpfTxt().setText("");
-            }
+            
             if(e.getSource() == tela.getBtnCancelar()){
                 tela.setVisible(false);
             }

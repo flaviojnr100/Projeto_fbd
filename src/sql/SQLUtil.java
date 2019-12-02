@@ -16,7 +16,7 @@ public class SQLUtil {
     public static String SENHA_POSTGRES = "postgres";
     
     public static class Motorista{
-         public static String INSERT_ALL = "insert into motorista(nome,sobrenome,rg,cpf,data_nascimento,cnh) values (?,?,?,?,?,?)";
+         public static String INSERT_ALL = "insert into motorista(nome,sobrenome,rg,cpf,data_nascimento,cnh,status) values (?,?,?,?,?,?,'ATIVO')";
          public static String BUSCAR_CPF = "select * from motorista where cpf=?";
          public static String BUSCAR_ALL = "select * from motorista order by id desc limit 24";
          public static String REMOVER_CPF = "delete from motorista where cpf = ?";
@@ -27,25 +27,27 @@ public class SQLUtil {
          public static String BUSCARLIKERG = "select * from motorista where rg like ? order by id desc limit 20";
          public static String BUSCARLIKECPF = "select * from motorista where cpf like ? order by id desc limit 20";
          public static String BUSCARLIKECNH = "select * from motorista where cnh like ? order by id desc limit 20";
-         
+         public static String ALTERAR_STATUS = "update motorista set status = ? where cpf=?";
     }
     
     public static class Transporte{
-        public static String INSERT_ALL="insert into transporte(cor,placa,chassi,id_motorista,id_tipo_transporte,id_destino) values (?,?,?,?,?,?)";
+        public static String INSERT_ALL="insert into transporte(cor,placa,chassi,id_motorista,id_tipo_transporte,id_destino,status) values (?,?,?,?,?,?,'ATIVO')";
         public static String ATUALIZAR_INSERT = "update transporte set id_motorista=?,id_tipo_transporte=?,id_destino=?";
         public static String INSERT="insert into transporte(cor,placa,chassi) values (?,?,?)";
         public static String BUSCAR_CHASSI="select * from transporte where chassi = ?";
         public static String BUSCAR_ALL = "select * from transporte order by id desc limit 19";
         public static String REMOVER_PLACA = "delete from transporte where id=? and placa = ?";
         public static String BUSCARLIKECOR = "select * from transporte where cor like ?";
-        public static String BUSCARLIKECHASSI = "select a.id,a.cor,a.placa,a.chassi,b.id,c.id from transporte as a,motorista as b,tipo_transporte as c,rota as d where a.id_motorista=b.id and c.id=a.id_tipo_transporte and d.id = a.id_destino and a.chassi like ?";
-        public static String BUSCARLIKEPLACA = "select a.id,a.cor,a.placa,a.chassi,b.id,c.id from transporte as a,motorista as b,tipo_transporte as c,rota as d where a.id_motorista=b.id and c.id=a.id_tipo_transporte and d.id = a.id_destino and  a.placa like ?";
-        public static String BUSCARLIKEMOTORISTA = "select a.id,a.cor,a.placa,a.chassi,b.id,c.id from transporte as a,motorista as b,tipo_transporte as c,rota as d where a.id_motorista=b.id and c.id=a.id_tipo_transporte and d.id = a.id_destino and  b.nome like ?";
+        public static String BUSCARLIKECHASSI = "select a.* from transporte as a,motorista as b,tipo_transporte as c,rota as d where a.id_motorista=b.id and c.id=a.id_tipo_transporte and d.id = a.id_destino and a.chassi like ?";
+        public static String BUSCARLIKEPLACA = "select a.* from transporte as a,motorista as b,tipo_transporte as c,rota as d where a.id_motorista=b.id and c.id=a.id_tipo_transporte and d.id = a.id_destino and  a.placa like ?";
+        public static String BUSCARLIKEMOTORISTA = "select a.* from transporte as a,motorista as b,tipo_transporte as c,rota as d where a.id_motorista=b.id and c.id=a.id_tipo_transporte and d.id = a.id_destino and  b.nome like ?";
         public static String BUSCAR_PROX_ID = "select max(id) from transporte";
         public static String BUSCAR_ID = "select * from transporte where id=?";
+        public static String EDITAR = "update transporte set cor=?,placa=?,chassi=? where id =?";
+        public static String ALTERAR_STATUS = "update transporte set status=? where id=?";
     }
     public static class Destino{
-        public static String INSERT_ALL = "insert into rota(nome,id_endereco_partida,horario,id_endereco_destino,preco) values(?,?,?,?,?)";
+        public static String INSERT_ALL = "insert into rota(nome,id_endereco_partida,horario,id_endereco_destino,preco,status) values(?,?,?,?,?,'ATIVO')";
         public static String BUSCAR_ALL = "select * from rota order by id desc limit 24";
         public static String BUSCAR_ID = "select * from rota where id=?";
         public static String BUSCAR_NOME = "select * from rota where nome=?";
@@ -53,6 +55,7 @@ public class SQLUtil {
         public static String EDITAR = "update rota set nome=?,id_endereco_partida=?,horario=?,id_endereco_destino=?,preco=? where id = ?";
         public static String BUSCARLIKENOME = "select * from rota where nome like ? order by id desc limit 24";
         public static String BUSCARLIKEPRECO = "select * from rota where preco like ? order by id desc limit 24";
+        public static String ALTERAR_STATUS = "update rota set status=? where id=?";
     }
     public static class Endereco{
         public static String INSERT_ALL = "insert into endereco(estado,rua,bairro,cidade,complemento) values (?,?,?,?,?)";
@@ -69,7 +72,7 @@ public class SQLUtil {
     }
     
     public static class Passageiro{
-        public static String INSERT_ALL = "insert into passageiro(nome,sobrenome,cpf,status) values(?,?,?,?)";
+        public static String INSERT_ALL = "insert into passageiro(nome,sobrenome,cpf,status) values(?,?,?,'ATIVO')";
         public static String BUSCAR_CPF = "select * from passageiro where cpf=?";
         public static String BUSCAR_ALL = "select * from passageiro order by id desc limit 24";
         public static String BUSCAR_ID = "select * from passageiro where id=?";
@@ -84,7 +87,7 @@ public class SQLUtil {
         
     }
      public static class Funcionario{
-        public static String INSERT_ALL = "insert into funcionario(nome,sobrenome,rg,cpf,data_nascimento,login,senha) values(?,?,?,?,?,?,?)";
+        public static String INSERT_ALL = "insert into funcionario(nome,sobrenome,rg,cpf,data_nascimento,login,senha,status) values(?,?,?,?,?,?,?,'ATIVO')";
         public static String BUSCAR_CPF = "select * from funcionario where cpf=?";
         public static String BUSCAR_ALL = "select * from funcionario order by id desc limit 24";
         public static String BUSCAR_ID = "select * from funcionario where id=?";
@@ -95,8 +98,9 @@ public class SQLUtil {
         public static String BUSCARLIKECPF = "select * from funcionario where cpf like ? order by id desc";
         public static String BUSCARLIKELOGIN = "select * from funcionario where login like ? order by id desc";
         public static String VERIFICARCPF = "select count(cpf) from funcionario where cpf=?";
-        public static String AUTENTICAR = "select count(nome) from funcionario where login=? and senha=?";
+        public static String AUTENTICAR = "select count(nome) from funcionario where login=? and senha=? and status='ATIVO'";
         public static String BUSCAR_LOGIN = "select * from funcionario where login=? and senha=?";
+        public static String ALTERAR_STATUS = "update funcionario set status=? where cpf=?";
     }
     
    
@@ -112,7 +116,7 @@ public class SQLUtil {
         public static String BUSCAR_ALL = "select * from assento order by id desc limit 24";
         public static String REMOVER_NUMERO = "delete from assento where numero=?";
         public static String EDITAR_ID = "update assento set numero=?,posicao=?,estado_ocupacao=?,id_transporte_assento=? where id=?";
-        public static String BUSCAR_LIVRE = "select * from assento where estado_ocupacao='vazio'";
+        public static String BUSCAR_LIVRE = "select count(a.id) from transporte_assento as a,assento as b,transporte as t where a.id_assento = b.id and a.id_transporte = t.id and t.placa =? and a.id_passageiro is null";
         public static String BUSCAR_LIVRE_ASSENTO = "select b.id,b.numero from transporte_assento as a,assento as b where a.id_assento = b.id and a.id_transporte = ? and a.id_passageiro is null order by b.numero asc";
         public static String BUSCAR_ID_TRANSPORTE_ASSENTO = "select id from transporte_assento where id_transporte =? and id_assento=?";
         public static String ADICIONAR_TRANSPORTE_ASSENTO = "insert into transporte_assento(id_transporte,id_assento) values(?,?)";
@@ -142,6 +146,7 @@ public class SQLUtil {
         public static String BUSCAR_TODOS ="select * from financa order by id desc limit 24";
         public static String ALTERAR_FINANCA = "update financa set valor=? where data=?";
         public static String BUSCARLIKEDATA = "select * from financa where data like ?";
+        
     }
     
 }

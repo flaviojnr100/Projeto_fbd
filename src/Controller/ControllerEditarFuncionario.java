@@ -32,7 +32,6 @@ public class ControllerEditarFuncionario extends Observable {
     
     private void Control(){
         tela.getBtnEditar().addActionListener(new Botoes());
-        tela.getBtnLimpar().addActionListener(new Botoes());
         tela.getBtnCancelar().addActionListener(new Botoes());
     }
     
@@ -61,16 +60,6 @@ public class ControllerEditarFuncionario extends Observable {
                     Mensagens.mensagem("Erro, esse registro ja foi cadastrado no sistema!");
                     }
                 }
-            }
-            if(e.getSource() == tela.getBtnLimpar()){
-                tela.getNomeTxt().setText("");
-                tela.getSobrenomeTxt().setText("");
-                tela.getRgTxt().setText("");
-                tela.getCpfTxt().setText("");
-                tela.getDataTxt().setText("");
-                tela.getLoginTxt().setText("");
-                tela.getSenhaTxt().setText("");
-                tela.getConfirmarTxt().setText("");
             }
             if(e.getSource() == tela.getBtnCancelar()){
                 tela.setVisible(false);

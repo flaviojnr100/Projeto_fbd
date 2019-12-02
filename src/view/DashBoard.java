@@ -5,13 +5,19 @@
  */
 package view;
 
+import Controller.ControllerCadastroTransporte;
+import Controller.ControllerConsultarTransporte;
+import Controller.ControllerDashBoard;
+import Controller.ControllerEditarTransporte;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 /**
  *
@@ -24,6 +30,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
      */
     public DashBoard() {
         initComponents();
+        
     }
 
     /**
@@ -35,6 +42,29 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuAtualizar = new javax.swing.JMenuItem();
+        jFuncionario = new javax.swing.JMenu();
+        jMenuCadastroFuncionario = new javax.swing.JMenuItem();
+        jMenuConsultarFuincionario = new javax.swing.JMenuItem();
+        jMotorista = new javax.swing.JMenu();
+        jMenuCadastroMotorista = new javax.swing.JMenuItem();
+        jMenuConsultarMotorista = new javax.swing.JMenuItem();
+        jPassageiro = new javax.swing.JMenu();
+        jMenuCadastrarPassageiro = new javax.swing.JMenuItem();
+        jMenuConsultarPassageiro = new javax.swing.JMenuItem();
+        jVeiculo = new javax.swing.JMenu();
+        jMenuCadastroVeiculo = new javax.swing.JMenuItem();
+        jMenuConsultaVeiculo = new javax.swing.JMenuItem();
+        jRota = new javax.swing.JMenu();
+        jMenuCadastroRota = new javax.swing.JMenuItem();
+        jMenuConsultaRota = new javax.swing.JMenuItem();
+        jViagem = new javax.swing.JMenu();
+        jMenuCadastroViagem = new javax.swing.JMenuItem();
+        jMenuConsultaViagem = new javax.swing.JMenuItem();
+        jMenuFinanceiro = new javax.swing.JMenuItem();
+        jMenuSair = new javax.swing.JMenuItem();
+        jMenuLoggof1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         painelBotoes = new javax.swing.JPanel();
         btnEfetuarViagem = new javax.swing.JButton();
@@ -45,10 +75,6 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         fundoPrincipal = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuFuncionarioCadastro = new javax.swing.JMenuItem();
@@ -74,6 +100,78 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         Sair = new javax.swing.JMenu();
         jMenuLogoff = new javax.swing.JMenuItem();
         jMenuEncerrarSistema = new javax.swing.JMenuItem();
+
+        jMenuAtualizar.setText("Atualizar");
+        jPopupMenu1.add(jMenuAtualizar);
+
+        jFuncionario.setText("Funcionario");
+
+        jMenuCadastroFuncionario.setText("Cadastrar");
+        jFuncionario.add(jMenuCadastroFuncionario);
+
+        jMenuConsultarFuincionario.setText("Consultar");
+        jFuncionario.add(jMenuConsultarFuincionario);
+
+        jPopupMenu1.add(jFuncionario);
+
+        jMotorista.setText("Motorista");
+
+        jMenuCadastroMotorista.setText("Cadastrar");
+        jMotorista.add(jMenuCadastroMotorista);
+
+        jMenuConsultarMotorista.setText("Consultar");
+        jMotorista.add(jMenuConsultarMotorista);
+
+        jPopupMenu1.add(jMotorista);
+
+        jPassageiro.setText("Passageiro");
+
+        jMenuCadastrarPassageiro.setText("Cadastrar");
+        jPassageiro.add(jMenuCadastrarPassageiro);
+
+        jMenuConsultarPassageiro.setText("Consultar");
+        jPassageiro.add(jMenuConsultarPassageiro);
+
+        jPopupMenu1.add(jPassageiro);
+
+        jVeiculo.setText("Veiculo");
+
+        jMenuCadastroVeiculo.setText("Cadastrar");
+        jVeiculo.add(jMenuCadastroVeiculo);
+
+        jMenuConsultaVeiculo.setText("Consultar");
+        jVeiculo.add(jMenuConsultaVeiculo);
+
+        jPopupMenu1.add(jVeiculo);
+
+        jRota.setText("Rota");
+
+        jMenuCadastroRota.setText("Cadastrar");
+        jRota.add(jMenuCadastroRota);
+
+        jMenuConsultaRota.setText("Consultar");
+        jRota.add(jMenuConsultaRota);
+
+        jPopupMenu1.add(jRota);
+
+        jViagem.setText("Viagem");
+
+        jMenuCadastroViagem.setText("Cadastrar");
+        jViagem.add(jMenuCadastroViagem);
+
+        jMenuConsultaViagem.setText("Consultar");
+        jViagem.add(jMenuConsultaViagem);
+
+        jPopupMenu1.add(jViagem);
+
+        jMenuFinanceiro.setText("Financeiro");
+        jPopupMenu1.add(jMenuFinanceiro);
+
+        jMenuSair.setText("Sair");
+        jPopupMenu1.add(jMenuSair);
+
+        jMenuLoggof1.setText("Logoff");
+        jPopupMenu1.add(jMenuLoggof1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -122,38 +220,19 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         fundoPrincipal.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/logo_onibus_oficial.png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 1, -1, -1));
-
-        jLabel2.setText("CMD-2356");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 108, -1, -1));
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/on.png"))); // NOI18N
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, 11));
 
         javax.swing.GroupLayout fundoPrincipalLayout = new javax.swing.GroupLayout(fundoPrincipal);
         fundoPrincipal.setLayout(fundoPrincipalLayout);
         fundoPrincipalLayout.setHorizontalGroup(
             fundoPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fundoPrincipalLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(840, Short.MAX_VALUE))
+            .addGap(0, 1003, Short.MAX_VALUE)
         );
         fundoPrincipalLayout.setVerticalGroup(
             fundoPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fundoPrincipalLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(493, Short.MAX_VALUE))
+            .addGap(0, 662, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(fundoPrincipal);
@@ -434,9 +513,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         return jPanel3;
     }
 
-    public JPanel getjPanel4() {
-        return jPanel4;
-    }
+    
 
     public JPanel getPainelBotoes() {
         return painelBotoes;
@@ -457,6 +534,78 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     public JMenu getjMenu6() {
         return jMenu6;
     }
+
+    public JMenuItem getjMenuAtualizar() {
+        return jMenuAtualizar;
+    }
+
+    public JPopupMenu getjPopupMenu1() {
+        return jPopupMenu1;
+    }
+
+    public JMenuItem getjMenuCadastrarPassageiro() {
+        return jMenuCadastrarPassageiro;
+    }
+
+    public JMenuItem getjMenuCadastroFuncionario() {
+        return jMenuCadastroFuncionario;
+    }
+
+    public JMenuItem getjMenuCadastroMotorista() {
+        return jMenuCadastroMotorista;
+    }
+
+    public JMenuItem getjMenuCadastroRota() {
+        return jMenuCadastroRota;
+    }
+
+    public JMenuItem getjMenuCadastroVeiculo() {
+        return jMenuCadastroVeiculo;
+    }
+
+    public JMenuItem getjMenuCadastroViagem() {
+        return jMenuCadastroViagem;
+    }
+
+    public JMenuItem getjMenuConsultaRota() {
+        return jMenuConsultaRota;
+    }
+
+    public JMenuItem getjMenuConsultaVeiculo() {
+        return jMenuConsultaVeiculo;
+    }
+
+    public JMenuItem getjMenuConsultaViagem() {
+        return jMenuConsultaViagem;
+    }
+
+    public JMenuItem getjMenuConsultarFuincionario() {
+        return jMenuConsultarFuincionario;
+    }
+
+    public JMenuItem getjMenuConsultarMotorista() {
+        return jMenuConsultarMotorista;
+    }
+
+    public JMenuItem getjMenuConsultarPassageiro() {
+        return jMenuConsultarPassageiro;
+    }
+
+    public JMenuItem getjMenuFinanceiro() {
+        return jMenuFinanceiro;
+    }
+
+    public JMenuItem getjMenuLoggof1() {
+        return jMenuLoggof1;
+    }
+
+    public JMenuItem getjMenuSair() {
+        return jMenuSair;
+    }
+
+    public JMenu getjFuncionario() {
+        return jFuncionario;
+    }
     
     
     
@@ -469,9 +618,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     private javax.swing.JButton btnConsultarViagem;
     private javax.swing.JButton btnEfetuarViagem;
     private javax.swing.JPanel fundoPrincipal;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jFuncionario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -479,12 +626,27 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenuItem jMenuAtualizar;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuCadastrarPassageiro;
+    private javax.swing.JMenuItem jMenuCadastroFuncionario;
+    private javax.swing.JMenuItem jMenuCadastroMotorista;
+    private javax.swing.JMenuItem jMenuCadastroRota;
+    private javax.swing.JMenuItem jMenuCadastroVeiculo;
+    private javax.swing.JMenuItem jMenuCadastroViagem;
+    private javax.swing.JMenuItem jMenuConsultaRota;
+    private javax.swing.JMenuItem jMenuConsultaVeiculo;
+    private javax.swing.JMenuItem jMenuConsultaViagem;
+    private javax.swing.JMenuItem jMenuConsultarFuincionario;
+    private javax.swing.JMenuItem jMenuConsultarMotorista;
+    private javax.swing.JMenuItem jMenuConsultarPassageiro;
     private javax.swing.JMenuItem jMenuControleAcesso;
     private javax.swing.JMenuItem jMenuEncerrarSistema;
+    private javax.swing.JMenuItem jMenuFinanceiro;
     private javax.swing.JMenuItem jMenuFinanceiroConsulta;
     private javax.swing.JMenuItem jMenuFuncionarioCadastro;
     private javax.swing.JMenuItem jMenuFuncionarioConsulta;
+    private javax.swing.JMenuItem jMenuLoggof1;
     private javax.swing.JMenuItem jMenuLogoff;
     private javax.swing.JMenuItem jMenuMotoristaCadastro;
     private javax.swing.JMenuItem jMenuMotoristaConsulta;
@@ -493,22 +655,28 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     private javax.swing.JMenuItem jMenuPersonalizar;
     private javax.swing.JMenuItem jMenuRotaCadastro;
     private javax.swing.JMenuItem jMenuRotaConsulta;
+    private javax.swing.JMenuItem jMenuSair;
     private javax.swing.JMenuItem jMenuSobre;
     private javax.swing.JMenuItem jMenuVeiculoCadastro;
     private javax.swing.JMenuItem jMenuVeiculoConsulta;
+    private javax.swing.JMenu jMotorista;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JMenu jPassageiro;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JMenu jRota;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu jVeiculo;
+    private javax.swing.JMenu jViagem;
     private javax.swing.JPanel painelBotoes;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object arg) {
-        fundoPrincipal.setBackground((Color) arg);
+    /*    fundoPrincipal.setBackground((Color) arg);
         jPanel1.setBackground((Color) arg);
         jPanel3.setBackground((Color) arg);
-        jPanel4.setBackground((Color) arg);
+        
         painelBotoes.setBackground((Color) arg);
         btnConsultarPassageiros.setBackground((Color) arg);
         btnConsultarRotas.setBackground((Color) arg);
@@ -516,5 +684,8 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         btnConsultarViagem.setBackground((Color) arg);
         btnEfetuarViagem.setBackground((Color) arg);
         jMenuBar1.setBackground((Color) arg);
+*/
+    
+    
     }
 }

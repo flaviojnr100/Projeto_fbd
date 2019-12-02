@@ -59,7 +59,7 @@ public class DaoFuncionario {
             result = statement.executeQuery();
             conexao.close();
             if(result.next()){
-                return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8));
+                return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8),result.getString(9));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,7 +75,7 @@ public class DaoFuncionario {
             result = statement.executeQuery();
             
             while(result.next()){
-                funcionarios.add(new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8)));
+                funcionarios.add(new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8),result.getString(9)));
             }
             conexao.close();
             return funcionarios;
@@ -132,7 +132,7 @@ public class DaoFuncionario {
             result = statement.executeQuery();
             conexao.close();
             while(result.next()){
-                funcionario.add(new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8)));
+                funcionario.add(new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8),result.getString(9)));
             }
             return funcionario;
         } catch (SQLException ex) {
@@ -149,7 +149,7 @@ public class DaoFuncionario {
             result = statement.executeQuery();
             conexao.close();
             if(result.next()){
-                return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8));
+                return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8),result.getString(9));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,7 +165,7 @@ public class DaoFuncionario {
             statement.setString(2, senha);
             result = statement.executeQuery();
             if(result.next()){
-                return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8));
+                return new Funcionario(result.getInt(1), result.getString(2), result.getString(3), result.getString(4), result.getString(5), result.getString(6), result.getString(7), result.getString(8),result.getString(9));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
@@ -209,6 +209,21 @@ public class DaoFuncionario {
                 }
                 
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    public boolean alterarStatus(String cpf,String status){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Funcionario.ALTERAR_STATUS);
+            statement.setString(1, status);
+            statement.setString(2, cpf);
+            statement.execute();
+            conexao.close();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }

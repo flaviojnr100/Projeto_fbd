@@ -89,20 +89,20 @@ public class DaoAssento {
         return -1;
     }
     
-    public List<Assento> buscarLivre(){
-        List<Assento> livres = new ArrayList<>();
+    public int buscarLivre(String placa){
         try {
             conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
             statement = conexao.prepareStatement(SQLUtil.Assento.BUSCAR_LIVRE);
+            statement.setString(1, placa);
             result = statement.executeQuery();
-            while(result.next()){
-                livres.add(new Assento(result.getInt(1), result.getInt(2), "vazio"));
+            if(result.next()){
+                return result.getInt(1);
             }
-            return livres;
+            
         } catch (SQLException ex) {
             Logger.getLogger(DaoAssento.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return livres;
+        return -1;
     }
     public List<Assento> buscarLivreVaga(int id){
         List<Assento> livres = new ArrayList<>();

@@ -21,6 +21,7 @@ import modelVO.BaseDados;
 import modelVO.Transporte;
 import sql.SQLUtil;
 import view.ConsultarTransporte;
+import view.EditarTransporte;
 import view.InformacoesVeiculo;
 import view.Mensagens;
 
@@ -33,19 +34,23 @@ public class ControllerConsultarTransporte extends Observable {
     private Fachada fachada;
     private List<Transporte> transporteLike;
     private InformacoesVeiculo iVeiculo;
-    public ControllerConsultarTransporte(ConsultarTransporte tela, Fachada fachada,InformacoesVeiculo iVeiculo) {
+    private ControllerEditarTransporte ceTransporte;
+    private ControllerCadastroTransporte ccTransporte;
+    public ControllerConsultarTransporte(ConsultarTransporte tela, Fachada fachada,InformacoesVeiculo iVeiculo,ControllerEditarTransporte ceTransporte,ControllerCadastroTransporte ccTransporte) {
         this.tela = tela;
         this.fachada = fachada;
         this.iVeiculo = iVeiculo;
+        this.ceTransporte = ceTransporte;
+        this.ccTransporte = ccTransporte;
         transporteLike = BaseDados.getTransportes();
         Control();
     }
     private void Control(){
-        //tela.getjTableTransporte().addMouseListener(new CaixaMenu());
+       // tela.getjTableTransporte().addMouseListener(new CaixaMenu());
         tela.getMenuAtualizar().addActionListener(new CaixaMenu());
         tela.getjMenuInformacoes().addActionListener(new CaixaMenu());
         tela.getMenuCadastrar().addActionListener(new CaixaMenu());
-        tela.getMenuExcluir().addActionListener(new CaixaMenu());
+        tela.getMenuStatus().addActionListener(new CaixaMenu());
         tela.getMenuEditar().addActionListener(new CaixaMenu());
         tela.getMenuSair().addActionListener(new CaixaMenu());
         
@@ -74,6 +79,7 @@ public class ControllerConsultarTransporte extends Observable {
             tela.getjTableTransporte().getModel().setValueAt(t.getMotorista().getNome(), i, 4);
             tela.getjTableTransporte().getModel().setValueAt(t.getTipo().getNome(), i, 5);
             tela.getjTableTransporte().getModel().setValueAt(t.getDestino().getNome(), i, 6);
+            tela.getjTableTransporte().getModel().setValueAt(t.getStatus(), i, 7);
             i++;
         }
     }
@@ -89,13 +95,14 @@ public class ControllerConsultarTransporte extends Observable {
             tela.getjTableTransporte().getModel().setValueAt(t.getMotorista().getNome(), i, 4);
             tela.getjTableTransporte().getModel().setValueAt(t.getTipo().getNome(), i, 5);
             tela.getjTableTransporte().getModel().setValueAt(t.getDestino().getNome(), i, 6);
+            tela.getjTableTransporte().getModel().setValueAt(t.getStatus(), i, 7);
             i++;
         }
     }
     public boolean limpar(){
         
         for(int i=0;i<tela.getjTableTransporte().getRowCount();i++){
-            for(int j=0;j<tela.getjTableTransporte().getColumnCount();j++){
+            for(int j=0;j<8;j++){
                 tela.getjTableTransporte().getModel().setValueAt("", i, j);
             }
         }
@@ -108,7 +115,7 @@ public class ControllerConsultarTransporte extends Observable {
     public boolean limparSimples(){
         
         for(int i=0;i<BaseDados.getTransportes().size()+1;i++){
-            for(int j=0;j<tela.getjTableTransporte().getColumnCount();j++){
+            for(int j=0;j<8;j++){
                 tela.getjTableTransporte().getModel().setValueAt("", i, j);
             }
         }
@@ -124,24 +131,22 @@ public class ControllerConsultarTransporte extends Observable {
         public void mouseClicked(MouseEvent e) {
                         
             if(SwingUtilities.isRightMouseButton(e)){
-               /* try{
+                try{
                 if(!tela.getjTableTransporte().getModel().getValueAt(tela.getjTableTransporte().getSelectedRow(), 1).equals("")){
                     tela.getMenuEditar().setVisible(true);
-                    tela.getMenuExcluir().setVisible(true);
+                    tela.getMenuStatus().setVisible(true);
                     tela.getjMenuInformacoes().setVisible(true);
-                    tela.getjPopupMenu1().show(tela.getjTableTransporte(), e.getX(), e.getY());
+                    
                 }else{
                     tela.getMenuEditar().setVisible(false);
-                    tela.getMenuExcluir().setVisible(false);
+                    tela.getMenuStatus().setVisible(false);
                     tela.getjMenuInformacoes().setVisible(false);
-                    tela.getjPopupMenu1().show(tela.getjTableTransporte(), e.getX(), e.getY());
                 }
+                tela.getjPopupMenu1().show(tela.getjTableTransporte(), e.getX(), e.getY());
                 }catch(Exception e1){
                     
                 }
-                */
-                System.out.println(""+tela.getjTableTransporte().getModel().getValueAt(tela.getjTableTransporte().getSelectedRow(), 0));
-        }
+            }
         }
 
         @Override
@@ -160,21 +165,49 @@ public class ControllerConsultarTransporte extends Observable {
                 iVeiculo.setVisible(true);
             }
             if(e.getSource() == tela.getMenuCadastrar()){
-            
+                ccTransporte.desabilitarEvento();
+                ccTransporte.montarComboMotorista();
+                ccTransporte.montarComboTipo();
+                ccTransporte.montarComboRota();
+                ccTransporte.getTela().getComboMotorista().setSelectedIndex(0);
+                ccTransporte.getTela().getComboRota().setSelectedIndex(0);
+                ccTransporte.getTela().getComboTipo().setSelectedIndex(0);
+                ccTransporte.mudarLista();
+                ccTransporte.habilitarEvento();
+                
+                ccTransporte.getTela().setVisible(true);
             }
-            if(e.getSource() == tela.getMenuExcluir()){
-                if(Mensagens.mensagemConfirmacao("Deseja remover esse registro?")){
-                if(fachada.removerTransporte((int)tela.getjTableTransporte().getModel().getValueAt(tela.getjTableTransporte().getSelectedRow(), 0), (String)tela.getjTableTransporte().getModel().getValueAt(tela.getjTableTransporte().getSelectedRow(), 2))){
-                    Mensagens.mensagem("Removido com sucesso!");
+            if(e.getSource() == tela.getMenuStatus()){
+                if(Mensagens.mensagemConfirmacao("Deseja mudar o status desse registro?")){
+                    Transporte transporte = BaseDados.getTransportes().get(tela.getjTableTransporte().getSelectedRow());
+                    String st="ATIVO";
+                    if(tela.getjTableTransporte().getModel().getValueAt(tela.getjTableTransporte().getSelectedRow(), 7).equals("ATIVO")){
+                        st="DESATIVADO";
+                        fachada.alterarStatusTransporte(transporte.getId(),st);
+                    }else{
+                        st="ATIVO";
+                        fachada.alterarStatusTransporte(transporte.getId(),st);
+                    }
                     BaseDados.CarregarTransporte();
-                    tela.getMenuAtualizar().doClick();
-                }else{
-                    Mensagens.mensagem("Erro ao tentar remover o registro!");
-                }
+                    
+                    
+                    setChanged();
+                    notifyObservers("atualizar");
                 }
             }
             if(e.getSource() == tela.getMenuEditar()){
-            
+                Transporte transporte = fachada.buscarIdTransporte((int)tela.getjTableTransporte().getModel().getValueAt(tela.getjTableTransporte().getSelectedRow(), 0));
+                
+                ceTransporte.getTela().getLblNome().setText(transporte.getTipo().getNome());
+                ceTransporte.getTela().getLblAssentos().setText(transporte.getTipo().getAssentos()+"");
+                ceTransporte.getTela().getChassiText().setText(transporte.getChassi());
+                ceTransporte.getTela().getCorText().setText(transporte.getCor());
+                ceTransporte.getTela().getPlacaText().setText(transporte.getPlaca());
+                ceTransporte.getTela().getLblNomeMotorista().setText(transporte.getMotorista().getNome());
+                ceTransporte.getTela().getLblSobrenomeMotorista().setText(transporte.getMotorista().getSobrenome());
+               
+               ceTransporte.setId(BaseDados.getTransportes().get(tela.getjTableTransporte().getSelectedRow()).getId());
+               ceTransporte.getTela().setVisible(true);
             }
             if(e.getSource() == tela.getMenuSair()){
                 tela.setVisible(false);
@@ -198,10 +231,10 @@ public class ControllerConsultarTransporte extends Observable {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnBuscar()){
                 if(tela.getjRadioChassi().isSelected()){
-                    transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText().toUpperCase(), SQLUtil.Transporte.BUSCARLIKECHASSI);
+                    transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText(), SQLUtil.Transporte.BUSCARLIKECHASSI);
                 }
                 if(tela.getjRadioPlaca().isSelected()){
-                    transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText().toUpperCase(), SQLUtil.Transporte.BUSCARLIKEPLACA);
+                    transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText(), SQLUtil.Transporte.BUSCARLIKEPLACA);
                 }
                 if(tela.getjRadioMotorista().isSelected()){
                     transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText().toUpperCase(), SQLUtil.Transporte.BUSCARLIKEMOTORISTA);

@@ -62,10 +62,14 @@ public class ControllerLogin {
                         fachada.salvar(fachada.buscarLogin(tela.getUsuarioTxt().getText(), tela.getSenhaTxt().getText()), getHorario(), getDataAtual());
                         principal.getjMenu1().setVisible(false);
                         principal.getjMenu6().setVisible(false);
+                        principal.getjMenuFinanceiro().setVisible(false);
+                        principal.getjFuncionario().setVisible(false);
                         principal.getjMenuControleAcesso().setVisible(false);
                     }else{
                         principal.getjMenu1().setVisible(true);
                         principal.getjMenu6().setVisible(true);
+                        principal.getjMenuFinanceiro().setVisible(true);
+                        principal.getjFuncionario().setVisible(true);
                         principal.getjMenuControleAcesso().setVisible(true);
                     }
                     tela.getUsuarioTxt().setText("");
