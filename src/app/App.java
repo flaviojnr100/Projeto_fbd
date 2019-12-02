@@ -29,7 +29,6 @@ import Controller.ControllerEditarRota;
 import Controller.ControllerEditarTransporte;
 import Controller.ControllerInformacoesFinancas;
 import Controller.ControllerLogin;
-import Controller.ControllerTelaPersonalizar;
 import fachada.Fachada;
 import java.sql.SQLException;
 import java.sql.SQLType;
@@ -80,7 +79,7 @@ import view.InformacoesViagem;
 import view.Sobre;
 import view.TelaCarregamento;
 import view.TelaLogin;
-import view.TelaPersonalizar;
+
 
 
 
@@ -211,11 +210,11 @@ public class App {
       
       TelaLogin telaLogin = new TelaLogin();
       Sobre sobre = new Sobre();
-      TelaPersonalizar personalizar = new TelaPersonalizar();
+      
       InformacaoAtualVeiculo iaVeiculo = new InformacaoAtualVeiculo();
-      ControllerDashBoard ccDash =new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso,telaLogin,cccRota,cccViagem,ccccViagem,ccFinanca,cccFinanca,iaVeiculo,sobre);
-      ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
-      c.addObserver(dash);
+      ControllerDashBoard ccDash =new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, cViagem, ccViagem,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso,telaLogin,cccRota,cccViagem,ccccViagem,ccFinanca,cccFinanca,iaVeiculo,sobre);
+      
+      
       //ccDash.addObserver(dash);
       ControllerLogin cLogin = new ControllerLogin(telaLogin, dash,fachada1);
      // telaLogin.setVisible(true);

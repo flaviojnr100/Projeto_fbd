@@ -313,26 +313,7 @@ public class EditarTransporte extends javax.swing.JFrame implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-    /*    btnAdicionarHorario.setBackground((Color)arg);
-        btnAdicionarMotorista.setBackground((Color)arg);
-        btnAdicionarRota.setBackground((Color)arg);
-        btnAdicionarTransporte.setBackground((Color)arg);
-        btnCadastrar.setBackground((Color)arg);
-        btnLimpar.setBackground((Color)arg);
-        btnSair.setBackground((Color)arg);
-        jPanel1.setBackground((Color)arg);
-        jPanel2.setBackground((Color)arg);
-        jPanel3.setBackground((Color)arg);
-        jPanel4.setBackground((Color)arg);
-        jPanel5.setBackground((Color)arg);
-        jPanel6.setBackground((Color)arg);
-        comboHorario.setBackground((Color)arg);
-        comboMotorista.setBackground((Color)arg);
-        comboRota.setBackground((Color)arg);
-        comboTipo.setBackground((Color)arg);
-        listaHorario.setBackground((Color)arg);
-        listaRota.setBackground((Color)arg);
-        */
+    
         
        
     }

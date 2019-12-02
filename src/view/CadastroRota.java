@@ -527,14 +527,7 @@ public class CadastroRota extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        btnCadastrar.setBackground((Color)arg);
-        btnCancelar.setBackground((Color)arg);
-        btnLimpar.setBackground((Color)arg);
-        jPanel1.setBackground((Color)arg);
-        jPanel2.setBackground((Color)arg);
-        jPanel3.setBackground((Color)arg);
-        jPanel4.setBackground((Color)arg);
-        jPanel5.setBackground((Color)arg);
+        
         
     }
 

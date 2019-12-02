@@ -98,7 +98,6 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         jMenu7 = new javax.swing.JMenu();
         jMenuSobre = new javax.swing.JMenuItem();
         jMenuControleAcesso = new javax.swing.JMenuItem();
-        jMenuPersonalizar = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenu();
         jMenuLogoff = new javax.swing.JMenuItem();
         jMenuEncerrarSistema = new javax.swing.JMenuItem();
@@ -343,13 +342,8 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         jMenuSobre.setText("Sobre");
         jMenu7.add(jMenuSobre);
 
-        jMenuControleAcesso.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuControleAcesso.setText("Controle de acesso");
         jMenu7.add(jMenuControleAcesso);
-
-        jMenuPersonalizar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jMenuPersonalizar.setText("Personalizar");
-        jMenu7.add(jMenuPersonalizar);
 
         jMenuBar1.add(jMenu7);
 
@@ -503,9 +497,11 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         return jMenuEncerrarSistema;
     }
 
-    public JMenuItem getjMenuPersonalizar() {
-        return jMenuPersonalizar;
+    public JMenuItem getjMenuControleAcesso() {
+        return jMenuControleAcesso;
     }
+
+    
 
     public JPanel getjPanel1() {
         return jPanel1;
@@ -521,10 +517,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         return painelBotoes;
     }
 
-    public JMenuItem getjMenuControleAcesso() {
-        return jMenuControleAcesso;
-    }
-
+    
     public JMenuItem getjMenuLogoff() {
         return jMenuLogoff;
     }
@@ -654,7 +647,6 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
     private javax.swing.JMenuItem jMenuMotoristaConsulta;
     private javax.swing.JMenuItem jMenuPassageiroCadastro;
     private javax.swing.JMenuItem jMenuPassageiroConsulta;
-    private javax.swing.JMenuItem jMenuPersonalizar;
     private javax.swing.JMenuItem jMenuRotaCadastro;
     private javax.swing.JMenuItem jMenuRotaConsulta;
     private javax.swing.JMenuItem jMenuSair;
@@ -675,19 +667,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-    /*    fundoPrincipal.setBackground((Color) arg);
-        jPanel1.setBackground((Color) arg);
-        jPanel3.setBackground((Color) arg);
+    
         
-        painelBotoes.setBackground((Color) arg);
-        btnConsultarPassageiros.setBackground((Color) arg);
-        btnConsultarRotas.setBackground((Color) arg);
-        btnConsultarVeiculos.setBackground((Color) arg);
-        btnConsultarViagem.setBackground((Color) arg);
-        btnEfetuarViagem.setBackground((Color) arg);
-        jMenuBar1.setBackground((Color) arg);
-*/
-    
-    
     }
 }

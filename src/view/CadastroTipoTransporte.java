@@ -145,8 +145,6 @@ public class CadastroTipoTransporte extends javax.swing.JFrame implements Observ
 
     @Override
     public void update(Observable o, Object arg) {
-        btnCadastrar.setBackground((Color)arg);
-        btnSair.setBackground((Color)arg);
-        jPanel1.setBackground((Color)arg);
+       
     }
 }

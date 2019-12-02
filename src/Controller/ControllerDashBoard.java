@@ -36,7 +36,7 @@ import view.InformacaoAtualVeiculo;
 import view.Mensagens;
 import view.Sobre;
 import view.TelaLogin;
-import view.TelaPersonalizar;
+
 import view.Veiculo;
 
 /**
@@ -58,7 +58,6 @@ public class ControllerDashBoard extends Observable {
     private CadastroRota cRota;
     private ConsultarRota ccRota;
     
-    private TelaPersonalizar telaPersonalizar;
     private TelaLogin tLogin;
     private ControllerConsultarMotorista cccMotorista;
     private ControllerConsultarFuncionario cccFuncionario;
@@ -74,7 +73,7 @@ public class ControllerDashBoard extends Observable {
     private List<Veiculo> veiculos;
     private InformacaoAtualVeiculo iaVeiculo;
     private Sobre sobre;
-    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota,CadastroViagem cViagem,ConsultarViagem ccViagem,TelaPersonalizar telaPersonalizar,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo,ControllerControleAcesso ccAcesso,TelaLogin tLogin,ControllerConsultarRota cccRota,ControllerCadastroViagem cccViagem,ControllerConsultarViagem ccccViagem,ConsultarFinança ccFinanca,ControllerConsultaFinanca cccFinanca,InformacaoAtualVeiculo iaVeiculo,Sobre sobre) {
+    public ControllerDashBoard(DashBoard principal, CadastroFuncionario cFuncionario, ConsultarFuncionario ccFuncionario, CadastroMotorista cMotorista, ConsultarMotorista ccMotorista, CadastroTransporte cTransporte, ConsultarTransporte ccTransporte, CadastroPassageiro cPassageiro, ConsultarPassageiro ccPassageiro, CadastroRota cRota, ConsultarRota ccRota,CadastroViagem cViagem,ConsultarViagem ccViagem,ControllerConsultarMotorista cccMotorista,ControllerConsultarFuncionario cccFuncionario,ControllerConsultarPassageiro cccPassageiro,ControllerCadastroTransporte ccVeiculo,ControllerConsultarTransporte cccVeiculo,ControllerControleAcesso ccAcesso,TelaLogin tLogin,ControllerConsultarRota cccRota,ControllerCadastroViagem cccViagem,ControllerConsultarViagem ccccViagem,ConsultarFinança ccFinanca,ControllerConsultaFinanca cccFinanca,InformacaoAtualVeiculo iaVeiculo,Sobre sobre) {
         this.principal = principal;
         this.cFuncionario = cFuncionario;
         this.ccFuncionario = ccFuncionario;
@@ -89,7 +88,6 @@ public class ControllerDashBoard extends Observable {
         
         this.cViagem = cViagem;
         this.ccViagem = ccViagem;
-        this.telaPersonalizar = telaPersonalizar;
         this.cccMotorista = cccMotorista;
         this.cccFuncionario = cccFuncionario;
         this.cccPassageiro = cccPassageiro;
@@ -129,7 +127,6 @@ public class ControllerDashBoard extends Observable {
         principal.getjMenuFinanceiroConsulta().addActionListener(new Menu());
         
         principal.getjMenuSobre().addActionListener(new Menu());
-        principal.getjMenuPersonalizar().addActionListener(new Menu());
         principal.getjMenuControleAcesso().addActionListener(new Menu());
         
         
@@ -453,10 +450,7 @@ public class ControllerDashBoard extends Observable {
                     
                 }
             }
-            if(e.getSource() == principal.getjMenuPersonalizar()){
-                telaPersonalizar.setVisible(true);
-            }
-            
+                        
             if(e.getSource() == principal.getjMenuLogoff()){
                 if(Mensagens.mensagemConfirmacao("Você deseja sair do sistema?")){
                     principal.setVisible(false);

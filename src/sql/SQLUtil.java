@@ -127,8 +127,8 @@ public class SQLUtil {
     public static class Acesso{
         public static String SALVAR_ACESSO = "insert into acesso(cod_funcionario,horario,data) values(?,?,?)";
         public static String BUSCAR_ALL = "select a.id,b.login,a.horario,a.data from acesso as a, funcionario as b where a.cod_funcionario = b.id order by id desc limit 49";
-        public static String BUSCAR_LIKEDATA = "select a.id,b.login,a.horario,a.data from acesso as a, funcionario as b where a.cod_funcionario = b.id and data like ? order by id";;
-        public static String BUSCAR_LIKENOME = "select a.id,b.login,a.horario,a.data from acesso as a,funcionario as b where a.cod_funcionario=b.id and b.nome  like ?";
+        public static String BUSCAR_LIKEDATA = "select a.id,b.login,a.horario,a.data from acesso as a, funcionario as b where a.cod_funcionario = b.id and data like ? order by id desc limit 49";;
+        public static String BUSCAR_LIKENOME = "select a.id,b.login,a.horario,a.data from acesso as a,funcionario as b where a.cod_funcionario=b.id and b.nome  like ? order by id desc limit 49";
        }
     public static class Viagem{
         public static String INSERT = "insert into viagem(id_passageiro,id_rota,id_transporte,preco,data_viagem,hora_viagem,status) values(?,?,?,?,?,?,'ATIVO')";

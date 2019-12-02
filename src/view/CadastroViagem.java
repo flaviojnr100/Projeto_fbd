@@ -477,31 +477,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-    /*    btnAdicionarPassageiro.setBackground((Color)arg);
-        btnAdicionarRota.setBackground((Color)arg);
-        btnAdicionarTransporte.setBackground((Color)arg);
-        btnCancelar.setBackground((Color)arg);
-        btnConcluir.setBackground((Color)arg);
-        btnFinalizar.setBackground((Color)arg);
-        jPanel1.setBackground((Color)arg);
-        jPanel10.setBackground((Color)arg);
-        jPanel11.setBackground((Color)arg);
-        jPanel2.setBackground((Color)arg);
-        jPanel3.setBackground((Color)arg);
-        jPanel4.setBackground((Color)arg);
-        jPanel5.setBackground((Color)arg);
-        jPanel6.setBackground((Color)arg);
-        jPanel7.setBackground((Color)arg);
-        jPanel8.setBackground((Color)arg);
-        jPanel9.setBackground((Color)arg);
-        comboHorario.setBackground((Color)arg);
-        comboPassageiro.setBackground((Color)arg);
-        comboRota.setBackground((Color)arg);
-        comboTransporte.setBackground((Color)arg);
-        jList1.setBackground((Color)arg);
-        
-        */
-    
+       
     if(o instanceof ControllerCadastroViagem){
         String [] dados = (String [])arg;
         if(dados[3].equals("passageiro")){
