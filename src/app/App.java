@@ -32,6 +32,8 @@ import Controller.ControllerLogin;
 import fachada.Fachada;
 import java.sql.SQLException;
 import java.sql.SQLType;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -87,11 +89,25 @@ import view.TelaLogin;
  *
  * @author Flavio
  */
-public class App {
+public class App extends Thread {
+    public void run(){
+        while(true){
+            try {
+                if(!Fachada.getInstance().buscarDia(BaseDados.getDataAtual())){
+                    Fachada.getInstance().resetarAssento();
+                }
+                
+                sleep(100000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
     public static void main(String[] args) {
        
-     //   Motorista motorista1 = new Motorista("Roberta", "Paula", "546532127", "326598", "12/56/1236", "654312321");
-       // Transporte transporte = new Transporte("Amarelo", "1235cvn", "3554fd");
+     
         Fachada fachada1 =Fachada.getInstance();
         BaseDados.CarregarTransporte();
         BaseDados.CarregarRota();
@@ -101,26 +117,8 @@ public class App {
         BaseDados.CarregarFuncionario();
         BaseDados.CarregarViagem();
         BaseDados.CarregarFinanca();
-        //fachada1.salvar(new Funcionario("flavio", "cordeiro", "345346", "6546756", "12/12/1212", "fj", "234"));
+        BaseDados.CarregarTransporteAtivo();
         
-        //System.out.println(""+fachada1.verificarExistenciaMotorista("555.555.555-55546456"));
-    //     Motorista motorista = fachada1.buscarCpf("326598");
-    //    fachada1.editar(motorista, motorista1);
-      
-      /* Login login =  new Login();
-       new Controller.ControllerLogin(login);
-       login.setVisible(true);
-        */
-    /*  CadastroFuncionario cc =new CadastroFuncionario();
-      new ControllerCadastroFuncionario(cc);
-      cc.setVisible(true);
-*/
-  /*  CadastroEmpresa cc = new CadastroEmpresa();
-    new ControllerCadastroEmpresa(cc);
-    cc.setVisible(true);
-        */
-       // System.out.println("  .   .   -  ".length());
-       //Arrumar o problema de validar cadastro(Colorir os campos invalidos)
        DashBoard dash = new DashBoard();
        
        
@@ -224,12 +222,12 @@ public class App {
       ccAcesso.addObserver(cAcesso);
       
 
-  
- 
-  
+      cccTransporte.setCcDash(ccDash);
+      ccccTransporte.setCcDash(ccDash);
+      ceTransporte.setCcDash(ccDash);
   
        
-       
+      new App().start();
       
       
     }

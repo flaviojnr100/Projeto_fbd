@@ -12,19 +12,19 @@ package modelVO;
 public class Assento {
     private int id;
     private int numero;
-    private String estado_ocupacao;
+    
     
     public Assento(int numero) {
         this.numero = numero;
-        this.estado_ocupacao = "vazio";
+        
         
         
     }
 
-    public Assento(int id, int numero, String estado_ocupacao) {
+    public Assento(int id, int numero) {
         this.id = id;
         this.numero = numero;
-        this.estado_ocupacao = estado_ocupacao;
+        
     }
 
     
@@ -38,15 +38,7 @@ public class Assento {
         this.numero = numero;
     }
 
-    
-    public String getEstado_ocupacao() {
-        return estado_ocupacao;
-    }
-
-    public void setEstado_ocupacao(String estado_ocupacao) {
-        this.estado_ocupacao = estado_ocupacao;
-    }
-
+       
     public int getId() {
         return id;
     }

@@ -33,7 +33,6 @@ public class DaoAssento {
             conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
             statement = conexao.prepareStatement(SQLUtil.Assento.INSERT_ALL);
             statement.setInt(1, assento.getNumero());
-            statement.setString(2, assento.getEstado_ocupacao());
             statement.execute();
             conexao.close();
             return true;
@@ -50,7 +49,7 @@ public class DaoAssento {
             statement.setInt(1, numero);
             result = statement.executeQuery();
             if(result.next()){
-                return new Assento(result.getInt(1), result.getInt(2), result.getString(3));
+                return new Assento(result.getInt(1), result.getInt(2));
             }
         } catch (SQLException ex) {
             Logger.getLogger(DaoAssento.class.getName()).log(Level.SEVERE, null, ex);
@@ -112,7 +111,7 @@ public class DaoAssento {
             statement.setInt(1, id);
             result = statement.executeQuery();
             while(result.next()){
-                livres.add(new Assento(result.getInt(1), result.getInt(2), "vazio"));
+                livres.add(new Assento(result.getInt(1), result.getInt(2)));
             }
             return livres;
         } catch (SQLException ex) {
@@ -128,7 +127,7 @@ public class DaoAssento {
             statement = conexao.prepareStatement(SQLUtil.Assento.BUSCAR_ALL);
             result = statement.executeQuery();
             while(result.next()){
-                assentos.add(new Assento(result.getInt(1), result.getInt(2), result.getString(3)));
+                assentos.add(new Assento(result.getInt(1), result.getInt(2)));
             }
             return assentos;
             

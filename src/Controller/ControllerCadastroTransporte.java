@@ -38,7 +38,7 @@ public class ControllerCadastroTransporte extends Observable {
     private mudarCombo mudarE = new mudarCombo();
     private Motorista [] motoristas;
     private Destino [] rotas;
-
+    private ControllerDashBoard ccDash;
     public ControllerCadastroTransporte(CadastroTransporte tela, Fachada fachada, CadastroMotorista cMotorista, CadastroTipoTransporte cTipoTransporte, CadastroRota cRota) {
         this.tela = tela;
         this.fachada = fachada;
@@ -116,6 +116,8 @@ public class ControllerCadastroTransporte extends Observable {
                         montarComboTipo();
                         habilitarEvento();
                         BaseDados.CarregarTransporte();
+                        BaseDados.CarregarTransporteAtivo();
+                        ccDash.montarFundoPrincipal();
                         
                 
                 }else{
@@ -188,6 +190,10 @@ public class ControllerCadastroTransporte extends Observable {
 
     public CadastroTransporte getTela() {
         return tela;
+    }
+
+    public void setCcDash(ControllerDashBoard ccDash) {
+        this.ccDash = ccDash;
     }
 
     

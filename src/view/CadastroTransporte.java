@@ -327,18 +327,8 @@ public class CadastroTransporte extends javax.swing.JFrame implements Observer{
     @Override
     public void update(Observable o, Object arg) {
    
-        if(o instanceof ControllerCadastroTipoTransporte){
-            
-            ((ControllerCadastroTipoTransporte)o).getcTransporte().montarComboTipo();
-            
-        }
+               
         
-        if(o instanceof ControllerCadastroRota){
-            ((ControllerCadastroTipoTransporte)o).getcTransporte().desabilitarEvento();
-            ((ControllerCadastroTipoTransporte)o).getcTransporte().montarComboRota();
-            ((ControllerCadastroTipoTransporte)o).getcTransporte().mudarLista();
-            ((ControllerCadastroTipoTransporte)o).getcTransporte().habilitarEvento();
-        }
         if(o instanceof ControllerCadastroTransporte){
             String obj = (String)arg;
             jTextLista.setText(obj);

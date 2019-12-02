@@ -342,6 +342,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
         jMenuSobre.setText("Sobre");
         jMenu7.add(jMenuSobre);
 
+        jMenuControleAcesso.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jMenuControleAcesso.setText("Controle de acesso");
         jMenu7.add(jMenuControleAcesso);
 

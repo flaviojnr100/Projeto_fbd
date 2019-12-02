@@ -194,6 +194,27 @@ public class DaoFuncionario {
         
         return false;
     }
+    public boolean verificarLogin(String login){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Funcionario.VERIFICARLOGIN);
+            statement.setString(1, login);
+            result = statement.executeQuery();
+            conexao.close();
+            if(result.next()){
+                if(result.getInt(1)==0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
     public boolean autenticar(Funcionario funcionario){
         
         try {

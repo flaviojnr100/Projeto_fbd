@@ -45,6 +45,8 @@ public class SQLUtil {
         public static String BUSCAR_ID = "select * from transporte where id=?";
         public static String EDITAR = "update transporte set cor=?,placa=?,chassi=? where id =?";
         public static String ALTERAR_STATUS = "update transporte set status=? where id=?";
+        public static String VERIFICAR_PLACA = "select count(placa) from transporte where placa =?";
+        public static String VERIFICAR_CHASSI = "select count(chassi) from transporte where chassi =?";
     }
     public static class Destino{
         public static String INSERT_ALL = "insert into rota(nome,id_endereco_partida,horario,id_endereco_destino,preco,status) values(?,?,?,?,?,'ATIVO')";
@@ -101,6 +103,7 @@ public class SQLUtil {
         public static String AUTENTICAR = "select count(nome) from funcionario where login=? and senha=? and status='ATIVO'";
         public static String BUSCAR_LOGIN = "select * from funcionario where login=? and senha=?";
         public static String ALTERAR_STATUS = "update funcionario set status=? where cpf=?";
+        public static String VERIFICARLOGIN = "select count(login) from funcionario where login=?";
     }
     
    
@@ -109,7 +112,7 @@ public class SQLUtil {
     
    
     public static class Assento{
-        public static String INSERT_ALL = "insert into assento(numero,estado_ocupacao) values (?,?)";
+        public static String INSERT_ALL = "insert into assento(numero) values (?)";
         public static String BUSCAR_ID = "select * from assento where id=?";
         public static String BUSCAR_NUMERO = "select * from assento where numero=?";
         public static String BUSCAR_NUMERO_ID = "select id from assento where numero=?";
@@ -147,7 +150,7 @@ public class SQLUtil {
         public static String BUSCAR_DATA = "select * from financa where data=?";
         public static String BUSCAR_TODOS ="select * from financa order by id desc limit 24";
         public static String ALTERAR_FINANCA = "update financa set valor=? where data=?";
-        public static String BUSCARLIKEDATA = "select * from financa where data like ?";
+        public static String BUSCARLIKEDATA = "select * from financa where data like ? order by id desc limit 24";
         
     }
     

@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelDAO.DaoTransporte;
 import modelVO.Transporte;
+import view.Mensagens;
 
 /**
  *
@@ -26,7 +27,17 @@ public class BusinessTransporte {
           // if(transporte.getDestino()== null && transporte.getMotorista()== null){
          //      return dao.salvar2(transporte);
          //  }
-          return dao.salvar(transporte);
+         if(dao.verificarPlaca(transporte.getPlaca())){
+             if(dao.verificarChassi(transporte.getChassi())){
+                return dao.salvar(transporte);
+             }else{
+                 Mensagens.mensagem("Esse veiculo já foi cadastrado no sistema!");
+                 return false;
+             }
+         }else{
+             Mensagens.mensagem("Essa placa de veiculo já foi cadastrado!");
+             return false;
+         }
      
         
     }

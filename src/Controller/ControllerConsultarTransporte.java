@@ -15,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import java.util.Locale;
 import java.util.Observable;
 import javax.swing.SwingUtilities;
 import modelVO.BaseDados;
@@ -36,6 +37,7 @@ public class ControllerConsultarTransporte extends Observable {
     private InformacoesVeiculo iVeiculo;
     private ControllerEditarTransporte ceTransporte;
     private ControllerCadastroTransporte ccTransporte;
+    private ControllerDashBoard ccDash;
     public ControllerConsultarTransporte(ConsultarTransporte tela, Fachada fachada,InformacoesVeiculo iVeiculo,ControllerEditarTransporte ceTransporte,ControllerCadastroTransporte ccTransporte) {
         this.tela = tela;
         this.fachada = fachada;
@@ -192,8 +194,8 @@ public class ControllerConsultarTransporte extends Observable {
                         fachada.alterarStatusTransporte(transporte.getId(),st);
                     }
                     BaseDados.CarregarTransporte();
-                    
-                    
+                    BaseDados.CarregarTransporteAtivo();
+                    ccDash.montarFundoPrincipal();
                     setChanged();
                     notifyObservers("atualizar");
                 }
@@ -234,10 +236,10 @@ public class ControllerConsultarTransporte extends Observable {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnBuscar()){
                 if(tela.getjRadioChassi().isSelected()){
-                    transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText(), SQLUtil.Transporte.BUSCARLIKECHASSI);
+                    transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText().toUpperCase(), SQLUtil.Transporte.BUSCARLIKECHASSI);
                 }
                 if(tela.getjRadioPlaca().isSelected()){
-                    transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText(), SQLUtil.Transporte.BUSCARLIKEPLACA);
+                    transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText().toUpperCase(), SQLUtil.Transporte.BUSCARLIKEPLACA);
                 }
                 if(tela.getjRadioMotorista().isSelected()){
                     transporteLike = fachada.buscarLikeTransporte(tela.getBuscarTxt().getText().toUpperCase(), SQLUtil.Transporte.BUSCARLIKEMOTORISTA);
@@ -259,5 +261,11 @@ public class ControllerConsultarTransporte extends Observable {
     public ConsultarTransporte getTela() {
         return tela;
     }
+
+    public void setCcDash(ControllerDashBoard ccDash) {
+        this.ccDash = ccDash;
+    }
+
+    
     
 }

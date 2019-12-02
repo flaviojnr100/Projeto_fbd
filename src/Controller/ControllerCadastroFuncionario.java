@@ -56,7 +56,7 @@ public class ControllerCadastroFuncionario {
                         tela.getBtnCancelar().doClick();
                         cFuncionario.getjMenuAtualizar().doClick();
                     }else{
-                        Mensagens.mensagem("Erro, esse registro ja foi cadastrado no sistema!");
+                       
                     }
                 }else{
                     Mensagens.mensagem("As senhas não coincidem!");

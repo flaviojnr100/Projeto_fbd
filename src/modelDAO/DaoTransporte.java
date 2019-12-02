@@ -76,6 +76,48 @@ public class DaoTransporte {
         }
         }
     
+     public boolean verificarPlaca(String placa){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Transporte.VERIFICAR_PLACA);
+            statement.setString(1, placa);
+            result = statement.executeQuery();
+            conexao.close();
+            if(result.next()){
+                if(result.getInt(1)==0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
+     public boolean verificarChassi(String chassi){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Transporte.VERIFICAR_CHASSI);
+            statement.setString(1, chassi);
+            result = statement.executeQuery();
+            conexao.close();
+            if(result.next()){
+                if(result.getInt(1)==0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTransporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
+    }
     public int buscar_prox_id(){
         
         try {

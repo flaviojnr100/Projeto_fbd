@@ -20,6 +20,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Observable;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import modelVO.Assento;
 import modelVO.BaseDados;
 import modelVO.Destino;
@@ -53,7 +54,7 @@ public class ControllerCadastroViagem extends Observable {
     private double preco = 0;
     private ConsultarViagem ccViagem;
     private Passageiro [] passageiros;
-    private Transporte [] transportes;
+    
     public ControllerCadastroViagem(CadastroViagem tela,Fachada fachada,CadastroPassageiro cPassageiro,CadastroRota cRota,CadastroTransporte cTransporte,ConsultarViagem ccViagem) {
         this.tela = tela;
         this.fachada = fachada;
@@ -84,7 +85,7 @@ public class ControllerCadastroViagem extends Observable {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnFinalizar()){
                 if(!tela.getComboPassageiro().getSelectedItem().equals("Vazio")){
-                Transporte transporte = BaseDados.getTransportes().get(comboMarcado);
+                Transporte transporte = BaseDados.getTransporteAtivo().get(comboMarcado);
                 Passageiro passageiro = fachada.buscarCpfPassageiro(tela.getLblCpf().getText());
                 if(fachada.salvar(new Viagem(passageiro,transporte.getDestino(), transporte, preco+"",getDataAtual(),getHorario()))){
                     ocuparVagas(passageiro, transporte);
@@ -137,7 +138,7 @@ public class ControllerCadastroViagem extends Observable {
         }
     }
     public void montarComboRota(){
-        Transporte transporte = BaseDados.getTransportes().get(comboMarcado);
+        Transporte transporte = BaseDados.getTransporteAtivo().get(comboMarcado);
         String nome = transporte.getDestino().getNome();
         String preco = transporte.getDestino().getPreco();
         tela.getLblNomeRota().setText(nome);
@@ -146,18 +147,12 @@ public class ControllerCadastroViagem extends Observable {
     }
     public void montarComboTransporte(){
         tela.getComboTransporte().removeAllItems();
-        //transportes = new Transporte[BaseDados.transporteCountActive()];
-        //int i=0;
-        for(Transporte t:BaseDados.getTransportes()){
-            //if(t.getStatus().equals("ATIVO")){
+        for(Transporte t:BaseDados.getTransporteAtivo()){
                 tela.getComboTransporte().addItem(t.getTipo().getNome()+" Cor: "+t.getCor()+" Placa: "+t.getPlaca());
-               // transportes[i] = t;
-               // i++;
-            //}
         }
     }
     public void montarComboHorario(){
-        String horario = BaseDados.getTransportes().get(comboMarcado).getDestino().getHorario();
+        String horario = BaseDados.getTransporteAtivo().get(comboMarcado).getDestino().getHorario();
         tela.getLblHorario().setText(horario);
     }
     public void montarPreco(){
@@ -171,7 +166,7 @@ public class ControllerCadastroViagem extends Observable {
     public void montarAssentos(){
         tela.getjPanel7().removeAll();
         
-        int id=BaseDados.getTransportes().get(comboMarcado).getId();
+        int id=BaseDados.getTransporteAtivo().get(comboMarcado).getId();
         
         assentoL = fachada.buscarLivreVaga(id);
         int quant = assentoL.size();
@@ -183,6 +178,9 @@ public class ControllerCadastroViagem extends Observable {
         }
         for(JCheckBox jc:vagas){
             tela.getjPanel7().add(jc);
+        }
+        if(vagas.size()==0){
+            tela.getjPanel7().add(new JLabel("Não há vagas!"));
         }
         
     }
@@ -198,7 +196,7 @@ public class ControllerCadastroViagem extends Observable {
             if(jc.isSelected()){
                 String [] as = jc.getText().split(" ");
                 int id_assento = fachada.buscarNumeroId(Integer.parseInt(as[1]));
-                int id_transporte = BaseDados.getTransportes().get(comboMarcado).getId();
+                int id_transporte = BaseDados.getTransporteAtivo().get(comboMarcado).getId();
                 id_selecionado.add(fachada.buscarIdTransporteAssento(id_transporte, id_assento));
                 vagasSelecionadas+="Cadeira nº"+as[1]+"\n";
             }

@@ -8,6 +8,7 @@ package modelVB;
 import java.util.List;
 import modelDAO.DaoFuncionario;
 import modelVO.Funcionario;
+import view.Mensagens;
 
 /**
  *
@@ -21,8 +22,15 @@ public class BusinessFuncionario {
     }
     public boolean salvar(Funcionario funcionario){
         if(verificarCpf(funcionario.getCpf())){
+            if(dao.verificarLogin(funcionario.getLogin())){
             this.dao.salvar(funcionario);
             return true;
+            }else{
+                Mensagens.mensagem("Esse nome de usuário ja esta registrado no sistema!");
+                return false;
+            }
+        }else{
+            Mensagens.mensagem("Erro, esse registro ja foi cadastrado no sistema!");
         }
         return false;
         

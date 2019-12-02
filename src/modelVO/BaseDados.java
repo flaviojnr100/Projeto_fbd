@@ -6,6 +6,9 @@
 package modelVO;
 
 import fachada.Fachada;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,12 +24,21 @@ public class BaseDados {
     private static List<Destino> rotas;
     private static List<Viagem> viagens;
     private static List<Financa> financas;
+    private static List<Transporte> transporteAtivo;
     
     public static void CarregarTransporte(){
         transportes = Fachada.getInstance().getAllTransporte();
     }
     public static void CarregarTipoTransporte(){
         tipoTransportes = Fachada.getInstance().getAllTipoTransporte();
+    }
+    public static void CarregarTransporteAtivo(){
+        transporteAtivo = new ArrayList<>();
+        for(Transporte t:transportes){
+            if(t.getStatus().equals("ATIVO")){
+                transporteAtivo.add(t);
+            }
+        }
     }
 
     public static List<Funcionario> getFuncionarios() {
@@ -117,6 +129,17 @@ public class BaseDados {
             }
         }
         return count;
+    }
+
+    public static List<Transporte> getTransporteAtivo() {
+        return transporteAtivo;
+    }
+    public static String getDataAtual(){
+        Date data = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        
+        return formatador.format(data);
+        
     }
     
 }
