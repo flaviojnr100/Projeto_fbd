@@ -105,7 +105,7 @@ public class ControllerCadastroTransporte extends Observable {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == tela.getBtnCadastrar()){
                 Transporte transporte = new Transporte(tela.getCorText().getText().toUpperCase(), tela.getPlacaText().getText().toUpperCase(), tela.getChassiText().getText().toUpperCase(), motoristas[tela.getComboMotorista().getSelectedIndex()], getTipos().get(tela.getComboTipo().getSelectedIndex()), fachada.buscarIdDestino(rotas[tela.getComboRota().getSelectedIndex()].getId()));
-                              
+                    if(!tela.getPlacaText().getText().contains("") || !tela.getChassiText().getText().contains("") || !tela.getCorText().getText().equals("")){          
                     if(fachada.salvar(transporte)){
                         Mensagens.mensagem("Cadastrado com sucesso!");
                         tela.getBtnLimpar().doClick();
@@ -131,6 +131,9 @@ public class ControllerCadastroTransporte extends Observable {
                         Mensagens.mensagem("Erro, não pode efetuar o cadastro sem escolher o tipo do veiculo, cadastre pelo menos um");
                     }
                 }
+                    }else{
+                        Mensagens.mensagem("Há campos de texto em branco, não pode deixar campos em branco!");
+                    }
             }
             if(e.getSource() == tela.getBtnLimpar()){
                 tela.getCorText().setText("");

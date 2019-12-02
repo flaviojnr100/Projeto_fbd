@@ -235,6 +235,26 @@ public class DaoFuncionario {
         }
         return false;
     }
+    public boolean autenticarStatus(Funcionario funcionario){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Funcionario.AUTENTICAR_STATUS);
+            statement.setString(1, funcionario.getLogin());
+            statement.setString(2, funcionario.getSenha());
+            result = statement.executeQuery();
+            conexao.close();
+            if(result.next()){
+                if(result.getInt(1)==1){
+                    return true;
+                }
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     public boolean alterarStatus(String cpf,String status){
         
         try {

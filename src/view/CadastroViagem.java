@@ -55,6 +55,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         lblNome = new javax.swing.JLabel();
         lblSobrenome = new javax.swing.JLabel();
         lblCpf = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -97,12 +98,12 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         comboPassageiro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(comboPassageiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 366, 35));
+        jPanel2.add(comboPassageiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 310, 35));
 
         btnAdicionarPassageiro.setBackground(new java.awt.Color(255, 255, 255));
         btnAdicionarPassageiro.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAdicionarPassageiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/adicionar.png"))); // NOI18N
-        jPanel2.add(btnAdicionarPassageiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 58, 52));
+        jPanel2.add(btnAdicionarPassageiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 58, 50));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jLabel2.setText("Sobrenome:");
@@ -120,6 +121,10 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
 
         lblCpf.setText("cpf");
         jPanel2.add(lblCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+
+        btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/busca.png"))); // NOI18N
+        jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 60, 50));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 14, 460, 140));
 
@@ -435,11 +440,16 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
     public JLabel getLblPrecoVariavel() {
         return lblPrecoVariavel;
     }
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
     
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarPassageiro;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConcluir;
     private javax.swing.JButton btnFinalizar;

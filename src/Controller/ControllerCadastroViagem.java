@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ import java.util.List;
 import java.util.Observable;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import modelVO.Assento;
 import modelVO.BaseDados;
 import modelVO.Destino;
@@ -78,6 +81,8 @@ public class ControllerCadastroViagem extends Observable {
         tela.getComboPassageiro().addItemListener(mudarE);
         tela.getComboTransporte().addItemListener(mudarE);
         
+        tela.getBtnBuscar().addActionListener(new BotaoBuscar());
+        tela.getComboPassageiro().addMouseListener(new BotaoBuscar());
     }
     private class Botoes implements ActionListener{
 
@@ -233,6 +238,55 @@ public class ControllerCadastroViagem extends Observable {
             }
         }
     }
+    
+    private class BotaoBuscar implements ActionListener,MouseListener{
+        private Passageiro passageiro;
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String cpf = JOptionPane.showInputDialog("Digite o cpf: ");
+            if(busca(cpf)){
+                tela.getLblNome().setText(passageiro.getNome());
+                tela.getLblSobrenome().setText(passageiro.getSobrenome());
+                tela.getLblCpf().setText(passageiro.getCpf());
+                tela.getComboPassageiro().setEnabled(false);
+            }else{
+                Mensagens.mensagem("Não encontrado!");
+            }
+        }
+        public boolean busca(String cpf){
+            Passageiro res =fachada.buscarCpfPassageiro(cpf);
+            if(res !=null){
+                passageiro = res;
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(e.getSource() == tela.getComboPassageiro()){
+                tela.getComboPassageiro().setEnabled(true);
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+    }
+    
     public String getDataAtual(){
         Date data = new Date();
         SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");

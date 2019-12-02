@@ -101,6 +101,7 @@ public class SQLUtil {
         public static String BUSCARLIKELOGIN = "select * from funcionario where login like ? order by id desc";
         public static String VERIFICARCPF = "select count(cpf) from funcionario where cpf=?";
         public static String AUTENTICAR = "select count(nome) from funcionario where login=? and senha=? and status='ATIVO'";
+        public static String AUTENTICAR_STATUS = "select count(nome) from funcionario where login=? and senha=? and status='DESATIVADO'";
         public static String BUSCAR_LOGIN = "select * from funcionario where login=? and senha=?";
         public static String ALTERAR_STATUS = "update funcionario set status=? where cpf=?";
         public static String VERIFICARLOGIN = "select count(login) from funcionario where login=?";

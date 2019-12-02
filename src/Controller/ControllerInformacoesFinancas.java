@@ -43,7 +43,7 @@ public class ControllerInformacoesFinancas {
         }
     }
     public void limpar(){
-        for(int i=0;i<viagens.size();i++){
+        for(int i=0;i<tela.getjTableFinancas().getRowCount();i++){
             tela.getjTableFinancas().getModel().setValueAt("", i, 0);
             tela.getjTableFinancas().getModel().setValueAt("", i, 1);
             tela.getjTableFinancas().getModel().setValueAt("", i, 2);

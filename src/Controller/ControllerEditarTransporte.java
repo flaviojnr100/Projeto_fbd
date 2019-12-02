@@ -27,7 +27,6 @@ public class ControllerEditarTransporte extends Observable {
     private Fachada fachada;
     private Motorista [] motoristas;
     private ControllerDashBoard ccDash;
-    
     private int id;
     private ControllerConsultarTransporte ccTransporte;
     public ControllerEditarTransporte(EditarTransporte tela, Fachada fachada) {
@@ -48,7 +47,7 @@ public class ControllerEditarTransporte extends Observable {
             if(e.getSource() == tela.getBtnSalvar()){
                 if(Mensagens.mensagemConfirmacao("Deseja alterar o registro?")){
                     
-                    
+                
                 if(fachada.editar(new Transporte(tela.getCorText().getText().toUpperCase(),tela.getPlacaText().getText().toUpperCase(),tela.getChassiText().getText()),id)){
                     Mensagens.mensagem("Editado com sucesso!");
                     BaseDados.CarregarTransporte();
@@ -57,9 +56,8 @@ public class ControllerEditarTransporte extends Observable {
                     ccTransporte.getTela().getMenuAtualizar().doClick();
                     tela.getBtnSair().doClick();
                     
-                }else{
-                    Mensagens.mensagem("Erro ao editar o registro!");
                 }
+                
                 }
                 
             }else if(e.getSource() == tela.getBtnSair()){
@@ -97,6 +95,8 @@ public class ControllerEditarTransporte extends Observable {
     public void setCcDash(ControllerDashBoard ccDash) {
         this.ccDash = ccDash;
     }
+
+    
 
    
     

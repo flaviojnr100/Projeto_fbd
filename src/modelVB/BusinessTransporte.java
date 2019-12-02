@@ -61,7 +61,22 @@ public class BusinessTransporte {
         return dao.buscarId(id);
     }
     public boolean editar(Transporte transporte,int id){
-        return dao.editar(transporte, id);
+        if(buscarId(id).getChassi().equals(transporte.getChassi()) || dao.verificarChassi(transporte.getChassi())){
+            if(buscarId(id).getPlaca().equals(transporte.getPlaca()) || dao.verificarPlaca(transporte.getPlaca())){
+                 if(dao.editar(transporte, id)){
+                     return true;
+                 }
+                 Mensagens.mensagem("Erro ao modificar o registro!");
+                 return false;
+            }else{
+                Mensagens.mensagem("Essa placa já foi cadastrado no sistema!");
+                return false;
+            }
+            }else{
+                Mensagens.mensagem("Esse numero de chassi já foi cadastrado no sistema!");
+                return false;
+            }
+        
     }
     public boolean alterarStatus(int id,String status){
         return dao.alterarStatus(id, status);

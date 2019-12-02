@@ -63,6 +63,9 @@ public class BusinessFuncionario {
      public boolean autenticar(Funcionario funcionario){
          return dao.autenticar(funcionario);
      }
+     public boolean autenticarStatus(Funcionario funcionario){
+         return dao.autenticarStatus(funcionario);
+     }
      
    public boolean alterarStatus(String cpf,String status){
        return dao.alterarStatus(cpf, status);

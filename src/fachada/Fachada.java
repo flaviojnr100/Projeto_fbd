@@ -168,6 +168,9 @@ public class Fachada implements Ifachada {
      public boolean autenticar(Funcionario funcionario){
          return bFuncionario.autenticar(funcionario);
      }
+     public boolean autenticarStatus(Funcionario funcionario){
+         return bFuncionario.autenticarStatus(funcionario);
+     }
      
      public boolean alterarStatusFuncionario(String cpf,String status){
          return bFuncionario.alterarStatus(cpf, status);

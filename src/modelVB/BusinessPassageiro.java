@@ -52,5 +52,4 @@ public class BusinessPassageiro {
    public List<Passageiro> buscarLikeBilhete(int nome,String busca){
        return dao.buscarLikeBilhete(nome, busca);
    }
-    
 }

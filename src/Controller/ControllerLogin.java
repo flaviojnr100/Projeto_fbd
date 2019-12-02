@@ -77,7 +77,9 @@ public class ControllerLogin {
                     principal.setVisible(true);
                     tela.setVisible(false);
                 }else{
-                    if(!tela.getUsuarioTxt().getText().equals("") && !tela.getSenhaTxt().getText().equals("")){
+                    if(fachada.autenticarStatus(new Funcionario(tela.getUsuarioTxt().getText(), tela.getSenhaTxt().getText()))){
+                        Mensagens.mensagem("Acesso negado,você não pode acessar o sistema!");
+                    }else if(!tela.getUsuarioTxt().getText().equals("") && !tela.getSenhaTxt().getText().equals("")){
                         Mensagens.mensagem("Login ou senha incorreto !!");
                     }
                 }
