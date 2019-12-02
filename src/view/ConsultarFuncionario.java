@@ -7,6 +7,7 @@ package view;
 
 import Controller.ControllerConsultarFuncionario;
 import Controller.ControllerEditarFuncionario;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ public class ConsultarFuncionario extends javax.swing.JFrame implements Observer
     public ConsultarFuncionario() {
         initComponents();
         jRadioNome.setSelected(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

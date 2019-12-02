@@ -6,6 +6,7 @@
 package view;
 
 import Controller.ControllerConsultarRota;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -27,6 +28,7 @@ public class ConsultarRota extends javax.swing.JFrame implements Observer {
     public ConsultarRota() {
         initComponents();
         jRadioNome.setSelected(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

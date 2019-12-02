@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -20,6 +21,7 @@ public class InformacoesFinanca extends javax.swing.JFrame {
      */
     public InformacoesFinanca() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

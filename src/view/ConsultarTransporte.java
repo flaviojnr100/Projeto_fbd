@@ -6,6 +6,7 @@
 package view;
 
 import Controller.ControllerConsultarTransporte;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -27,6 +28,7 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
     public ConsultarTransporte() {
         initComponents();
         jRadioPlaca.setSelected(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**
@@ -56,6 +58,12 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
         jRadioPlaca = new javax.swing.JRadioButton();
         jRadioChassi = new javax.swing.JRadioButton();
         jRadioMotorista = new javax.swing.JRadioButton();
+
+        jPopupMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPopupMenu1MouseClicked(evt);
+            }
+        });
 
         menuAtualizar.setText("Atualizar");
         jPopupMenu1.add(menuAtualizar);
@@ -226,6 +234,10 @@ public class ConsultarTransporte extends javax.swing.JFrame implements Observer{
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jPopupMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPopupMenu1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPopupMenu1MouseClicked
 
     /**
      * @param args the command line arguments

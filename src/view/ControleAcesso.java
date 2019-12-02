@@ -6,6 +6,7 @@
 package view;
 
 import Controller.ControllerControleAcesso;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -25,6 +26,7 @@ public class ControleAcesso extends javax.swing.JFrame implements Observer{
     public ControleAcesso() {
         initComponents();
         jRadioUsuario.setSelected(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

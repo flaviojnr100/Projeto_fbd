@@ -11,6 +11,7 @@ import Controller.ControllerDashBoard;
 import Controller.ControllerEditarTransporte;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -30,6 +31,7 @@ public class DashBoard extends javax.swing.JFrame implements Observer{
      */
     public DashBoard() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
         
     }
 

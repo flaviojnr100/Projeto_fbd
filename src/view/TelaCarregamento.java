@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author Flavio
@@ -16,6 +18,7 @@ public class TelaCarregamento extends javax.swing.JFrame {
      */
     public TelaCarregamento() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

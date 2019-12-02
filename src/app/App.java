@@ -77,6 +77,7 @@ import view.InformacoesMotorista;
 import view.InformacoesPassageiro;
 import view.InformacoesVeiculo;
 import view.InformacoesViagem;
+import view.Sobre;
 import view.TelaCarregamento;
 import view.TelaLogin;
 import view.TelaPersonalizar;
@@ -209,10 +210,10 @@ public class App {
       cccFinanca.addObserver(ccFinanca);
       
       TelaLogin telaLogin = new TelaLogin();
-      
+      Sobre sobre = new Sobre();
       TelaPersonalizar personalizar = new TelaPersonalizar();
       InformacaoAtualVeiculo iaVeiculo = new InformacaoAtualVeiculo();
-      ControllerDashBoard ccDash =new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso,telaLogin,cccRota,cccViagem,ccccViagem,ccFinanca,cccFinanca,iaVeiculo);
+      ControllerDashBoard ccDash =new ControllerDashBoard(dash, cFuncionario, ccFuncionario, cMotorista, ccMotorista, cTransporte, ccTransporte, cPassageiro, ccPassageiro, cRota, ccRota, cViagem, ccViagem,personalizar,cccMotorista,cccFuncionario,cccPassageiro,cccTransporte,ccccTransporte,ccAcesso,telaLogin,cccRota,cccViagem,ccccViagem,ccFinanca,cccFinanca,iaVeiculo,sobre);
       ControllerTelaPersonalizar c= new ControllerTelaPersonalizar(personalizar,dash);
       c.addObserver(dash);
       //ccDash.addObserver(dash);

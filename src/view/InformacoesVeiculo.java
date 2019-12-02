@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -19,6 +20,7 @@ public class InformacoesVeiculo extends javax.swing.JFrame {
      */
     public InformacoesVeiculo() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

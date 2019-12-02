@@ -53,6 +53,7 @@ public class ControllerCadastroViagem extends Observable {
     private double preco = 0;
     private ConsultarViagem ccViagem;
     private Passageiro [] passageiros;
+    private Transporte [] transportes;
     public ControllerCadastroViagem(CadastroViagem tela,Fachada fachada,CadastroPassageiro cPassageiro,CadastroRota cRota,CadastroTransporte cTransporte,ConsultarViagem ccViagem) {
         this.tela = tela;
         this.fachada = fachada;
@@ -145,8 +146,14 @@ public class ControllerCadastroViagem extends Observable {
     }
     public void montarComboTransporte(){
         tela.getComboTransporte().removeAllItems();
+        //transportes = new Transporte[BaseDados.transporteCountActive()];
+        //int i=0;
         for(Transporte t:BaseDados.getTransportes()){
-            tela.getComboTransporte().addItem(t.getTipo().getNome()+" Cor: "+t.getCor()+" Placa: "+t.getPlaca());
+            //if(t.getStatus().equals("ATIVO")){
+                tela.getComboTransporte().addItem(t.getTipo().getNome()+" Cor: "+t.getCor()+" Placa: "+t.getPlaca());
+               // transportes[i] = t;
+               // i++;
+            //}
         }
     }
     public void montarComboHorario(){

@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
@@ -21,6 +22,7 @@ public class EditarFuncionario extends javax.swing.JFrame {
      */
     public EditarFuncionario() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

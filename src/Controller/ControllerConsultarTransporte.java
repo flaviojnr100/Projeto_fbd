@@ -46,7 +46,7 @@ public class ControllerConsultarTransporte extends Observable {
         Control();
     }
     private void Control(){
-       // tela.getjTableTransporte().addMouseListener(new CaixaMenu());
+        //tela.getjTableTransporte().addMouseListener(new CaixaMenu());
         tela.getMenuAtualizar().addActionListener(new CaixaMenu());
         tela.getjMenuInformacoes().addActionListener(new CaixaMenu());
         tela.getMenuCadastrar().addActionListener(new CaixaMenu());
@@ -127,7 +127,7 @@ public class ControllerConsultarTransporte extends Observable {
     }
     
     private class CaixaMenu extends MouseAdapter implements ActionListener{
-    @Override
+    
         public void mouseClicked(MouseEvent e) {
                         
             if(SwingUtilities.isRightMouseButton(e)){
@@ -136,13 +136,15 @@ public class ControllerConsultarTransporte extends Observable {
                     tela.getMenuEditar().setVisible(true);
                     tela.getMenuStatus().setVisible(true);
                     tela.getjMenuInformacoes().setVisible(true);
+                     tela.getjPopupMenu1().show(tela.getjTableTransporte(), e.getX(), e.getY());
                     
-                }else{
+                }else if(tela.getjTableTransporte().getModel().getValueAt(tela.getjTableTransporte().getSelectedRow(), 1).equals("")){
                     tela.getMenuEditar().setVisible(false);
                     tela.getMenuStatus().setVisible(false);
                     tela.getjMenuInformacoes().setVisible(false);
+                     tela.getjPopupMenu1().show(tela.getjTableTransporte(), e.getX(), e.getY());
                 }
-                tela.getjPopupMenu1().show(tela.getjTableTransporte(), e.getX(), e.getY());
+               
                 }catch(Exception e1){
                     
                 }
@@ -154,6 +156,7 @@ public class ControllerConsultarTransporte extends Observable {
             if(e.getSource() == tela.getMenuAtualizar()){
                 setChanged();
                 notifyObservers("atualizar");
+                
             }
             if(e.getSource() == tela.getjMenuInformacoes()){
                 iVeiculo.getLblCor().setText((String)tela.getjTableTransporte().getModel().getValueAt(tela.getjTableTransporte().getSelectedRow(), 1));

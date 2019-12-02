@@ -5,6 +5,9 @@
  */
 package Controller;
 
+import fachada.Fachada;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import view.TelaCarregamento;
@@ -18,11 +21,22 @@ public class ControllerCarregamento extends Thread {
     private TelaCarregamento tela;
     private TelaLogin login;
     private int parada=5000;
+    private Fachada fachada;
     public ControllerCarregamento(TelaCarregamento tela,TelaLogin login) {
         this.tela = tela;
         this.login = login;
+        this.fachada = Fachada.getInstance();
+        if(verificar()){
+            fachada.resetarAssento();
+        }
         start();
      
+    }
+    public boolean verificar(){
+        if(!fachada.buscarDia(getDataAtual())){
+            return true;
+        }
+        return false;
     }
     public void run(){
         
@@ -41,6 +55,13 @@ public class ControllerCarregamento extends Thread {
             }
         }
         
+        
+    }
+     public String getDataAtual(){
+        Date data = new Date();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        
+        return formatador.format(data);
         
     }
     

@@ -7,6 +7,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ public class CadastroRota extends javax.swing.JFrame implements Observer {
     /** Creates new form CadastrarRota */
     public CadastroRota() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /** This method is called from within the constructor to

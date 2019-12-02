@@ -6,6 +6,7 @@
 
 package view;
 
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
@@ -19,6 +20,7 @@ public class EditarRota extends javax.swing.JFrame {
     /** Creates new form CadastrarRota */
     public EditarRota() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /** This method is called from within the constructor to

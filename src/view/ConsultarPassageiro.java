@@ -8,6 +8,7 @@ package view;
 import Controller.ControllerCadastroPassageiro;
 import Controller.ControllerConsultarPassageiro;
 import Controller.ControllerEditarPassageiro;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ public class ConsultarPassageiro extends javax.swing.JFrame implements Observer 
     public ConsultarPassageiro() {
         initComponents();
         jRadioNome.setSelected(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

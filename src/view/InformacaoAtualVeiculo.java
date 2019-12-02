@@ -6,6 +6,7 @@
 
 package view;
 
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -18,6 +19,7 @@ public class InformacaoAtualVeiculo extends javax.swing.JFrame {
     /** Creates new form InformacaoAtualVeiculo */
     public InformacaoAtualVeiculo() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /** This method is called from within the constructor to

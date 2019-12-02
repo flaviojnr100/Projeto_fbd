@@ -109,5 +109,14 @@ public class BaseDados {
         }
         return count;
     }
+    public static int transporteCountActive(){
+        int count =0;
+        for(Transporte t:transportes){
+            if(t.getStatus().equals("ATIVO")){
+                count++;
+            }
+        }
+        return count;
+    }
     
 }

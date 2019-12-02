@@ -173,5 +173,19 @@ public class DaoAssento {
         
         return false;
     }
+    public void resetarAssento(){
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Assento.RESETAR_ASSENTOS);
+            statement.execute();
+            conexao.close();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoAssento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    }
     
-}
+

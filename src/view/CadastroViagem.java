@@ -8,6 +8,7 @@ package view;
 import Controller.ControllerCadastroViagem;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.BoxLayout;
@@ -30,6 +31,7 @@ public class CadastroViagem extends javax.swing.JFrame implements Observer {
     public CadastroViagem() {
         initComponents();
         jPanel7.setLayout(new BoxLayout(jPanel7, BoxLayout.Y_AXIS));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

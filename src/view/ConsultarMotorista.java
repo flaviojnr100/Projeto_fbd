@@ -7,6 +7,7 @@ package view;
 
 import Controller.ControllerConsultarMotorista;
 import Controller.ControllerEditarMotorista;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -28,6 +29,7 @@ public class ConsultarMotorista extends javax.swing.JFrame implements Observer {
     public ConsultarMotorista() {
         initComponents();
         jRadioNome.setSelected(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

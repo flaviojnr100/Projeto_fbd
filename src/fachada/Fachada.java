@@ -271,6 +271,9 @@ public class Fachada implements Ifachada {
      public boolean removerPassageiroAssento(int id_transporte,int id_assento){
          return bAssento.removerPassageiroAssento(id_transporte, id_assento);
      }
+     public void resetarAssento(){
+         bAssento.resetarAssento();
+     }
      
      //viagem
      public boolean salvar(Viagem viagem){
@@ -287,6 +290,9 @@ public class Fachada implements Ifachada {
      }
       public boolean alterarStatus(Viagem viagem){
           return bViagem.alterarStatus(viagem);
+      }
+       public boolean buscarDia(String data){
+          return bViagem.buscarDia(data);
       }
   
      //Financa

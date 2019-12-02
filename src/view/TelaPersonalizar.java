@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 
@@ -19,6 +20,7 @@ public class TelaPersonalizar extends javax.swing.JFrame {
      */
     public TelaPersonalizar() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

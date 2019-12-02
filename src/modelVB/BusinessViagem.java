@@ -35,5 +35,8 @@ public class BusinessViagem {
      public boolean alterarStatus(Viagem viagem){
          return dao.alterarStatus(viagem);
      }
+    public boolean buscarDia(String data){
+        return dao.buscarDia(data);
+    }
     
 }

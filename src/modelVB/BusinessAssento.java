@@ -50,4 +50,7 @@ public class BusinessAssento {
      public boolean removerPassageiroAssento(int id_transporte,int id_assento){
          return dao.removerPassageiroAssento(id_transporte, id_assento);
      }
+     public void resetarAssento(){
+         dao.resetarAssento();
+     }
 }

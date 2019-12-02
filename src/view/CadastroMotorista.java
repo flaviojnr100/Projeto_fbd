@@ -6,6 +6,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ public class CadastroMotorista extends javax.swing.JFrame implements Observer{
      */
     public CadastroMotorista() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("resource/logo_onibus_oficial.png")));
     }
 
     /**

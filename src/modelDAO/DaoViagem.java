@@ -83,6 +83,24 @@ public class DaoViagem {
         }
         return null;
     }
+     public boolean buscarDia(String data){
+    
+        
+        try {
+            conexao = SQLConexao.getConnectionInstance(SQLConexao.NOME_BD_CONNECTION_POSTGRESS);
+            statement = conexao.prepareStatement(SQLUtil.Viagem.BUSCAR_DATA);
+            statement.setString(1, data);
+            result = statement.executeQuery();
+            if(result.next()){
+                if(result.getInt(1)>0){
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoViagem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     
     public List<Viagem> buscarLike(String texto,String busca){
          List<Viagem> viagens = new ArrayList<>();
@@ -119,7 +137,7 @@ public class DaoViagem {
         return false;
     }
     
-   
+    
     
     
 }
